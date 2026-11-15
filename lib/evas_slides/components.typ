@@ -11,11 +11,11 @@
     width: width,
     fill: highlight.desaturate(32%).lighten(86%),
     inset: (
-      left: space.sm + stroke.xl,
+      left: space.sm + weight.xl,
       right: space.sm, 
       y: space.md
     ),
-    stroke: (left: stroke.xl + highlight),
+    stroke: (left: weight.xl + highlight),
   )[
     #if title != none {
       v(-space.xs)
@@ -44,7 +44,7 @@
     #v(-(space.xs + space.sm))
     #line(
       length: span.p18, 
-      stroke: stroke.xl + highlight
+      stroke: weight.xl + highlight
     )
 
     #if byline != none {
@@ -65,14 +65,14 @@
   width: 100%,
   height: size.base, 
   fill: grey.light, 
-  radius: stroke.xl, 
+  radius: weight.xl, 
   align(
     left,
     box(
       width: share * 100%, 
       height: 100%, 
       fill: color, 
-      radius: stroke.xl
+      radius: weight.xl
     ),
   )
 )

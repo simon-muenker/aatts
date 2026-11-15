@@ -68,9 +68,9 @@
     inset: (x: 8pt, y: 10pt),
     stroke: (_, y) => 
       if y == 0 { 
-        (bottom: stroke.base + grey.dark) 
+        (bottom: weight.base + grey.dark) 
       } else { 
-        (bottom: stroke.sm + grey.medium) 
+        (bottom: weight.sm + grey.medium) 
       }
     ,
   )
@@ -81,7 +81,7 @@
   set figure(gap: space.sm)
 
   // footnotes
-  set footnote.entry(separator: line(length: 20%, stroke: stroke.sm + grey.medium))
+  set footnote.entry(separator: line(length: 20%, stroke: weight.sm + grey.medium))
   show footnote.entry: set text(size: size.sm)
 
   // links & bibliography

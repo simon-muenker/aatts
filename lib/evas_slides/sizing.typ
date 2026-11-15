@@ -22,7 +22,7 @@
   sm: base-unit-text * .75,
 )
 
-#let stroke = (
+#let weight = (
   xl: 4pt,
   lg: 2pt,
   base: 1pt,
