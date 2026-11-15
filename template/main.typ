@@ -1,4 +1,4 @@
-#import "@preview/evas-slides:0.1.0": *
+#import "@preview/starter-evas:0.1.0": *
 
 #show: theme.with(
   title: "Presentation Title",

@@ -1,12 +1,12 @@
 [package]
-name = "evas-slides"
+name = "starter-evas"
 version = "0.1.0"
-entrypoint = "lib/evas_slides/lib.typ"
+entrypoint = "lib/starter-evas/lib.typ"
 authors = ["Simon Münker <simon.muenker@googlemail.com>"]
 license = "MIT"
 description = "Presentation slides in the EVAS design."
 repository = "https://github.com/simon-muenker/evas_typst_templates"
-keywords = ["EVAS", "presentation", "slides"]
+keywords = ["EVAS", "research", "presentation", "slides"]
 categories = ["presentation"]
 compiler = "0.14.0"
 exclude = ["example.pdf", "Makefile", ".gitignore"]
