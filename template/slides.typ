@@ -6,7 +6,7 @@
 #show raw.where(block: true): codly.new
 #show: codly.theme("github-light")
 
-#import "@preview/aatts:0.1.0": slides
+#import "@preview/aatts:0.1.0": constants, slides
 
 #show: slides.theme.with(
   title: "Presentation Title",
@@ -35,7 +35,7 @@
     xmin: -3, xmax: 3,
     ymin: -1, ymax: 9,
     show-grid: true,
-    (fn: x => calc.pow(x, 2), stroke: blue + 1.5pt),
+    (fn: x => calc.pow(x, 2), stroke: constants.palette.blue + 1.5pt),
   )
 
   #tidy-tree-graph(compact: true)[
@@ -61,12 +61,12 @@ pub fn greeting(name: &str) -> String {
 #(slides.slide.base)(title: [Key Message])[
   #grid(
     columns: (1fr, 1fr),
-    column-gutter: space.md,
+    column-gutter: slides.sizing.space.md,
     align: left + horizon,
     slides.widgets.statement(width: 100%, byline: [Supporting byline])[
       One sentence the audience should remember.
     ],
-    slides.widgets.card(width: 100%, title: [Note], highlight: palette.blue)[
+    slides.widgets.card(width: 100%, title: [Note], highlight: constants.palette.blue)[
       Additional context in a highlighted card.
     ],
   )

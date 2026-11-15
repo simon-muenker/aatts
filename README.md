@@ -10,16 +10,6 @@ A rendered example deck is available as [example.pdf](example.pdf).
 
 ## Getting started
 
-In the Typst web app, choose *Start from template* and search for `aatts`. On the command line:
-
-```sh
-typst init @preview/aatts:0.1.0 my-talk
-cd my-talk
-typst watch main.typ
-```
-
-To use it in an existing file:
-
 ```typ
 #import "@preview/aatts:0.1.0": slides
 
@@ -121,8 +111,8 @@ Large bold statement with an accent line and an optional byline.
 Takes one array per row: label, share between 0 and 1, colour, and the value shown on the right.
 
 ```typ
-#slides.wdigetsbar-chart(
-  ([Group A], 0.72, palette.red,  [72 %]),
+#slides.widgets.bar-chart(
+  ([Group A], 0.72, palette.red, [72 %]),
   ([Group B], 0.45, palette.blue, [45 %]),
   ([Group C], 0.18, palette.green, [18 %]),
 )

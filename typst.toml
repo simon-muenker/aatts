@@ -4,10 +4,10 @@ version = "0.1.0"
 entrypoint = "lib/aatts/lib.typ"
 authors = ["Simon Münker <simon.muenker@googlemail.com>"]
 license = "MIT"
-description = "Templates and Design System ::. Atomized Academic Typst Template Starters (aatts)"
-repository = "https://github.com/simon-muenker/evas_typst_templates"
-keywords = ["academic", "research", "presentation", "slides", "..."]
-categories = ["presentation", ["..."]]
+description = "Atomized Academic [TT] System (aatts) ::. Design Components with slides, poster and widgets cards and bar charts."
+repository = "https://github.com/simon-muenker/aatts"
+keywords = ["academic", "research", "presentation", "slides"]
+categories = ["presentation"]
 compiler = "0.15.0"
 exclude = ["example.pdf", "Makefile", ".gitignore"]
 

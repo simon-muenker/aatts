@@ -6,7 +6,7 @@
   title: none,
   author: (),
   date: auto,
-  font_families: font-families,
+  font-families: font-families,
   lang: "en", 
   footer: none,
   highlight: palette.red,
@@ -34,7 +34,7 @@
 
   // paragraphs
   set text(
-    font: font_families,
+    font: font-families,
     size: font.base,
     fill: grey.dark,
     lang: lang,
