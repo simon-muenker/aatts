@@ -1,0 +1,17 @@
+[package]
+name = "evas-slides"
+version = "0.1.0"
+entrypoint = "lib/evas_slides/lib.typ"
+authors = ["Simon Münker <simon.muenker@googlemail.com>"]
+license = "MIT"
+description = "Presentation slides in the EVAS design."
+repository = "https://github.com/simon-muenker/evas_typst_templates"
+keywords = ["EVAS", "presentation", "slides"]
+categories = ["presentation"]
+compiler = "0.14.0"
+exclude = ["example.pdf"]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

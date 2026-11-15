@@ -17,6 +17,6 @@
   magenta: rgb("#B31FC2"),
 )
 
-#let base_unit_grid = 25
-#let base_unit_space = 1.6cm
-#let base_unit_text = 16pt
+#let base-unit-grid = 25
+#let base-unit-space = 1.6cm
+#let base-unit-text = 16pt

@@ -2,24 +2,24 @@
 
 
 #let space = (
-  base: base_unit_space,
-  md: base_unit_space / 2,
-  sm: base_unit_space / 4,
-  xs: base_unit_space / 8,
+  base: base-unit-space,
+  md: base-unit-space / 2,
+  sm: base-unit-space / 4,
+  xs: base-unit-space / 8,
 )
 
 #let span = (
-  range(1, base_unit_grid + 1)
-  .map(i => ("p" + str(i), i / base_unit_grid * 100%))
+  range(1, base-unit-grid + 1)
+  .map(i => ("p" + str(i), i / base-unit-grid * 100%))
   .to-dict()
 )
 
 #let size = (
-  xxl: base_unit_text * 3.,
-  xl: base_unit_text * 2.25,
-  lg: base_unit_text * 1.5,
-  base: base_unit_text,
-  sm: base_unit_text * .75,
+  xxl: base-unit-text * 3.,
+  xl: base-unit-text * 2.25,
+  lg: base-unit-text * 1.5,
+  base: base-unit-text,
+  sm: base-unit-text * .75,
 )
 
 #let stroke = (
