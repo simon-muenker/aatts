@@ -115,11 +115,11 @@ Large bold statement with an accent line and an optional byline.
 #statement(byline: [Supporting byline])[
   One sentence the audience should remember.
 ]
+```
 
-### `bar-chart` and `bar`
+### `bar-chart`
 
-`bar-chart` takes one array per row: label, share between 0 and 1, colour,
-and the value shown on the right.
+Takes one array per row: label, share between 0 and 1, colour, and the value shown on the right.
 
 ```typ
 #bar-chart(
@@ -131,13 +131,14 @@ and the value shown on the right.
 
 ## Design System
 
-The following dictionaries are exported so that custom content matches the design.
+The following dictionaries are exported so that custom content matches the design. Span, size, and space derive from `base-unit-grid` (25), `base-unit-space` (1.6cm), and `base-unit-text` (16pt) are the constants
+these tokens are derived from.
 
 | Name      | Keys                                       | Values                                    |
 |-----------|--------------------------------------------|-------------------------------------------|
 | `palette` | `red`, `green`, `blue`, `olive`, `magenta` | Accent colours.                           |
 | `grey`    | `dark`, `medium`, `light`                  | Text, secondary text, background grey.    |
+| `span`    | `p1` … `p25`                               | Widths on a 25-column grid; `p25` = 100 %.|
 | `size`    | `xxl`, `xl`, `lg`, `base`, `sm`            | Text sizes: 48, 36, 24, 16, 12 pt.        |
 | `space`   | `base`, `md`, `sm`, `xs`                   | Spacing: 1.6, 0.8, 0.4, 0.2 cm.           |
-| `span`    | `p1` … `p25`                               | Widths on a 25-column grid; `p25` = 100 %.|
-| `stroke`  | `xl`, `lg`, `base`, `sm`                   | Line widths: 4, 2, 1, 0.5 pt.             |
+| `weight`  | `xl`, `lg`, `base`, `sm`                   | Line widths: 4, 2, 1, 0.5 pt.             |
