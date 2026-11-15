@@ -1,10 +1,10 @@
 [package]
-name = "atomized-academic-typst-template-starters"
+name = "aatts"
 version = "0.1.0"
 entrypoint = "lib/aatts/lib.typ"
 authors = ["Simon Münker <simon.muenker@googlemail.com>"]
 license = "MIT"
-description = "Templates and Design System, Atomized Academic- Typst Template Starters (aatts)"
+description = "Templates and Design System ::. Atomized Academic Typst Template Starters (aatts)"
 repository = "https://github.com/simon-muenker/evas_typst_templates"
 keywords = ["academic", "research", "presentation", "slides", "..."]
 categories = ["presentation", ["..."]]
@@ -13,5 +13,5 @@ exclude = ["example.pdf", "Makefile", ".gitignore"]
 
 [template]
 path = "template"
-entrypoint = "main.typ"
+entrypoint = "slides.typ"
 thumbnail = "thumbnail.png"

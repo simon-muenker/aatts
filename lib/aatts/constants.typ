@@ -17,6 +17,11 @@
   magenta: rgb("#B31FC2"),
 )
 
+#let font-families = (
+  "Helvetica Neue", "Helvetica", 
+  "Liberation Sans", "Arial"
+)
+
 #let base-unit-grid = 25
 #let base-unit-space = 1.6cm
 #let base-unit-font = 16pt

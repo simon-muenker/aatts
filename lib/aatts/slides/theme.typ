@@ -1,12 +1,12 @@
-#import "../constants.typ": *
-#import "sizing.typ": *
+#import "../constants.typ": grey, palette, font-families
+#import "sizing.typ": space, font, weight
 
 
 #let theme(
   title: none,
   author: (),
   date: auto,
-  font_families: ("Helvetica Neue", "Helvetica", "Arial", "Liberation Sans"),
+  font_families: font-families,
   lang: "en", 
   footer: none,
   highlight: palette.red,

@@ -1,5 +1,5 @@
-#import "../constants.typ": *
-#import "sizing.typ": *
+#import "../constants.typ": grey
+#import "sizing.typ": space, font
 
 
 #let slide = (

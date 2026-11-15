@@ -1,4 +1,4 @@
-#import "../constants.typ": *
+#import "../constants.typ": base-unit-space, base-unit-font
 
 
 #let space = (

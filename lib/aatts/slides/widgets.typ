@@ -1,5 +1,5 @@
-#import "../constants.typ": *
-#import "sizing.typ": *
+#import "../constants.typ": grey, palette, span
+#import "sizing.typ": space, font, weight
 
 
 #let card(
