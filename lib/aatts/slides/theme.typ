@@ -1,3 +1,4 @@
+#import "../constants.typ": *
 #import "sizing.typ": *
 
 
@@ -5,7 +6,7 @@
   title: none,
   author: (),
   date: auto,
-  font: ("Helvetica Neue", "Helvetica", "Arial", "Liberation Sans"),
+  font_families: ("Helvetica Neue", "Helvetica", "Arial", "Liberation Sans"),
   lang: "en", 
   footer: none,
   highlight: palette.red,
@@ -21,7 +22,7 @@
     ),
     footer: context {
       set text(
-        size: size.sm, 
+        size: font.sm, 
         fill: grey.medium
       )
       grid(
@@ -33,8 +34,8 @@
 
   // paragraphs
   set text(
-    font: font,
-    size: size.base,
+    font: font_families,
+    size: font.base,
     fill: grey.dark,
     lang: lang,
   )
@@ -46,8 +47,8 @@
   // headings
   show heading: set text(weight: "bold")
   show heading: set par(leading: 0.6em)
-  show heading.where(level: 1): set text(size: size.xxl)
-  show heading.where(level: 2): set text(size: size.xl)
+  show heading.where(level: 1): set text(size: font.xxl)
+  show heading.where(level: 2): set text(size: font.xl)
   show heading.where(level: 2): set block(above: space.md, below: space.base)
 
   // listings
@@ -77,12 +78,12 @@
   show table.cell.where(y: 0): strong
 
   // figures
-  show figure.caption: set text(size: size.sm, fill: grey.medium)
+  show figure.caption: set text(size: font.sm, fill: grey.medium)
   set figure(gap: space.sm)
 
   // footnotes
   set footnote.entry(separator: line(length: 20%, stroke: weight.sm + grey.medium))
-  show footnote.entry: set text(size: size.sm)
+  show footnote.entry: set text(size: font.sm)
 
   // links & bibliography
   show link: set text(fill: palette.blue)

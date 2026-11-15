@@ -1,14 +1,14 @@
 [package]
-name = "starter-evas"
+name = "atomized-academic-typst-template-starters"
 version = "0.1.0"
-entrypoint = "lib/starter-evas/lib.typ"
+entrypoint = "lib/aatts/lib.typ"
 authors = ["Simon Münker <simon.muenker@googlemail.com>"]
 license = "MIT"
-description = "Presentation slides in the EVAS design."
+description = "Templates and Design System, Atomized Academic- Typst Template Starters (aatts)"
 repository = "https://github.com/simon-muenker/evas_typst_templates"
-keywords = ["EVAS", "research", "presentation", "slides"]
-categories = ["presentation"]
-compiler = "0.14.0"
+keywords = ["academic", "research", "presentation", "slides", "..."]
+categories = ["presentation", ["..."]]
+compiler = "0.15.0"
 exclude = ["example.pdf", "Makefile", ".gitignore"]
 
 [template]

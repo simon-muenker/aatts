@@ -1,3 +1,4 @@
+#import "../constants.typ": *
 #import "sizing.typ": *
 
 
@@ -16,6 +17,7 @@
       y: space.md
     ),
     stroke: (left: weight.xl + highlight),
+    radius: weight.lg, 
   )[
     #if title != none {
       v(-space.xs)
@@ -38,7 +40,7 @@
   block(
     width: width,
   )[
-    #set text(size: size.xl, weight: "bold")
+    #set text(size: font.xl, weight: "bold")
     #body 
     
     #v(-(space.xs + space.sm))
@@ -50,9 +52,10 @@
     #if byline != none {
       v(-(space.xs + space.md))
       text(
-        size: size.base,
+        size: font.base,
         weight: "light", 
         tracking: 0.16pt,
+        fill: grey.medium,
         byline
       )
       v(-space.md)
@@ -63,7 +66,7 @@
 // ---- bar-plot
 #let bar(share, color) = box(
   width: 100%,
-  height: size.base, 
+  height: font.base, 
   fill: grey.light, 
   radius: weight.xl, 
   align(
@@ -87,10 +90,10 @@
   .map(row => {
     let (label, share, color, value) = row
     (
-      text(size: size.sm, label), 
+      text(size: font.sm, label), 
       bar(share, color),  
       text(
-        size: size.sm, 
+        size: font.sm, 
         weight: "semibold",
         value
       )

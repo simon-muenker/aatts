@@ -1,3 +1,4 @@
+#import "../constants.typ": *
 #import "sizing.typ": *
 
 
@@ -47,7 +48,7 @@
         #if subtitle != none {
           set par(leading: 0.6em)
           text(
-            size: size.lg, 
+            size: font.lg, 
             fill: grey.medium,
             subtitle
           )

@@ -19,4 +19,11 @@
 
 #let base-unit-grid = 25
 #let base-unit-space = 1.6cm
-#let base-unit-text = 16pt
+#let base-unit-font = 16pt
+
+// generate (1/base-unit-grid) grid
+#let span = (
+  range(1, base-unit-grid + 1)
+  .map(i => ("p" + str(i), i / base-unit-grid * 100%))
+  .to-dict()
+)

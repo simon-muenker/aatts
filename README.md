@@ -1,6 +1,8 @@
-# `starter-evas` - EVAS Typst Template
+# Academic Typst Template Starters (aatts)
 
-Presentation slides in the EVAS design (<FULL NAME OF EVAS>): a clean 16:9 layout with a title slide, content slides, and a few components for cards, key statements, and simple bar charts. No dependencies beyond Typst itself.
+Academic Typst Template Starters (aatts): a clean 16:9 layout with a title slide, content slides, and a few components for cards, key statements, and simple bar charts. No dependencies beyond Typst itself.
+
++ more soon
 
 ![Title slide of the template](thumbnail.png)
 
@@ -8,10 +10,10 @@ A rendered example deck is available as [example.pdf](example.pdf).
 
 ## Getting started
 
-In the Typst web app, choose *Start from template* and search for `starter-evas`. On the command line:
+In the Typst web app, choose *Start from template* and search for `aatts`. On the command line:
 
 ```sh
-typst init @preview/starter-evas:0.1.0 my-talk
+typst init @preview/aatts:0.1.0 my-talk
 cd my-talk
 typst watch main.typ
 ```
@@ -19,21 +21,21 @@ typst watch main.typ
 To use it in an existing file:
 
 ```typ
-#import "@preview/starter-evas:0.1.0": *
+#import "@preview/aatts:0.1.0": slides
 
-#show: theme.with(
+#show: slides.theme.with(
   title: "Presentation Title",
   author: "Author Name",
   footer: [Presentation Title · Venue, Date],
 )
 
-#(slide.title)(
+#(slides.slide.title)(
   [Presentation Title],
   subtitle: [A short subtitle that frames the talk],
   meta-bot: [*Author Name* \ Affiliation],
 )
 
-#(slide.base)(title: [Overview])[
+#(slides.slide.base)(title: [Overview])[
   - First point
   - Second point
 ]
@@ -44,7 +46,7 @@ To use it in an existing file:
 The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; the first installed family is used. To use a different font, pass `font` to `theme`:
 
 ```typ
-#show: theme.with(font: "Inter")
+#show: slides.theme.with(font: "Inter")
 ```
 
 ## Theme
@@ -66,7 +68,7 @@ The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; t
 ### `slide.title`
 
 ```typ
-#(slide.title)(
+#(slides.slide.title)(
   [Presentation Title],
   subtitle: [Optional subtitle],
   meta-top: [Optional content at the top, e.g. event name],
@@ -79,7 +81,7 @@ The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; t
 Content slide with margins, footer, and an optional title. The body is vertically centred.
 
 ```typ
-#(slide.base)(title: [Slide title])[
+#(slides.slide.base)(title: [Slide title])[
   Content
 ]
 ```
@@ -87,7 +89,7 @@ Content slide with margins, footer, and an optional title. The body is verticall
 ### `slide.empty`
 
 ```typ
-#(slide.empty)[
+#(slides.slide.empty)[
   #image("photo.jpg", width: 100%, height: 100%, fit: "cover")
 ]
 ```
@@ -99,7 +101,7 @@ Content slide with margins, footer, and an optional title. The body is verticall
 Tinted box with a coloured bar on the left.
 
 ```typ
-#card(title: [Note], highlight: palette.blue, width: span.p12)[
+#slides.widgets.card(title: [Note], highlight: palette.blue, width: span.p12)[
   Additional context in a highlighted card.
 ]
 ```
@@ -109,7 +111,7 @@ Tinted box with a coloured bar on the left.
 Large bold statement with an accent line and an optional byline.
 
 ```typ
-#statement(byline: [Supporting byline])[
+#slides.widgets.statement(byline: [Supporting byline])[
   One sentence the audience should remember.
 ]
 ```
@@ -119,7 +121,7 @@ Large bold statement with an accent line and an optional byline.
 Takes one array per row: label, share between 0 and 1, colour, and the value shown on the right.
 
 ```typ
-#bar-chart(
+#slides.wdigetsbar-chart(
   ([Group A], 0.72, palette.red,  [72 %]),
   ([Group B], 0.45, palette.blue, [45 %]),
   ([Group C], 0.18, palette.green, [18 %]),
