@@ -49,8 +49,7 @@ The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; t
 
 ## Theme
 
-`theme` sets the page format, text, headings, lists, tables, figures,
-footnotes, and links. Apply it once with a show rule.
+`theme` sets the page format, text, headings, lists, tables, figures, footnotes, and links. Apply it once with a show rule.
 
 | Parameter   | Default              | Description                                        |
 |-------------|----------------------|----------------------------------------------------|
@@ -129,8 +128,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 
 ## Design System
 
-The following dictionaries are exported so that custom content matches the design. Span, size, and space derive from `base-unit-grid` (25), `base-unit-space` (1.6cm), and `base-unit-text` (16pt) are the constants
-these tokens are derived from.
+The following dictionaries are exported so that custom content matches the design. Span, size, and space derive from `base-unit-grid` (25), `base-unit-space` (1.6cm), and `base-unit-text` (16pt) are the constants these tokens are derived from.
 
 | Name      | Keys                                       | Values                                    |
 |-----------|--------------------------------------------|-------------------------------------------|
