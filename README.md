@@ -41,7 +41,7 @@ To use it in an existing file:
 
 ## Fonts
 
-The default font stack is Helvetica Neue, Helvetica, Arial, Liberation Sans; the first installed family is used. To use a different font, pass `font` to `theme`:
+The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; the first installed family is used. To use a different font, pass `font` to `theme`:
 
 ```typ
 #show: theme.with(font: "Inter")
@@ -63,8 +63,6 @@ footnotes, and links. Apply it once with a show rule.
 | `highlight` | `palette.red`        | Accent colour for list markers.                    |
 
 ## Slides
-
-`slide` is a dictionary of slide functions. Because of that, calls need parentheses around the field access: `#(slide.base)(...)`.
 
 ### `slide.title`
 
