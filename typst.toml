@@ -9,7 +9,7 @@ repository = "https://github.com/simon-muenker/evas_typst_templates"
 keywords = ["EVAS", "presentation", "slides"]
 categories = ["presentation"]
 compiler = "0.14.0"
-exclude = ["example.pdf"]
+exclude = ["example.pdf", "Makefile", ".gitignore"]
 
 [template]
 path = "template"
