@@ -1,4 +1,4 @@
-#import "config.typ": *
+#import "sizing.typ": *
 
 
 #let slide = (
