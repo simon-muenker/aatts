@@ -1,6 +1,6 @@
-#import "../../lib/theme.typ": *
-#import "../../lib/slides.typ": *
-#import "../../lib/components.typ": *
+#import "../../lib/slides/theme.typ": *
+#import "../../lib/slides/slides.typ": *
+#import "../../lib/slides/components.typ": *
 
 #show: theme.with(
   title: "CLUG Workshop - Luxembourg 18.11.2026",
