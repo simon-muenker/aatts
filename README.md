@@ -1,4 +1,4 @@
-# EVAS Slides Typst Template
+# `starter-evas` - EVAS Typst Template
 
 Presentation slides in the EVAS design (<FULL NAME OF EVAS>): a clean 16:9 layout with a title slide, content slides, and a few components for cards, key statements, and simple bar charts. No dependencies beyond Typst itself.
 
@@ -8,10 +8,10 @@ A rendered example deck is available as [example.pdf](example.pdf).
 
 ## Getting started
 
-In the Typst web app, choose *Start from template* and search for `evas-slides`. On the command line:
+In the Typst web app, choose *Start from template* and search for `starter-evas`. On the command line:
 
 ```sh
-typst init @preview/evas-slides:0.1.0 my-talk
+typst init @preview/starter-evas:0.1.0 my-talk
 cd my-talk
 typst watch main.typ
 ```
@@ -19,7 +19,7 @@ typst watch main.typ
 To use it in an existing file:
 
 ```typ
-#import "@preview/evas-slides:0.1.0": *
+#import "@preview/starter-evas:0.1.0": *
 
 #show: theme.with(
   title: "Presentation Title",
