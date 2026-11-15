@@ -1,0 +1,94 @@
+#import "config.typ": *
+
+
+#let theme(
+  title: none,
+  author: (),
+  date: auto,
+  font: ("Helvetica Neue", "Helvetica", "Arial", "Liberation Sans"),
+  lang: "en", 
+  footer: none,
+  highlight: palette.red,
+  body
+  ) = {
+  set document(title: title, author: author, date: date)
+
+  set page(
+    paper: "presentation-16-9",
+    margin: (
+      x: space.base, 
+      y: space.base
+    ),
+    footer: context {
+      set text(
+        size: size.sm, 
+        fill: grey.medium
+      )
+      grid(
+        columns: (1fr, auto),
+        footer, counter(page).display(),
+      )
+    },
+  )
+
+  // paragraphs
+  set text(
+    font: font,
+    size: size.base,
+    fill: grey.dark,
+    lang: lang,
+  )
+  set par(
+    leading: 0.8em, 
+    spacing: 1.2em
+  )
+
+  // headings
+  show heading: set text(weight: "bold")
+  show heading: set par(leading: 0.6em)
+  show heading.where(level: 1): set text(size: size.xxl)
+  show heading.where(level: 2): set text(size: size.xl)
+  show heading.where(level: 2): set block(above: space.md, below: space.base)
+
+  // listings
+  set list(
+    marker: text(fill: highlight, sym.bullet),
+    spacing: 1em, 
+    indent: 0em,
+    body-indent: .6em,
+  )
+  set enum(
+    spacing: 1em, 
+    indent: 0em,
+    body-indent: .6em,
+  )
+
+  // tables
+  set table(
+    inset: (x: 8pt, y: 10pt),
+    stroke: (_, y) => 
+      if y == 0 { 
+        (bottom: stroke.base + grey.dark) 
+      } else { 
+        (bottom: stroke.sm + grey.medium) 
+      }
+    ,
+  )
+  show table.cell.where(y: 0): strong
+
+  // figures
+  show figure.caption: set text(size: size.sm, fill: grey.medium)
+  set figure(gap: space.sm)
+
+  // footnotes
+  set footnote.entry(separator: line(length: 20%, stroke: stroke.sm + grey.medium))
+  show footnote.entry: set text(size: size.sm)
+
+  // links & bibliography
+  show link: set text(fill: palette.blue)
+  show cite: set text(fill: palette.blue)
+  show bibliography: set heading(offset: 1)
+
+  // content
+  body
+}
