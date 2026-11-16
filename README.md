@@ -31,17 +31,25 @@ The package exports three modules:
 
 ### `units`
 
-`slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value, so the poster is the slide scale doubled.
+`slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value: the poster uses 1.75 × the slide base for type and spacing, and 2 × for stroke weights.
 
 | Name     | Keys                            | `slides`                    | `poster`                    |
 |----------|---------------------------------|-----------------------------|-----------------------------|
-| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12 pt       | 96, 72, 48, 32, 24 pt       |
-| `space`  | `base`, `md`, `sm`, `xs`        | 1.6, 0.8, 0.4, 0.2 cm       | 3.2, 1.6, 0.8, 0.4 cm       |
+| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12 pt       | 84, 63, 42, 28, 21 pt       |
+| `space`  | `base`, `md`, `sm`, `xs`        | 1.6, 0.8, 0.4, 0.2 cm       | 2.8, 1.4, 0.7, 0.35 cm      |
 | `weight` | `xl`, `lg`, `base`, `sm`        | 4, 2, 1, 0.5 pt             | 8, 4, 2, 1 pt               |
 
 ```typ
 #v(slides.units.space.md)
 #text(size: slides.units.font.lg, fill: constants.palette.grey.medium)[Large Muted Text]
+```
+
+## Fonts
+
+Fonts are not bundled with the package. The themes try Helvetica Neue, Helvetica, Liberation Sans and Arial in that order; if none is available, Typst falls back to its default font. Pass your own stack to either theme to change it:
+
+```typ
+  #show: slides.theme.style.with(font-families: ("Inter", "Arial"))
 ```
 
 ## `slides`
@@ -139,7 +147,7 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 
 ### `layouts.base`
 
-Stacks `meta-top`, the title with an optional subtitle, and the body set in `columns` columns (default 2). Use `== Heading` for sections and `#colbreak()` to start the next column.
+Stacks `meta-top`, the title with an optional subtitle, and the body set in `columns` columns (default 3). Use `== Heading` for sections and `#colbreak()` to start the next column.
 
 ## Widgets
 
@@ -179,17 +187,19 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 
 ## Development
 
-| Command          | Description                                                        |
-|------------------|--------------------------------------------------------------------|
-| `make test`      | Initialise a project from the template and compile it.             |
-| `make thumbnail` | Render `thumbnail.png` from `main.typ`.                            |
-| `make examples`  | Render `examples/slides.pdf` and `examples/poster.pdf`.            |
-| `make link`      | Link the checkout into the system package folder (for editors).    |
-| `make unlink`    | Remove that link again.                                            |
-| `make clean`     | Remove the build directory.                                        |
+| Command               | Description                                                           |
+|-----------------------|-----------------------------------------------------------------------|
+| `make install_extras` | Install `oxipng` and `typst-package-check`.                           |
+| `make test`           | Initialise a project from the template and compile it.                |
+| `make check`          | Lint the package with `typst-package-check`.                          |
+| `make thumbnail`      | Render `thumbnail.png` and `docs/preview.png` from `template/main.typ`. |
+| `make examples`       | Render `docs/example_slides.pdf` and `docs/example_poster.pdf`.       |
+| `make link`           | Link the checkout into the system package folder (for editors).       |
+| `make unlink`         | Remove that link again.                                               |
+| `make clean`          | Remove the build directory.     
 
-The full examples in [template](template/) also show third-party packages (`simple-plot`, `tdtr`, `codly`, `cades`) styled with the palette.
+The full examples in [template](template/) also show third-party packages (`simple-plot`, `tdtr`, `codly`, `cades`).
 
 ## License
 
-MIT
+The package (everything outside `template/`) is licensed under the [MIT License](LICENSE). The files in `template/` are licensed under [MIT-0](https://spdx.org/licenses/MIT-0.html): you can use, modify, and distribute documents created from the template without attribution. However, the photograph `template/assets/image-header_split.webp` was taken on film and digitized by the author, Simon Münker, and is released under the same MIT. Please attribute the author when using the picture.
