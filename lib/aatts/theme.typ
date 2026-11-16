@@ -5,14 +5,14 @@
   space: (),
   font: (),
   weight: (),
-  font-families: (),
+  font-families: constants.font-families,
   lang: "en",
   highlight: constants.palette.red,
   body,
 ) = {
   // paragraphs
   set text(
-    font: constants.font-families,
+    font: font-families,
     fill: constants.palette.grey.dark,
     size: font.base,
     lang: lang,
