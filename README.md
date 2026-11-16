@@ -4,7 +4,7 @@ A small design system for academic slides and posters: a shared palette and type
 
 ![Poster and slides built with the template](thumbnail.png)
 
-Rendered examples: [examples/slides.pdf](examples/slides.pdf) · [examples/poster.pdf](examples/poster.pdf)
+Rendered examples: [examples/slides.pdf](https://github.com/simon-muenker/aatts/blob/main/examples/slides.pdf) · [examples/poster.pdf](https://github.com/simon-muenker/aatts/blob/main/examples/poster.pdf)
 
 The package exports three modules:
 
