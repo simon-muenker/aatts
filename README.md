@@ -69,7 +69,7 @@ The package exports three modules:
 Title slide without footer. `meta-top` is placed at the top, `meta-bot` at the bottom.
 
 ```typ
-#(slides.layouts.title)(
+#slides.layouts.title(
   [Presentation Title],
   subtitle: [Optional subtitle],
   meta-top: [Optional content at the top, e.g. event name],
@@ -82,7 +82,7 @@ Title slide without footer. `meta-top` is placed at the top, `meta-bot` at the b
 Borderless image on the left, title content on the right. `columns` sets the split (default `(1fr, 1fr)`).
 
 ```typ
-#(slides.layouts.title-split)(
+#slides.layouts.title-split(
   image("cover.jpg"),
   [Presentation Title],
   subtitle: [Optional subtitle],
@@ -96,7 +96,7 @@ Borderless image on the left, title content on the right. `columns` sets the spl
 Content slide with an optional title and the footer. The body is vertically centred.
 
 ```typ
-#(slides.layouts.base)(title: [Slide title])[
+#slides.layouts.base(title: [Slide title])[
   Content
 ]
 ```
@@ -106,7 +106,7 @@ Content slide with an optional title and the footer. The body is vertically cent
 Page without margins, header or footer, e.g. for a full-bleed image.
 
 ```typ
-#(slides.layouts.empty)[
+#slides.layouts.empty[
   #image("photo.jpg", width: 100%, height: 100%, fit: "cover")
 ]
 ```
@@ -119,7 +119,7 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 #show: poster.theme.style
 #set document(title: "Poster Title", author: "Author Name")
 
-#(poster.layouts.base)(
+#poster.layouts.base(
   title: [Poster Title],
   subtitle: [A short subtitle that frames the poster],
   meta-top: [*Author Name* \ Affiliation #h(1fr) Conference Name · Venue, Date],

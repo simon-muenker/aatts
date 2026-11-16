@@ -216,4 +216,4 @@
   #bibliography("assets/references.bib", style: "apa")
 ]
 
-#(poster.layouts.base)(..hero, body)
+#poster.layouts.base(..hero, body)
