@@ -68,7 +68,7 @@
 #(slides.layouts.title)(..cover)
 
 // alternative cover: borderless image on the left, title content on the right
-#(slides.layouts.title-split)(
+#let cover-split = arguments(
   image("assets/image.a-chosen-soul-8YRWIy8QGpI-unsplash.webp"),
   [Short Title],
   subtitle: [A subtitle that frames the talk],
@@ -80,6 +80,8 @@
     Affiliation, Second Affiliation
   ],
 )
+
+#(slides.layouts.title-split)(..cover-split)
 
 
 // ============================================================

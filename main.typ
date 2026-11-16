@@ -41,7 +41,7 @@
 )
 
 // "presentation-16-9", w/ the footer of the slides theme unless n is none
-#let slide(n, body) = minipage(28cm, 15.75cm, slides.units.space.base, slide-w, {
+#let slide(n, body, inset: slides.units.space.base) = minipage(28cm, 15.75cm, inset, slide-w, {
   show: slides.theme.typography
 
   body
@@ -70,12 +70,10 @@
     columns: cols,
     gutter: gutter,
     slide(none, (slides.layouts.title-content)(..deck.cover)),
-    ..(
-      (6, deck.cards),
-      (8, deck.results),
-      (5, deck.key-message),
-      (9, deck.design),
-      (14, deck.closing),
-    ).map(((n, pick)) => slide(n, (slides.layouts.base-content)(..pick))),
+    slide(none, inset: 0pt, (slides.layouts.title-split-content)(..deck.cover-split)),
+    slide(8, (slides.layouts.base-content)(..deck.results)),
+    slide(5, (slides.layouts.base-content)(..deck.key-message)),
+    slide(6, (slides.layouts.base-content)(..deck.cards)),
+    slide(14, (slides.layouts.base-content)(..deck.closing)),
   ),
 )
