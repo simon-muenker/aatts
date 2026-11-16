@@ -1,42 +1,33 @@
-#import "../constants.typ": grey, palette, font-families
-#import "sizing.typ": space, font, weight
+#import "../constants.typ" as constants
+#import "../theme.typ" as base-theme
+
+#import "units.typ" as units
 
 
-#let theme(
-  title, 
-  subtitle: none, 
-  meta-top: none, 
-  meta-bot: none,
-  body,
-) = {
-  
-  
-  set text(font: font-families, size: font.base)
-  set par(justify: true)
-
-  show heading.where(level: 1): set block(above: 0pt, below: space.md)
-  show heading.where(level: 2): set block(above: space.base, below: space.sm)
-
+#let style(
+  paper: "a0",
+  font-families: constants.font-families,
+  highlight: constants.palette.red,
+  lang: "en",
+  body
+  ) = {
   set page(
-    paper: "a0",
-    margin: (
-      top: space.base,
-      bottom: space.base,
-      x: space.base,
-    ),
-    header: [#meta-top],
-    footer: [#meta-bot],
+    paper: paper,
+    margin: units.space.base,
   )
 
-  heading(level: 1, [
-    #text(hero.title, size: sizing.u6)
-    #linebreak()
-    #text(hero.subtitle, size: sizing.u4, weight: "light")
-  ])
+  // typography
+  show: base-theme.style.with(
+    space: units.space, 
+    font: units.font, 
+    weight: units.weight,
+    font-families: font-families,
+    lang: lang,
+    highlight: highlight,
+  )
 
-  v(sizing.u2)
-  text(abstract, size: sizing.u3h)
+  show heading.where(level: 2): set text(size: units.font.lg)
+  show heading.where(level: 2): set block(above: units.space.base, below: units.space.md)
 
-  v(sizing.u4)
   body
 }

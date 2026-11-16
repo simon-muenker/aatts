@@ -2,11 +2,7 @@
 
 Atomized Academic Typst Template Starters (aatts): a clean 16:9 layout with a title slide, content slides, and a few components for cards, key statements, and simple bar charts. No dependencies beyond Typst itself.
 
-+ more soon
-
 ![Title slide of the template](thumbnail.png)
-
-A rendered example deck is available as [example.pdf](example.pdf).
 
 ## Getting started
 
@@ -53,7 +49,7 @@ The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; t
 | `footer`    | `none`               | Content shown bottom left, next to the page number.|
 | `highlight` | `palette.red`        | Accent colour for list markers.                    |
 
-## Slides
+## `slides`
 
 ### `slide.title`
 
@@ -83,6 +79,38 @@ Content slide with margins, footer, and an optional title. The body is verticall
   #image("photo.jpg", width: 100%, height: 100%, fit: "cover")
 ]
 ```
+
+## `poster`
+
+```typ
+#import "@preview/aatts:0.1.0": poster
+
+#show: poster.theme.with(
+  title: [Poster Title],
+  subtitle: [A short subtitle that frames the poster],
+  author: "Author Name",
+  meta-top: [*Author Name* \ Affiliation],
+  meta-bot: [Conference Name · Venue, Date],
+)
+
+== Motivation
+
+#poster.widgets.card(title: [Note])[
+  The widgets of the slides, scaled to the poster.
+]
+```
+
+| Parameter   | Default              | Description                                        |
+|-------------|----------------------|----------------------------------------------------|
+| `title`     | `none`               | Title, shown on the sheet and set as PDF metadata. |
+| `subtitle`  | `none`               | Shown below the title.                             |
+| `author`    | `()`                 | Author name or array of names (PDF metadata).      |
+| `date`      | `auto`               | Document date (PDF metadata).                      |
+| `meta-top`  | `none`               | Content above the title, e.g. authors.             |
+| `meta-bot`  | `none`               | Content at the bottom of the sheet, e.g. venue.    |
+| `columns`   | `3`                  | Number of body columns.                            |
+| `paper`     | `"a0"`               | Paper size.                                        |
+
 
 ## Components
 
@@ -120,13 +148,19 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 
 ## Design System
 
-The following dictionaries are exported so that custom content matches the design. Span, size, and space derive from `base-unit-grid` (25), `base-unit-space` (1.6cm), and `base-unit-text` (16pt) are the constants these tokens are derived from.
+The following dictionaries are exported so that custom content matches the design. 
 
 | Name      | Keys                                       | Values                                    |
 |-----------|--------------------------------------------|-------------------------------------------|
 | `palette` | `red`, `green`, `blue`, `olive`, `magenta` | Accent colours.                           |
 | `grey`    | `dark`, `medium`, `light`                  | Text, secondary text, background grey.    |
 | `span`    | `p1` … `p25`                               | Widths on a 25-column grid; `p25` = 100 %.|
+
+
+Span, size, and space derive from `base-unit-grid` (12), `base-unit-space` (1.6cm), and `base-unit-text` (16pt) are the constants these tokens are derived from.
+
+| Name      | Keys                                       | Values                                    |
+|-----------|--------------------------------------------|-------------------------------------------|
 | `size`    | `xxl`, `xl`, `lg`, `base`, `sm`            | Text sizes: 48, 36, 24, 16, 12 pt.        |
 | `space`   | `base`, `md`, `sm`, `xs`                   | Spacing: 1.6, 0.8, 0.4, 0.2 cm.           |
 | `weight`  | `xl`, `lg`, `base`, `sm`                   | Line widths: 4, 2, 1, 0.5 pt.             |

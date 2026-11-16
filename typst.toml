@@ -6,8 +6,8 @@ authors = ["Simon Münker <simon.muenker@googlemail.com>"]
 license = "MIT"
 description = "Atomized Academic [TT] System (aatts) ::. Design Components with slides, poster and widgets cards and bar charts."
 repository = "https://github.com/simon-muenker/aatts"
-keywords = ["academic", "research", "presentation", "slides"]
-categories = ["presentation"]
+keywords = ["academic", "research", "presentation", "slides", "poster"]
+categories = ["presentation", "poster"]
 compiler = "0.15.0"
 exclude = ["Makefile", ".gitignore"]
 
