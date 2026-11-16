@@ -5,8 +5,7 @@
 #import "@preview/codly:2.0.0" as codly
 
 // ---- theme
-// #import "@preview/aatts:0.1.0": constants, poster
-#import "../lib/aatts/lib.typ": constants, poster
+#import "@preview/aatts:0.1.0": constants, poster
 
 #show: poster.theme.style
 #set document(
