@@ -6,7 +6,7 @@
   title: none,
   subtitle: none,
   meta-top: none,
-  columns: 2,
+  columns: 3,
   body
   ) = {
   meta-top
@@ -25,6 +25,6 @@
   grid(
     columns: 100%,
     column-gutter: units.space.base,
-    std.columns(columns, gutter: units.space.base * 2, body)
+    std.columns(columns, gutter: units.space.base, body)
   )
 }

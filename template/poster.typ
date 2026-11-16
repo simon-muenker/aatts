@@ -5,7 +5,8 @@
 #import "@preview/codly:2.0.0" as codly
 
 // ---- theme
-#import "@preview/aatts:0.1.0": constants, poster
+// #import "@preview/aatts:0.1.0": constants, poster
+#import "../lib/aatts/lib.typ": constants, poster
 
 #show: poster.theme.style
 #set document(
@@ -50,7 +51,7 @@
       Conference Name · Venue, Date · author\@affiliation.org
     ]
   ],
-  columns: 2,
+  columns: 3,
 )
 
 
@@ -59,26 +60,20 @@
 // ============================================================
 
 #let body = [
-  // scoped here (not at the top level), so the listings also render when
-  // the body is imported elsewhere, e.g. into the thumbnail (main.typ)
   #show raw.where(block: true): codly.new
   #show: codly.theme("github-light")
 
-  *TL;DR:* _#lorem(48)_
+  *TL;DR:* _#lorem(52)_
 
   == Motivation
 
-  *Setting the scene.* A short paragraph describing the question, the data, or the method. Keep it to a few sentences, a poster is read while standing.
+  *Setting the scene.* A short paragraph describing the question, the data, or the method. Keep it to a few sentences, a poster is read while standing @schwager-etal-2026-unsampled. #lorem(42) @plank-2022-problem.
 
-  - *First point* with a short explanation
-  - *Second point* with inline math $kappa = .82$
-  - *Third point* backed by the literature @schwager-etal-2026-unsampled
-
-  #gap
+  #lorem(12) @adilazuarda-etal-2024-towards. #lorem(28)
 
   == Method
 
-  *Design.* Describe the material and the procedure. Use `#gap` between blocks to keep the vertical rhythm consistent across columns.
+  *Design.* Describe the material and the procedure. Use `#gap` between blocks to keep the vertical rhythm consistent across columns. #lorem(42)
 
   #table(
     columns: (auto, 1fr, auto, auto),
@@ -91,17 +86,19 @@
 
   #gap
 
-  *Taxonomy.* Categories ($C$) are mapped onto a shared hierarchy, written as a nested list.
+  *Taxonomy.* Categories ($C$) are mapped onto a shared hierarchy, written as a nested list. #lorem(48)
 
-  #align(center, scale(280%, reflow: true, tidy-tree-graph(
+  #gap
+
+  #align(center, scale(230%, reflow: true, tidy-tree-graph(
     compact: true,
     spacing: (12pt, 24pt),
     node-inset: 4pt,
     draw-node: (
-      stroke: poster.units.weight.base + constants.palette.grey.dark,
+      stroke: poster.units.weight.sm + constants.palette.grey.dark,
       corner-radius: poster.units.weight.lg,
     ),
-    draw-edge: (stroke: poster.units.weight.base + constants.palette.grey.medium),
+    draw-edge: (stroke: poster.units.weight.sm + constants.palette.grey.medium),
   )[
     - *Culture*
       - Practice
@@ -117,7 +114,13 @@
 
   #gap
 
-  *Procedure.* Agreement is computed per item over adjacent label pairs.
+  *Procedure.* Agreement is computed per item over adjacent label pairs. #lorem(32)
+
+  #colbreak()
+
+  *Implementation:* #lorem(42)
+
+  #gap
 
   ```py
   def agreement(rows):
@@ -133,24 +136,28 @@
 
   #gap
 
-  #colbreak()
+  #lorem(68)
 
   == Results
 
-  #poster.widgets.bar-chart(
-    ([*X* - Group A], .59, constants.palette.green, [59%]),
-    ([*X* - Group B], .82, constants.palette.red, [82%]),
-    ([*Y* - Group A], .53, constants.palette.green, [53%]),
-    ([*Y* - Group B], .94, constants.palette.red, [94%]),
+  #figure(
+    poster.widgets.bar-chart(
+      ([*X* - Group A], .59, constants.palette.green, [59%]),
+      ([*X* - Group B], .82, constants.palette.red, [82%]),
+      ([*Y* - Group A], .53, constants.palette.green, [53%]),
+      ([*Y* - Group B], .94, constants.palette.red, [94%]),
+    ),
+    caption: [Agreement grows with model size; plotted with `simple-plot`.],
   )
-  #note[Share of positive answers per item (mean)]
 
-  Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer.
+  #gap
+
+  #lorem(64)
 
   #gap
 
   #figure(
-    scale(250%, reflow: true, plot(
+    scale(160%, reflow: true, plot(
       width: 14, height: 6.5,
       label-sizing: "plot",
       xmin: 0, xmax: 6,
@@ -169,18 +176,29 @@
     caption: [Agreement grows with model size; plotted with `simple-plot`.],
   )
 
+  #gap
+
+
+  Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer. #lorem(48)
+
+  #colbreak()
+
   == Discussion
 
-  *What it means.* Relate the results to the question from the first column, and name the limits of the material they were measured on @munker-2025-fingerprinting.
+  *What it means* @munker-2025-fingerprinting: #lorem(32).
+
+  #lorem(68)
 
   == Conclusion
 
-  *First takeaway.* Disagreement between annotators is a signal, not noise. *Second takeaway.* Results must be scoped to the material.
+  *What it means* @munker-2025-fingerprinting: #lorem(32).
+
+  #lorem(16) @plum-etal-2026-ltzglue. #lorem(24)
 
   #gap
 
   #poster.widgets.card(title: [Open Question], highlight: constants.palette.blue)[
-    A question phrased for the discussion at the poster?
+    A question phrased for the discussion at the poster? #lorem(16)
   ]
 
   #gap

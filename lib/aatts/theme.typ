@@ -25,9 +25,10 @@
   // headings
   show heading: set text(weight: "bold")
   show heading: set par(leading: 0.6em)
+  
   show heading.where(level: 1): set text(size: font.xxl)
   show heading.where(level: 2): set text(size: font.xl)
-  show heading.where(level: 2): set block(above: space.md, below: space.base)
+  show heading.where(level: 2): set block(above: space.base, below: space.md)
 
   // listings
   set list(

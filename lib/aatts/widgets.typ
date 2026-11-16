@@ -17,6 +17,7 @@
     block(
       width: width,
       fill: highlight.desaturate(32%).lighten(86%),
+      breakable: false,
       inset: (
         left: space.sm + weight.xl,
         right: space.sm, 
@@ -46,17 +47,14 @@
     block(
       width: width,
     )[
-      #set text(size: font.xl, weight: "bold")
-      #body 
+      #heading(level: 2, body)
     
-      #v(-(space.xs + space.sm))
       #line(
-        length: constants.span.p8, 
+        length: constants.span.p3, 
         stroke: weight.xl + highlight
       )
 
       #if byline != none {
-        v(-(space.xs + space.md))
         text(
           size: font.base,
           weight: "light", 
