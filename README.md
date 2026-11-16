@@ -39,20 +39,20 @@ To use the design system in an existing project, import the modules directly as 
 
 | Name            | Keys                                                | Values                                           |
 |-----------------|-----------------------------------------------------|--------------------------------------------------|
-| `palette`       | `red`, `green`, `blue`, `olive`, `magenta`          | Accent colours (`red` is the default highlight). |
-| `palette.grey`  | `dark`, `medium`, `light`                           | Text, secondary text, background grey.           |
+| `palette`       | `red, green, blue, olive, magenta`          | Accent colours (`red` is the default highlight). |
+| `palette.grey`  | `dark, medium, light`                           | Text, secondary text, background grey.           |
 | `span`          | `p1` … `p12`                                        | Widths on a 12-column grid; `p12` = 100 %.       |
 | `font-families` | —                                                   | Helvetica Neue, Liberation Sans, Arial.          |
 
 ### `units`
 
-`slides.units`, `poster.units` and `article.units` hold the size tokens. Each scale is derived from one base value: the poster uses 1.75 × the slide base for type and spacing, and 2 × for stroke weights; the article uses an 11 pt base.
+`slides.units, poster.units` and `article.units` hold the size tokens. Each scale is derived from one base value: the poster uses 1.75 × the slide base for type and spacing, and 2 × for stroke weights; the article uses an 11 pt base.
 
 | Name     | Keys                            | `slides`                    | `poster`                    | `article`                     |
 |----------|---------------------------------|-----------------------------|-----------------------------|-------------------------------|
-| `font` (pt)   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12     | 84, 63, 42, 28, 21       | 30, 24, 16, 10, 8  |
-| `space` (cm)  | `base`, `md`, `sm`, `xs`        | 1.6, 0.8, 0.4, 0.2      | 2.8, 1.4, 0.7, 0.35      | 1, 0.5, 0.25, 0.125         |
-| `weight` (pt) | `xl`, `lg`, `base`, `sm`        | 4, 2, 1, 0.5              | 8, 4, 2, 1        | 2, 1, 0.5, 0.25          |
+| `font` (pt)   | `xxl, xl, lg, base, sm` | `48, 36, 24, 16, 12`     | `84, 63, 42, 28, 21`       | `30, 24, 16, 10, 8`  |
+| `space` (cm)  | `base, md, sm, xs`        | `1.6, 0.8, 0.4, 0.2`      | `2.8, 1.4, 0.7, 0.35`      | `1, 0.5, 0.25, 0.125`         |
+| `weight` (pt) | `xl, lg, base, sm`        | `4, 2, 1, 0.5`              | `8, 4, 2, 1`        | `2, 1, 0.5, 0.25`          |
 
 ```typ
 #v(slides.units.space.md)
@@ -185,15 +185,15 @@ Stacks `meta-top`, the title with an optional subtitle, and the body set in `col
 ]
 ```
 
-The theme sets an A4 page (`paper`), a running `header` from the second page on, centred page numbers, justified text, numbered sections (`=` and `==`, `===` stays unnumbered) and numbered equations.
+The theme sets an A4 page (`paper`), a running `header` from the second page on, centred page numbers, justified text, numbered sections (`=` and `==, ===` stays unnumbered) and numbered equations.
 
 ### `layouts.base`
 
-Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors`, `abstract`) and the body. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
+Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
 
 ## Widgets
 
-The same widgets are available as `slides.widgets`, `poster.widgets` and `article.widgets`.
+The same widgets are available as `slides.widgets, poster.widgets` and `article.widgets`.
 
 ### `card`
 
@@ -235,12 +235,12 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 | `make test`           | Initialise a project from the template and compile it.                |
 | `make check`          | Lint the package with `typst-package-check`.                          |
 | `make thumbnail`      | Render `thumbnail.png` and `docs/preview.png` from `template/main.typ`. |
-| `make examples`       | Render `docs/example_slides.pdf`, `docs/example_poster.pdf` and `docs/example_article.pdf`. |
+| `make examples`       | Render `docs/example_slides.pdf, docs/example_poster.pdf` and `docs/example_article.pdf`. |
 | `make link`           | Link the checkout into the system package folder (for editors).       |
 | `make unlink`         | Remove that link again.                                               |
 | `make clean`          | Remove the build directory.     
 
-The full examples in [template](template/) also show third-party packages (`tdtr`, `codly`, `cades`).
+The full examples in [template](template/) also show third-party packages (`tdtr, codly, cades`).
 
 ## License
 
