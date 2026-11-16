@@ -2,9 +2,9 @@
 
 A small design system for academic slides and posters: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, and widgets for cards, key statements and simple bar charts. Both themes share the same building blocks, so a deck and a poster look like they belong together.
 
-![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/d2049af00938694d9c8ba5b10499b69fa745f15f/docs/preview.png?raw=true)
+![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/2ea7eb9bba32ab7f632ad2b2360571d4b8f7e062/docs/preview.png?raw=true)
 
-Rendered examples: [docs/example_slides.pdf](https://github.com/simon-muenker/aatts/blob/d2049af00938694d9c8ba5b10499b69fa745f15f/docs/example_slides.pdf) · [docs/example_poster.pdf](https://github.com/simon-muenker/aatts/blob/d2049af00938694d9c8ba5b10499b69fa745f15f/docs/example_poster.pdf)
+Rendered examples: [docs/example_slides.pdf](https://github.com/simon-muenker/aatts/blob/2ea7eb9bba32ab7f632ad2b2360571d4b8f7e062/docs/example_slides.pdf) · [docs/example_poster.pdf](https://github.com/simon-muenker/aatts/blob/2ea7eb9bba32ab7f632ad2b2360571d4b8f7e062/docs/example_poster.pdf)
 
 The package exports three modules:
 
