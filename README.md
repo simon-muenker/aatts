@@ -1,6 +1,6 @@
 # Atomized Academic Typst Template Starters (aatts)
 
-A small design system for academic slides, posters and articles: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster and a paper look like they belong together.
+A small design system for academic slides, posters and articles: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster and a paper look like they belong together. This repository should be used in academic teaching (including Trier University) as an easy way into Typst: all students can use these as building templates for their slides, poster or paper and fulfill thereby the layout requirements.
 
 ![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/preview.png?raw=true)
 
