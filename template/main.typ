@@ -2,7 +2,7 @@
 
 // data
 #import "slides.typ" as example-slides
-#import "poster.typ" as exampe-poster
+#import "poster.typ" as example-poster
 
 
 // ---- geometry
@@ -64,7 +64,7 @@
 #grid(
   columns: (poster-w, auto),
   column-gutter: gutter,
-  a0((poster.layouts.base)(..exampe-poster.hero, exampe-poster.body)),
+  a0((poster.layouts.base)(..example-poster.hero, example-poster.body)),
   grid(
     columns: cols,
     gutter: gutter,
