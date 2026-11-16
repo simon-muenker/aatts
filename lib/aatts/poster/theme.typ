@@ -21,6 +21,7 @@
   )
 
   set par(justify: true)
+  set table(inset: (x: units.font.base * .96, y: units.font.base * .32))
   show bibliography: set text(size: units.font.sm)
 
   body

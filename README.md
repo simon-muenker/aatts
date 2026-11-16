@@ -198,7 +198,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 | `make unlink`         | Remove that link again.                                               |
 | `make clean`          | Remove the build directory.     
 
-The full examples in [template](template/) also show third-party packages (`simple-plot`, `tdtr`, `codly`, `cades`).
+The full examples in [template](template/) also show third-party packages (`tdtr`, `codly`, `cades`).
 
 ## License
 

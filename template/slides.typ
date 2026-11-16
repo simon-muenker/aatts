@@ -1,7 +1,6 @@
 // ---- plugins
-#import "@preview/cades:0.3.1": qr-code
-#import "@preview/simple-plot:1.1.1": plot, data, line-plot
-#import "@preview/tdtr:0.6.1": tidy-tree-graph
+#import "@preview/cades:0.3.1" as cades
+#import "@preview/tdtr:0.6.1" as tdtr
 #import "@preview/codly:2.0.0" as codly
 
 // code blocks setup
@@ -266,6 +265,13 @@
 
 #slides.layouts.base(..design)
 
+#slides.layouts.base(title: [Imported PDF as Figure])[
+    #figure(
+      image("assets/image-graph_ega.pdf", height: 82%),
+      caption: [The EGA plot of human answers to the HSQ @munker-2025-fingerprinting],
+  )
+]
+
 
 // ============================================================
 // Segment 3 :: Plugins
@@ -280,42 +286,12 @@
   ],
 )
 
-#slides.layouts.base(title: [Function Plots #h(slides.units.space.sm) #plugin[simple-plot]])[
-  #split(
-    gutter: slides.units.space.base,
-    align: center + horizon,
-    plot(
-      width: 9, height: 6,
-      xmin: -2 * calc.pi, xmax: 2 * calc.pi,
-      ymin: -1.5, ymax: 1.5,
-      show-grid: "major",
-      (fn: x => calc.sin(x), stroke: constants.palette.red + 1.5pt, label: $sin(x)$),
-      (fn: x => calc.cos(x), stroke: constants.palette.blue + 1.5pt, label: $cos(x)$),
-    ),
-    plot(
-      width: 9, height: 6,
-      xmin: 0, xmax: 6,
-      ymin: 0, ymax: 10,
-      axis-x-pos: "bottom",
-      axis-y-pos: "left",
-      show-grid: "major",
-      data(
-        ((0.5, 1.2), (1, 2.1), (1.5, 2.4), (2, 3.9), (2.5, 4.1),
-         (3, 5.3), (3.5, 5.8), (4, 7.4), (4.5, 7.6), (5, 8.9)),
-        mark: "*",
-        mark-fill: constants.palette.green,
-      ),
-      (fn: x => 1.6 * x + 0.3, stroke: constants.palette.red + 1.5pt, label: $hat(y)$),
-    ),
-  )
-]
-
 #slides.layouts.base(title: [Tidy Trees #h(slides.units.space.sm) #plugin[tdtr]])[
   #split(
     columns: (1.5fr, 1fr),
     gutter: slides.units.space.base,
     align: left + horizon,
-    align(center, scale(160%, reflow: true, tidy-tree-graph(
+    align(center, scale(160%, reflow: true, tdtr.tidy-tree-graph(
       compact: true,
       spacing: (12pt, 24pt),
       node-inset: 4pt,
@@ -427,7 +403,7 @@
     [
       _visit our website_ #h(slides.units.space.xs) #plugin[cades]
       #v(slides.units.space.xs)
-      #qr-code("https://simon-muenker.github.io/", width: 7cm, color: constants.palette.grey.dark)
+      #cades.qr-code("https://simon-muenker.github.io/", width: 7cm, color: constants.palette.grey.dark)
     ],
   )
 ]

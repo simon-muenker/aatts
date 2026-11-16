@@ -1,8 +1,6 @@
 // ---- plugins
-#import "@preview/cades:0.3.1": qr-code
-#import "@preview/simple-plot:1.1.1": plot, data
-#import "@preview/tdtr:0.6.1": tidy-tree-graph
-#import "@preview/codly:2.0.0" as codly
+#import "@preview/cades:0.3.1" as cades
+#import "@preview/tdtr:0.6.1" as tdtr
 
 // ---- theme
 #import "@preview/aatts:0.1.0": constants, poster
@@ -59,8 +57,6 @@
 // ============================================================
 
 #let body = [
-  #show raw.where(block: true): codly.new
-  #show: codly.theme("github-light")
 
   *TL;DR:* _#lorem(52)_
 
@@ -72,15 +68,21 @@
 
   == Method
 
-  *Design.* Describe the material and the procedure. Use `#gap` between blocks to keep the vertical rhythm consistent across columns. #lorem(42)
+  *Fingerprint.* Describe the material and the procedure. Use `#gap` between blocks to keep the vertical rhythm consistent across columns. #lorem(42)
 
-  #table(
-    columns: (auto, 1fr, auto, auto),
-    align: (left, left, right, right),
-    table.header([Dataset], [Operationalizes], [$|C|$], [$|Q|$]),
-    [*Alpha*], [everyday practice], [16], [5,081],
-    [*Beta*], [norms and customs], [45], [1,227],
-    [*Gamma*], [applied etiquette], [71], [1,727],
+  #gap
+
+  #figure(
+    [
+      #let c1 = $arrow(bold(C)_bold(X^1))$
+      #let c2 = $arrow(bold(C)_bold(X^2))$
+      #let su = $sum_(k=1)^l$
+
+      $ "sim"(c1, c2) = (su c1_k c2_k) / (
+        sqrt(su (c1_k)^2) sqrt(su (c2_k)^2)
+      ) $
+    ],
+    caption: [Similarity between two correlation matrices/fingerprints.]
   )
 
   #gap
@@ -89,7 +91,7 @@
 
   #gap
 
-  #align(center, scale(230%, reflow: true, tidy-tree-graph(
+  #align(center, scale(230%, reflow: true, tdtr.tidy-tree-graph(
     compact: true,
     spacing: (12pt, 24pt),
     node-inset: 4pt,
@@ -117,68 +119,69 @@
 
   #colbreak()
 
-  *Implementation:* #lorem(42)
-
-  #gap
-
-  ```py
-  def agreement(rows):
-      """Share of equal label pairs."""
-      pairs = [
-          (a, b)
-          for row in rows
-          for a, b in zip(row, row[1:])
-      ]
-      same = sum(a == b for a, b in pairs)
-      return same / len(pairs)
-  ```
-
-  #gap
-
-  #lorem(68)
+  *Implementation:* #lorem(72)
 
   == Results
-
-  #figure(
-    poster.widgets.bar-chart(
-      ([*X* - Group A], .59, constants.palette.green, [59%]),
-      ([*X* - Group B], .82, constants.palette.red, [82%]),
-      ([*Y* - Group A], .53, constants.palette.green, [53%]),
-      ([*Y* - Group B], .94, constants.palette.red, [94%]),
-    ),
-    caption: [Agreement grows with model size; plotted with `simple-plot`.],
-  )
-
-  #gap
 
   #lorem(64)
 
   #gap
 
   #figure(
-    scale(160%, reflow: true, plot(
-      width: 14, height: 6.5,
-      label-sizing: "plot",
-      xmin: 0, xmax: 6,
-      ymin: 0, ymax: 10,
-      axis-x-pos: "bottom",
-      axis-y-pos: "left",
-      show-grid: "major",
-      data(
-        ((0.5, 1.2), (1, 2.1), (1.5, 2.4), (2, 3.9), (2.5, 4.1),
-         (3, 5.3), (3.5, 5.8), (4, 7.4), (4.5, 7.6), (5, 8.9)),
-        mark: "*",
-        mark-fill: constants.palette.green,
-      ),
-      (fn: x => 1.6 * x + 0.3, stroke: constants.palette.red + 1.5pt, label: $hat(y)$),
-    )),
-    caption: [Agreement grows with model size; plotted with `simple-plot`.],
+    image("assets/image-graph_ega.pdf"),
+    caption: [The EGA plot of human answers to the HSQ @munker-2025-fingerprinting],
   )
 
   #gap
 
 
   Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer. #lorem(48)
+
+  #let group(title) = (
+    table.hline(stroke: 0.05em),
+    table.cell(colspan: 5, align: center, strong(title)),
+    table.hline(stroke: 0.05em),
+  )
+
+
+
+#figure(
+  kind: table,
+  placement: auto,
+  text(size: 0.8em, table(
+    columns: 5,
+    align: (left, right, right, right, right),
+    stroke: none,
+    table.vline(x: 1, stroke: 0.05em),
+
+    table.header[][Aff.][See.][Agg.][Sed.],
+
+    ..group[Baseline Conditions],
+    [Random],       [0.089],   [0.134],   [0.083],   [0.065],
+    [Human Items],  [0.118],   [0.105],   [0.084],   [0.103],
+    [Human Full],   [*0.841*], [*0.820*], [*0.790*], [*0.815*],
+
+    ..group[LLMs w/o context window],
+    [Llama3.1 8B],  [0.118],   [0.081],   [0.104],   [0.110],
+    [Llama3.3 70B], [0.034],   [0.070],   [0.024],   [0.013],
+    [Mistral 7B],   [0.121],   [0.130],   [0.089],   [0.122],
+    [Mistral 123B], [*0.184*], [*0.189*], [*0.177*], [*0.206*],
+    [Qwen2.5 7B],   [0.095],   [0.061],   [0.116],   [0.096],
+    [Qwen2.5 72B],  [0.008],   [0.073],   [0.103],   [0.041],
+
+    ..group[LLMs w/ 5-item context window],
+    [Llama3.1 8B],  [0.138],   [0.091],   [0.087],   [0.149],
+    [Llama3.3 70B], [0.063],   [0.144],   [0.087],   [0.076],
+    [Mistral 7B],   [0.460],   [0.513],   [0.514],   [*0.617*],
+    [Mistral 123B], [0.220],   [0.242],   [0.157],   [0.232],
+    [Qwen2.5 7B],   [*0.492*], [*0.535*], [*0.551*], [0.298],
+    [Qwen2.5 72B],  [0.094],   [0.138],   [0.084],   [0.113],
+  )),
+  caption: [
+    Cronbach's Alpha reliability scores for four humor styles across different experimental conditions. The
+    table compares the baseline conditions with both LLM experiments. Values above 0.8 indicate acceptable reliability for applied research The highest score within each group-column  combination is highlighted in *bold*.
+  ],
+)
 
   #colbreak()
 
@@ -210,7 +213,7 @@
       author\@affiliation.org \
       #note[Scan for the paper, code, and data.]
     ],
-    qr-code("https://simon-muenker.github.io/", width: 8cm, color: constants.palette.grey.dark),
+    cades.qr-code("https://simon-muenker.github.io/", width: 8cm, color: constants.palette.grey.dark),
   )
 
   #bibliography("assets/references.bib", style: "apa")
