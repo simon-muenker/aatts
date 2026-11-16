@@ -15,10 +15,10 @@ NAME    := $(shell sed -n 's/^name *= *"\(.*\)"/\1/p' typst.toml)
 VERSION := $(shell sed -n 's/^version *= *"\(.*\)"/\1/p' typst.toml)
 
 BUILD := /tmp/$(NAME)-test
-DOC   := $(BUILD)/template/main.typ
+DOC   := $(BUILD)/project/main.typ
 LINK  := $(HOME)/Library/Application Support/typst/packages/preview/$(NAME)/$(VERSION)
 
-.PHONY: test thumbnail clean link unlink
+.PHONY: test thumbnail clean link unlink packages
 
 link:
 	@mkdir -p "$$(dirname "$(LINK)")"
@@ -30,15 +30,17 @@ unlink:
 test: export TYPST_PACKAGE_PATH := $(BUILD)/packages
 thumbnail: export TYPST_PACKAGE_PATH := $(BUILD)/packages
 
-test:
-	@rm -rf "$(BUILD)"
-	@mkdir -p "$(TYPST_PACKAGE_PATH)/preview/$(NAME)"
-	@ln -s "$(CURDIR)" "$(TYPST_PACKAGE_PATH)/preview/$(NAME)/$(VERSION)"
+packages:
+	@mkdir -p "$(BUILD)/packages/preview/$(NAME)"
+	@ln -sfn "$(CURDIR)" "$(BUILD)/packages/preview/$(NAME)/$(VERSION)"
+
+test: packages
+	@rm -rf "$(BUILD)/project"
 	typst init "@preview/$(NAME):$(VERSION)" "$(BUILD)/project"
 	typst compile "$(DOC)"
 
-thumbnail:
-	typst compile --root . -f png --ppi 200 template/main.typ thumbnail.png
+thumbnail: packages
+	typst compile --root . -f png --ppi 200 main.typ thumbnail.png
 
 clean:
 	rm -rf "$(BUILD)"

@@ -1,5 +1,4 @@
-#import "../lib/aatts/lib.typ": constants, poster
-// #import "@preview/aatts:0.1.0": constants, poster
+#import "@preview/aatts:0.1.0": constants, poster
 
 #show: poster.theme.style
 #set document(
@@ -38,7 +37,7 @@
 
   - *First point* with a short explanation
   - *Second point* with inline math $kappa = .82$
-  - *Third point* backed by the literature @plank-2022-problem
+  - *Third point* backed by the literature @schwager-etal-2026-unsampled
 
   #v(poster.units.space.sm)
 
@@ -93,7 +92,7 @@
     caption: [Figures and their captions span the column.],
   )
 
-  *What it means.* Relate the results to the question from the first column, and name the limits of the material they were measured on @adilazuarda-etal-2024-towards.
+  *What it means.* Relate the results to the question from the first column, and name the limits of the material they were measured on @munker-2025-fingerprinting.
 
   == Conclusion
 

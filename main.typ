@@ -1,9 +1,9 @@
-#import "../lib/aatts/lib.typ": constants, slides, poster
-// #import "@preview/aatts:0.1.0": constants, slides, poster
+// templates
+#import "lib/aatts/lib.typ": constants, slides, poster
 
 // data
-#import "slides.typ" as deck
-#import "poster.typ" as sheet
+#import "template/slides.typ" as deck
+#import "template/poster.typ" as sheet
 
 
 // ---- geometry
@@ -65,17 +65,17 @@
 #grid(
   columns: (poster-w, auto),
   column-gutter: gutter,
-  a0((poster.theme.layout)(..sheet.hero, sheet.body)),
+  a0((poster.layouts.base)(..sheet.hero, sheet.body)),
   grid(
     columns: cols,
     gutter: gutter,
-    slide(none, (slides.layouts.title)(..deck.cover)),
+    slide(none, (slides.layouts.title-content)(..deck.cover)),
     ..(
       (6, deck.cards),
       (8, deck.results),
       (5, deck.key-message),
       (9, deck.design),
       // (14, deck.closing),
-    ).map(((n, pick)) => slide(n, (slides.layouts.base)(..pick))),
+    ).map(((n, pick)) => slide(n, (slides.layouts.base-content)(..pick))),
   ),
 )

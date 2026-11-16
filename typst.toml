@@ -12,6 +12,6 @@ compiler = "0.15.0"
 exclude = ["Makefile", ".gitignore"]
 
 [template]
-path = "template"
+path = ""
 entrypoint = "main.typ"
 thumbnail = "thumbnail.png"

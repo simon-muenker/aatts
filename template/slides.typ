@@ -9,8 +9,7 @@
 #show: codly.theme("github-light")
 
 // ---- theme
-#import "../lib/aatts/lib.typ": constants, slides
-// #import "@preview/aatts:0.1.0": constants, slides
+#import "@preview/aatts:0.1.0": constants, slides
 
 
 #let footer = [Presentation Title · Venue, Date]
@@ -146,7 +145,7 @@
 #let cards = arguments(title: [Cards in the Palette])[
   #grid(
     columns: (1fr, 1fr, 1fr),
-    gutter: slides.units.space.sm,
+    gutter: slides.units.space.md,
     slides.widgets.card(title: [Red], highlight: constants.palette.red)[
       Default highlight, for the main finding.
     ],
@@ -382,9 +381,9 @@
 // ============================================================
 
 #(slides.layouts.base)(title: [Wrap Up])[
-  #block(width: constants.span.p10)[
-    *First takeaway.* Disagreement between annotators is a signal, not noise @plank-2022-problem. \
-    *Second takeaway.* Results must be scoped to the material they were measured on @adilazuarda-etal-2024-towards.
+  #block(width: constants.span.p7)[
+    *First takeaway.* Disagreement between annotators is a signal, not noise @schwager-etal-2026-unsampled. \
+    *Second takeaway.* Results must be scoped to the material they were measured on @munker-2025-fingerprinting.
 
     #v(slides.units.space.xs)
 
