@@ -50,7 +50,7 @@ To use the design system in an existing project, import the modules directly as 
 
 | Name     | Keys                            | `slides`                    | `poster`                    | `article`                     |
 |----------|---------------------------------|-----------------------------|-----------------------------|-------------------------------|
-| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12 pt       | 84, 63, 42, 28, 21 pt       | 33, 24.75, 16.5, 11, 8.25 pt  |
+| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12 pt       | 84, 63, 42, 28, 21 pt       | 30, 24, 16, 10, 8 pt  |
 | `space`  | `base`, `md`, `sm`, `xs`        | 1.6, 0.8, 0.4, 0.2 cm       | 2.8, 1.4, 0.7, 0.35 cm      | 1, 0.5, 0.25, 0.125 cm        |
 | `weight` | `xl`, `lg`, `base`, `sm`        | 4, 2, 1, 0.5 pt             | 8, 4, 2, 1 pt               | 2, 1, 0.5, 0.25 pt            |
 
