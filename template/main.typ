@@ -1,9 +1,8 @@
-// templates
-#import "lib/aatts/lib.typ": constants, slides, poster
+#import "@preview/aatts:0.1.0": constants, slides, poster
 
 // data
-#import "template/slides.typ" as deck
-#import "template/poster.typ" as sheet
+#import "slides.typ" as example-slides
+#import "poster.typ" as exampe-poster
 
 
 // ---- geometry
@@ -49,7 +48,7 @@
     place(bottom, dy: slides.units.space.base / 2, text(
       size: slides.units.font.sm,
       fill: constants.palette.grey.medium,
-      grid(columns: (1fr, auto), deck.footer, str(n)),
+      grid(columns: (1fr, auto), example-slides.footer, str(n)),
     ))
   }
 })
@@ -61,19 +60,19 @@
 })
 
 // ---- layout
-// slides are numbered by their page in the deck
+// slides are numbered by their page in the example-slides
 #grid(
   columns: (poster-w, auto),
   column-gutter: gutter,
-  a0((poster.layouts.base)(..sheet.hero, sheet.body)),
+  a0((poster.layouts.base)(..exampe-poster.hero, exampe-poster.body)),
   grid(
     columns: cols,
     gutter: gutter,
-    slide(none, (slides.layouts.title-content)(..deck.cover)),
-    slide(none, inset: 0pt, (slides.layouts.title-split-content)(..deck.cover-split)),
-    slide(8, (slides.layouts.base-content)(..deck.results)),
-    slide(5, (slides.layouts.base-content)(..deck.key-message)),
-    slide(6, (slides.layouts.base-content)(..deck.cards)),
-    slide(14, (slides.layouts.base-content)(..deck.closing)),
+    slide(none, (slides.layouts.title-content)(..example-slides.cover)),
+    slide(none, inset: 0pt, (slides.layouts.title-split-content)(..example-slides.cover-split)),
+    slide(8, (slides.layouts.base-content)(..example-slides.results)),
+    slide(5, (slides.layouts.base-content)(..example-slides.key-message)),
+    slide(6, (slides.layouts.base-content)(..example-slides.cards)),
+    slide(14, (slides.layouts.base-content)(..example-slides.closing)),
   ),
 )

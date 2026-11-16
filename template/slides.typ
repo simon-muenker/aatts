@@ -69,7 +69,7 @@
 
 // alternative cover: borderless image on the left, title content on the right
 #let cover-split = arguments(
-  image("assets/image.a-chosen-soul-8YRWIy8QGpI-unsplash.webp"),
+  image("assets/image-header_split.webp"),
   [Short Title],
   subtitle: [A subtitle that frames the talk],
   meta-top: text(weight: "light", fill: constants.palette.grey.medium)[

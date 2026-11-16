@@ -40,11 +40,12 @@ test: packages
 	typst compile "$(DOC)"
 
 thumbnail: packages
-	typst compile --root . -f png --ppi 200 main.typ thumbnail.png
+	typst compile --root . -f png --ppi 300 template/main.typ thumbnail.png
+	typst compile --root . -f png --ppi 300 template/main.typ docs/preview.png
 
 examples: packages
-	typst compile --root . -f pdf --ppi 200 template/poster.typ examples/poster.pdf
-	typst compile --root . -f pdf --ppi 200 template/slides.typ examples/slides.pdf
+	typst compile --root . -f pdf --ppi 300 template/poster.typ docs/example_poster.pdf
+	typst compile --root . -f pdf --ppi 300 template/slides.typ docs/example_slides.pdf
 
 clean:
 	rm -rf "$(BUILD)"
