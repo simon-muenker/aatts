@@ -9,9 +9,9 @@ repository = "https://github.com/simon-muenker/aatts"
 keywords = ["academic", "research", "presentation", "slides"]
 categories = ["presentation"]
 compiler = "0.15.0"
-exclude = ["example.pdf", "Makefile", ".gitignore"]
+exclude = ["Makefile", ".gitignore"]
 
 [template]
 path = "template"
-entrypoint = "slides.typ"
+entrypoint = "main.typ"
 thumbnail = "thumbnail.png"

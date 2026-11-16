@@ -1,7 +1,7 @@
 # Local testing of the Typst template package.
 #
 #   make test        init a project from the template and compile it
-#   make thumbnail   render page 1 of the template as thumbnail.png
+#   make thumbnail   compose thumbnail.png from the components (template/main.typ)
 #   make clean       remove the build directory
 #   make link        link the repo into the system package folder (for editors)
 #   make unlink      remove that link again
@@ -15,7 +15,7 @@ NAME    := $(shell sed -n 's/^name *= *"\(.*\)"/\1/p' typst.toml)
 VERSION := $(shell sed -n 's/^version *= *"\(.*\)"/\1/p' typst.toml)
 
 BUILD := /tmp/$(NAME)-test
-DOC   := $(BUILD)/project/main.typ
+DOC   := $(BUILD)/template/main.typ
 LINK  := $(HOME)/Library/Application Support/typst/packages/preview/$(NAME)/$(VERSION)
 
 .PHONY: test thumbnail clean link unlink
@@ -37,9 +37,8 @@ test:
 	typst init "@preview/$(NAME):$(VERSION)" "$(BUILD)/project"
 	typst compile "$(DOC)"
 
-thumbnail: test
-	typst compile -f pdf --ppi 250 "$(DOC)" example.pdf
-	typst compile -f png --pages 1 --ppi 250 "$(DOC)" thumbnail.png
+thumbnail:
+	typst compile --root . -f png --ppi 200 template/main.typ thumbnail.png
 
 clean:
 	rm -rf "$(BUILD)"
