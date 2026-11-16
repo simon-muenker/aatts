@@ -6,18 +6,32 @@ A small design system for academic slides, posters and articles: a shared palett
 
 **Rendered examples:** [docs/example_article.pdf](https://github.com/simon-muenker/aatts/blob/7436ec975ef2d9fe61fe5b0ccfb09df29334ae73/docs/example_article.pdf) · [docs/example_poster.pdf](https://github.com/simon-muenker/aatts/blob/7436ec975ef2d9fe61fe5b0ccfb09df29334ae73/docs/example_poster.pdf) · [docs/example_slides.pdf](https://github.com/simon-muenker/aatts/blob/7436ec975ef2d9fe61fe5b0ccfb09df29334ae73/docs/example_slides.pdf)
 
-The package exports four modules:
+## Quick Start
 
-```typ
-#import "@preview/aatts:0.1.0": constants, slides, poster, article
+Create a new project from the template (In the Typst web app, choose *Start from template* and search for `aatts`):
+
+```sh
+typst init @preview/aatts:0.1.0 my-project
+cd my-project
 ```
 
-| Module      | Contents                                         |
-|-------------|--------------------------------------------------|
-| `constants` | `palette`, `span`, `font-families`               |
-| `slides`    | `theme`, `layouts`, `widgets`, `units` (16:9)    |
-| `poster`    | `theme`, `layouts`, `widgets`, `units` (A0)      |
-| `article`   | `theme`, `layouts`, `widgets`, `units` (A4)      |
+The project contains one starter file per format. Pick the one you need, edit it, and delete the rest:
+
+| File          | Start here for                                       |
+|---------------|------------------------------------------------------|
+| `slides.typ`  | a 16:9 slide deck                                    |
+| `poster.typ`  | an A0 poster                                         |
+| `article.typ` | an A4 article                                        |
+| `main.typ`    | nothing: it only renders an overview of the examples |
+| `assets/`     | placeholder image, figure, and bibliography          |
+
+`main.typ` is the default compilation target, so compile your chosen file explicitly (In the web app, open your file and click the eye icon next to its name to preview it instead of `main.typ`):
+
+```sh
+typst watch slides.typ  # or poster.typ, article.typ
+```
+
+To use the design system in an existing project, import the modules directly as below describes.
 
 ## Design System
 
