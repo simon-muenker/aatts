@@ -75,7 +75,7 @@
       (8, deck.results),
       (5, deck.key-message),
       (9, deck.design),
-      // (14, deck.closing),
+      (14, deck.closing),
     ).map(((n, pick)) => slide(n, (slides.layouts.base-content)(..pick))),
   ),
 )
