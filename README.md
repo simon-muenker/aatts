@@ -8,7 +8,7 @@ A small design system for academic slides, posters and articles: a shared palett
 
 ## Quick Start
 
-Create a new project from the template (In the Typst web app, choose *Start from template* and search for `aatts`):
+Create a new project from the template (in the Typst web app, choose *Start from template* and search for `aatts`):
 
 ```sh
 typst init @preview/aatts:0.1.0 my-project
@@ -25,7 +25,7 @@ The project contains one starter file per format. Pick the one you need, edit it
 | `main.typ`    | nothing: it only renders an overview of the examples |
 | `assets/`     | placeholder image, figure, and bibliography          |
 
-`main.typ` is the default compilation target, so compile your chosen file explicitly (In the web app, open your file and click the eye icon next to its name to preview it instead of `main.typ`):
+`main.typ` is the default compilation target, so compile your chosen file explicitly (in the web app, open your file and click the eye icon next to its name to preview it instead of `main.typ`):
 
 ```sh
 typst watch slides.typ  # or poster.typ, article.typ
