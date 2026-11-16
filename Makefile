@@ -42,6 +42,7 @@ test: packages
 thumbnail: packages
 	typst compile --root . -f png --ppi 300 template/main.typ thumbnail.png
 	typst compile --root . -f png --ppi 300 template/main.typ docs/preview.png
+	oxipng --strip safe --alpha thumbnail.png docs/preview.png
 
 examples: packages
 	typst compile --root . -f pdf --ppi 300 template/poster.typ docs/example_poster.pdf
