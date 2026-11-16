@@ -2,7 +2,7 @@
 name = "aatts"
 version = "0.1.0"
 entrypoint = "lib/aatts/lib.typ"
-authors = ["Simon Münker <https://simon-muenker.github.io/"]
+authors = ["Simon Münker <https://simon-muenker.github.io/>"]
 license = "MIT"
 description = "Academic slides and posters with a shared design system"
 repository = "https://github.com/simon-muenker/aatts"
