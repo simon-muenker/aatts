@@ -1,4 +1,4 @@
-# Templates and Design System ::. Atomized Academic Typst Template Starters (aatts)
+# Atomized Academic Typst Template Starters (aatts)
 
 Atomized Academic Typst Template Starters (aatts): a clean 16:9 layout with a title slide, content slides, and a few components for cards, key statements, and simple bar charts. No dependencies beyond Typst itself.
 
