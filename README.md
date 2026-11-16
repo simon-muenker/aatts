@@ -22,12 +22,12 @@ The package exports three modules:
 
 ### `constants`
 
-| Name            | Keys                                                | Values                                          |
-|-----------------|-----------------------------------------------------|-------------------------------------------------|
+| Name            | Keys                                                | Values                                           |
+|-----------------|-----------------------------------------------------|--------------------------------------------------|
 | `palette`       | `red`, `green`, `blue`, `olive`, `magenta`          | Accent colours (`red` is the default highlight). |
-| `palette.grey`  | `dark`, `medium`, `light`                           | Text, secondary text, background grey.          |
-| `span`          | `p1` … `p12`                                        | Widths on a 12-column grid; `p12` = 100 %.      |
-| `font-families` | —                                                   | Helvetica Neue, Helvetica, Liberation Sans, Arial. |
+| `palette.grey`  | `dark`, `medium`, `light`                           | Text, secondary text, background grey.           |
+| `span`          | `p1` … `p12`                                        | Widths on a 12-column grid; `p12` = 100 %.       |
+| `font-families` | —                                                   | Helvetica Neue, Liberation Sans, Arial.          |
 
 ### `units`
 
@@ -41,7 +41,7 @@ The package exports three modules:
 
 ```typ
 #v(slides.units.space.md)
-#text(size: slides.units.font.lg, fill: constants.palette.grey.medium)[Muted text]
+#text(size: slides.units.font.lg, fill: constants.palette.grey.medium)[Large Muted Text]
 ```
 
 ## `slides`
@@ -110,8 +110,6 @@ Page without margins, header or footer, e.g. for a full-bleed image.
   #image("photo.jpg", width: 100%, height: 100%, fit: "cover")
 ]
 ```
-
-`layouts.title-content` and `layouts.base-content` return the content of `title` and `base` without creating a page, for embedding a slide elsewhere.
 
 ## `poster`
 
@@ -190,7 +188,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 | `make unlink`    | Remove that link again.                                            |
 | `make clean`     | Remove the build directory.                                        |
 
-The full examples in [template/slides.typ](template/slides.typ) also show third-party packages (`simple-plot`, `tdtr`, `codly`, `cades`) styled with the palette.
+The full examples in [template](template/) also show third-party packages (`simple-plot`, `tdtr`, `codly`, `cades`) styled with the palette.
 
 ## License
 
