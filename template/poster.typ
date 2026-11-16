@@ -15,12 +15,12 @@
   meta-top: [
     #text(weight: "semibold")[Author Name, Co-Author Name] \
     Affiliation, Second Affiliation
-  ],
-  meta-bot: text(weight: "light", fill: constants.palette.grey.medium)[
-    Conference Name · Venue, Date
     #h(1fr)
-    author\@affiliation.org
+    #text(weight: "light", fill: constants.palette.grey.medium)[
+      Conference Name · Venue, Date · author\@affiliation.org
+    ]
   ],
+  columns: 2,
 )
 
 // grey box standing in for a plot or an image
@@ -109,6 +109,4 @@
   #bibliography("assets/references.bib", style: "apa")
 ]
 
-#body
-
-#show: poster.theme.style.with(..hero)
+#(poster.layouts.base)(..hero, body)
