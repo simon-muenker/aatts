@@ -197,7 +197,7 @@
   #gap
 
   #poster.widgets.card(title: [Open Question], highlight: constants.palette.blue)[
-    A question phrased for the discussion at the poster? #lorem(16)
+    A question phrased for the discussion at the poster? #lorem(12)
   ]
 
   #gap

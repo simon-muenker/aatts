@@ -20,7 +20,7 @@
       breakable: false,
       inset: (
         left: space.sm + weight.xl,
-        right: space.sm, 
+        right: space.md, 
         y: space.md
       ),
       stroke: (left: weight.xl + highlight),
