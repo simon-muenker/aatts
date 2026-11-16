@@ -20,8 +20,12 @@
     highlight: highlight,
   )
 
+  set par(justify: true)
+
   show heading.where(level: 2): set text(size: units.font.lg)
   show heading.where(level: 2): set block(above: units.space.base, below: units.space.md)
+
+  show bibliography: set text(size: units.font.sm )
 
   body
 }

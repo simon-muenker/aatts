@@ -11,28 +11,22 @@
   ) = {
   let rows = ()
 
-  if meta-top != none {
-    rows.push((auto, meta-top))
+  meta-top
+
+  heading(level: 1, title)
+  if subtitle != none {
+    set par(leading: 0.6em)
+    text(
+      size: units.font.lg,
+      fill: constants.palette.grey.medium,
+      subtitle
+    )
   }
-
-  rows.push((auto, {
-    heading(level: 1, title)
-    if subtitle != none {
-      set par(leading: 0.6em)
-      text(
-        size: units.font.lg,
-        fill: constants.palette.grey.medium,
-        subtitle
-      )
-    }
-  }))
-
-  rows.push((1fr, std.columns(columns, gutter: units.space.base, body)))
+  v(units.space.md)
 
   grid(
     columns: 100%,
-    rows: rows.map(row => row.first()),
-    row-gutter: units.space.base,
-    ..rows.map(row => row.last())
+    column-gutter: units.space.base,
+    std.columns(columns, gutter: units.space.base * 2, body)
   )
 }

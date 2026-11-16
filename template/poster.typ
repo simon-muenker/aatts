@@ -5,7 +5,8 @@
 #import "@preview/codly:2.0.0" as codly
 
 // ---- theme
-#import "@preview/aatts:0.1.0": constants, poster
+#import "../lib/aatts/lib.typ": constants, poster
+// #import "@preview/aatts:0.1.0": constants, poster
 
 #show: poster.theme.style
 #set document(
@@ -14,15 +15,6 @@
   date: auto,
 )
 
-
-// ---- helpers
-// grey box standing in for a plot or an image
-#let placeholder(height) = rect(
-  width: 100%,
-  height: height,
-  fill: constants.palette.grey.light,
-  radius: poster.units.weight.lg,
-)
 
 // cells side by side
 #let split(columns: (1fr, 1fr), gutter: poster.units.space.md, align: left + top, ..cells) = grid(
@@ -41,7 +33,7 @@
 )
 
 // vertical rhythm between blocks of a section
-#let gap = v(poster.units.space.sm)
+#let gap = v(poster.units.space.md)
 
 
 // ============================================================
@@ -49,7 +41,7 @@
 // ============================================================
 
 #let hero = (
-  title: [Poster Title \ Spanning Two Lines],
+  title: [A Poster Title],
   subtitle: [A short subtitle that frames the poster and its central question],
   meta-top: [
     #text(weight: "semibold")[Author Name, Co-Author Name] \
@@ -73,7 +65,7 @@
   #show raw.where(block: true): codly.new
   #show: codly.theme("github-light")
 
-  _#lorem(42)_
+  *TL;DR:* _#lorem(48)_
 
   == Motivation
 
@@ -84,10 +76,6 @@
   - *Third point* backed by the literature @schwager-etal-2026-unsampled
 
   #gap
-
-  #poster.widgets.statement(byline: [Supporting byline])[
-    One sentence the audience should remember.
-  ]
 
   == Method
 
@@ -106,7 +94,7 @@
 
   *Taxonomy.* Categories ($C$) are mapped onto a shared hierarchy, written as a nested list.
 
-  #align(center, scale(220%, reflow: true, tidy-tree-graph(
+  #align(center, scale(280%, reflow: true, tidy-tree-graph(
     compact: true,
     spacing: (12pt, 24pt),
     node-inset: 4pt,
@@ -146,33 +134,17 @@
 
   #gap
 
-  #poster.widgets.card(title: [Assumption], highlight: constants.palette.green)[
-    If the datasets share a construct, their orderings should match.
-  ]
+  #colbreak()
 
   == Results
 
-  #split(
-    columns: (1.2fr, 1fr),
-    [
-      #poster.widgets.bar-chart(
-        ([*X* - Group A], .59, constants.palette.green, [59%]),
-        ([*X* - Group B], .82, constants.palette.red, [82%]),
-        ([*Y* - Group A], .53, constants.palette.green, [53%]),
-        ([*Y* - Group B], .94, constants.palette.red, [94%]),
-      )
-      #note[Share of positive answers per item (mean)]
-    ],
-    table(
-      columns: (1fr, auto, auto),
-      align: (left, right, right),
-      table.header([$kappa$], [A], [B]),
-      [*X*], [.345], [.560],
-      [*Y*], [.385], [*.819*],
-    ),
+  #poster.widgets.bar-chart(
+    ([*X* - Group A], .59, constants.palette.green, [59%]),
+    ([*X* - Group B], .82, constants.palette.red, [82%]),
+    ([*Y* - Group A], .53, constants.palette.green, [53%]),
+    ([*Y* - Group B], .94, constants.palette.red, [94%]),
   )
-
-  #gap
+  #note[Share of positive answers per item (mean)]
 
   Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer.
 
@@ -204,8 +176,7 @@
 
   == Conclusion
 
-  *First takeaway.* Disagreement between annotators is a signal, not noise. \
-  *Second takeaway.* Results must be scoped to the material.
+  *First takeaway.* Disagreement between annotators is a signal, not noise. *Second takeaway.* Results must be scoped to the material.
 
   #gap
 

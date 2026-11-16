@@ -2,7 +2,7 @@
 #import "units.typ" as units
 
 #let (card, statement, bar, bar-chart) = widgets(
-  units.space, 
-  units.font, 
-  units.weight
+  space: units.space, 
+  font: units.font,
+  weight: units.weight, 
 )
