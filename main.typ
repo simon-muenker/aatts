@@ -42,7 +42,7 @@
 
 // "presentation-16-9", w/ the footer of the slides theme unless n is none
 #let slide(n, body) = minipage(28cm, 15.75cm, slides.units.space.base, slide-w, {
-  // show: slides.theme.style
+  show: slides.theme.typography
 
   body
   if n != none {
@@ -56,7 +56,7 @@
 
 // "a0"
 #let a0(body) = minipage(84.1cm, 118.9cm, poster.units.space.base, poster-w, {
-  // show: poster.theme.style
+  show: poster.theme.typography
   body
 })
 
