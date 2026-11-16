@@ -12,8 +12,8 @@
   red: rgb("#C31F39"),
   green: rgb("#1FC357"),
   blue: rgb("#1F91C2"),
+  // 
   // secondary
-  //
   olive: rgb("#C2BA1F"),
   magenta: rgb("#B31FC2"),
 )

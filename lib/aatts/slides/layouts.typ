@@ -15,7 +15,7 @@
 
 // ---
 
-// base, title + body w/ borders & footer
+// base, ?title + body w/ borders & footer
 #let base-content(title: none, body) = {
   if title != none {
     heading(level: 2, title)
@@ -30,7 +30,7 @@
 
 // ---
 
-// title + subtitle block, shared by the title layouts
+// title + ?subtitle, shared by the title layouts
 #let title-heading(title, subtitle: none) = {
   heading(level: 1, title)
   if subtitle != none {
@@ -46,7 +46,7 @@
 
 // ---
 
-// title, (sub-)title + bot/top meta w/o footer
+// title, (?sub-)title + bot/top ?meta w/o footer
 #let title-content(
   title, 
   subtitle: none, 

@@ -18,7 +18,11 @@ BUILD := /tmp/$(NAME)-test
 DOC   := $(BUILD)/project/main.typ
 LINK  := $(HOME)/Library/Application Support/typst/packages/preview/$(NAME)/$(VERSION)
 
-.PHONY: test thumbnail clean link unlink packages
+.PHONY: install_extras test thumbnail clean link unlink packages check
+
+install_extras:
+	cargo install oxipng
+	cargo install --git https://github.com/typst/package-check.git
 
 link:
 	@mkdir -p "$$(dirname "$(LINK)")"
@@ -50,3 +54,6 @@ examples: packages
 
 clean:
 	rm -rf "$(BUILD)"
+
+check:
+	typst-package-check check
