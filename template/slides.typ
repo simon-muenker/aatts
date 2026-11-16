@@ -65,7 +65,7 @@
   ],
 )
 
-#(slides.layouts.title)(..cover)
+#slides.layouts.title(..cover)
 
 // alternative cover: borderless image on the left, title content on the right
 #let cover-split = arguments(
@@ -88,7 +88,7 @@
 // Agenda
 // ============================================================
 
-#(slides.layouts.base)(title: [Segments])[
+#slides.layouts.base(title: [Segments])[
   #segment(1, "Layout", [Text, Columns & Cards], constants.palette.red)[
     Two-column grids, highlighted cards, and a statement for the one sentence the audience should remember.
   ]
@@ -111,7 +111,7 @@
 // Segment 1 :: Layout
 // ============================================================
 
-#(slides.layouts.title)(
+#slides.layouts.title(
   [Layout Building Blocks],
   subtitle: [How to structure a slide with grids, cards, and statements.],
   meta-top: section-label(1, constants.palette.red),
@@ -120,7 +120,7 @@
   ],
 )
 
-#(slides.layouts.base)(title: [Two Columns | ${"text"} and {"list"}$])[
+#slides.layouts.base(title: [Two Columns | ${"text"} and {"list"}$])[
   #split(
     [
       *Setting the scene.* A short paragraph describing the data, the participants, or the method. Keep it to two or three sentences.
@@ -156,7 +156,7 @@
   )
 ]
 
-#(slides.layouts.base)(..key-message)
+#slides.layouts.base(..key-message)
 
 #let cards = arguments(title: [Cards in the Palette])[
   #grid(
@@ -183,14 +183,14 @@
   )
 ]
 
-#(slides.layouts.base)(..cards)
+#slides.layouts.base(..cards)
 
 
 // ============================================================
 // Segment 2 :: Data
 // ============================================================
 
-#(slides.layouts.title)(
+#slides.layouts.title(
   [Reporting Results],
   subtitle: [Bar charts and tables that match the rest of the deck.],
   meta-top: section-label(2, constants.palette.green),
@@ -231,7 +231,7 @@
   )
 ]
 
-#(slides.layouts.base)(..results)
+#slides.layouts.base(..results)
 
 #let design = arguments(title: [Design Choices])[
   #split(
@@ -264,14 +264,14 @@
   ]
 ]
 
-#(slides.layouts.base)(..design)
+#slides.layouts.base(..design)
 
 
 // ============================================================
 // Segment 3 :: Plugins
 // ============================================================
 
-#(slides.layouts.title)(
+#slides.layouts.title(
   [Plugins],
   subtitle: [Third-party packages, styled with the aatts constants.palette.],
   meta-top: section-label(3, constants.palette.blue),
@@ -280,7 +280,7 @@
   ],
 )
 
-#(slides.layouts.base)(title: [Function Plots #h(slides.units.space.sm) #plugin[simple-plot]])[
+#slides.layouts.base(title: [Function Plots #h(slides.units.space.sm) #plugin[simple-plot]])[
   #split(
     gutter: slides.units.space.base,
     align: center + horizon,
@@ -310,7 +310,7 @@
   )
 ]
 
-#(slides.layouts.base)(title: [Tidy Trees #h(slides.units.space.sm) #plugin[tdtr]])[
+#slides.layouts.base(title: [Tidy Trees #h(slides.units.space.sm) #plugin[tdtr]])[
   #split(
     columns: (1.5fr, 1fr),
     gutter: slides.units.space.base,
@@ -345,7 +345,7 @@
   )
 ]
 
-#(slides.layouts.base)(title: [Code Listings #h(slides.units.space.sm) #plugin[codly]])[
+#slides.layouts.base(title: [Code Listings #h(slides.units.space.sm) #plugin[codly]])[
   #split(
     codly.new(
       ```py
@@ -389,14 +389,14 @@
   ]
 ]
 
-#(slides.layouts.base)(..closing)
+#slides.layouts.base(..closing)
 
 
 // ============================================================
 // Closing
 // ============================================================
 
-#(slides.layouts.base)(title: [Wrap Up])[
+#slides.layouts.base(title: [Wrap Up])[
   #block(width: constants.span.p7)[
     *First takeaway.* Disagreement between annotators is a signal, not noise @schwager-etal-2026-unsampled. \
     *Second takeaway.* Results must be scoped to the material they were measured on @munker-2025-fingerprinting.
@@ -412,11 +412,11 @@
   ]
 ]
 
-#(slides.layouts.base)[
+#slides.layouts.base[
   #bibliography("assets/references.bib", style: "apa")
 ]
 
-#(slides.layouts.base)[
+#slides.layouts.base[
   #split(
     align: (left + horizon, center + horizon),
     [

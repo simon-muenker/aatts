@@ -68,11 +68,11 @@
   grid(
     columns: cols,
     gutter: gutter,
-    slide(none, (slides.layouts.title-content)(..example-slides.cover)),
-    slide(none, inset: 0pt, (slides.layouts.title-split-content)(..example-slides.cover-split)),
-    slide(8, (slides.layouts.base-content)(..example-slides.results)),
-    slide(5, (slides.layouts.base-content)(..example-slides.key-message)),
-    slide(6, (slides.layouts.base-content)(..example-slides.cards)),
-    slide(14, (slides.layouts.base-content)(..example-slides.closing)),
+    slide(none, slides.layouts.title-content(..example-slides.cover)),
+    slide(none, inset: 0pt, slides.layouts.title-split-content(..example-slides.cover-split)),
+    slide(8, slides.layouts.base-content(..example-slides.results)),
+    slide(5, slides.layouts.base-content(..example-slides.key-message)),
+    slide(6, slides.layouts.base-content(..example-slides.cards)),
+    slide(14, slides.layouts.base-content(..example-slides.closing)),
   ),
 )
