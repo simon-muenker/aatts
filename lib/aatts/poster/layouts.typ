@@ -9,8 +9,6 @@
   columns: 2,
   body
   ) = {
-  let rows = ()
-
   meta-top
 
   heading(level: 1, title)
