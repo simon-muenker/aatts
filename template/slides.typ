@@ -67,6 +67,20 @@
 
 #(slides.layouts.title)(..cover)
 
+// alternative cover: borderless image on the left, title content on the right
+#(slides.layouts.title-split)(
+  image("assets/image.a-chosen-soul-8YRWIy8QGpI-unsplash.webp"),
+  [Short Title],
+  subtitle: [A subtitle that frames the talk],
+  meta-top: text(weight: "light", fill: constants.palette.grey.medium)[
+    Optional top line, e.g. the venue.
+  ],
+  meta-bot: [
+    #text(weight: "semibold")[Author Name, Co-Author Name] \
+    Affiliation, Second Affiliation
+  ],
+)
+
 
 // ============================================================
 // Agenda

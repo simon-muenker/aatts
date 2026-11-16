@@ -4,7 +4,27 @@ Atomized Academic Typst Template Starters (aatts): a clean 16:9 layout with a ti
 
 ![Title slide of the template](thumbnail.png)
 
-## Getting started
+## Design System
+
+The following dictionaries are exported so that custom content matches the design. 
+
+| Name      | Keys                                       | Values                                    |
+|-----------|--------------------------------------------|-------------------------------------------|
+| `palette` | `red`, `green`, `blue`, `olive`, `magenta` | Accent colours.                           |
+| `grey`    | `dark`, `medium`, `light`                  | Text, secondary text, background grey.    |
+| `span`    | `p1` … `p25`                               | Widths on a 25-column grid; `p25` = 100 %.|
+
+
+## `slides`
+
+Span, size, and space derive from `base-unit-space` (1.6cm) and `base-unit-text` (16pt) are the constants these tokens are derived from.
+
+| Name      | Keys                                       | Values                                    |
+|-----------|--------------------------------------------|-------------------------------------------|
+| `size`    | `xxl`, `xl`, `lg`, `base`, `sm`            | Text sizes: 48, 36, 24, 16, 12 pt.        |
+| `space`   | `base`, `md`, `sm`, `xs`                   | Spacing: 1.6, 0.8, 0.4, 0.2 cm.           |
+| `weight`  | `xl`, `lg`, `base`, `sm`                   | Line widths: 4, 2, 1, 0.5 pt.             |
+
 
 ```typ
 #import "@preview/aatts:0.1.0": slides
@@ -25,31 +45,6 @@ Atomized Academic Typst Template Starters (aatts): a clean 16:9 layout with a ti
   - First point
   - Second point
 ]
-```
-
-## Fonts
-
-The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; the first installed family is used. To use a different font, pass `font` to `theme`:
-
-```typ
-#show: slides.theme.with(font: "Inter")
-```
-
-## Theme
-
-`theme` sets the page format, text, headings, lists, tables, figures, footnotes, and links. Apply it once with a show rule.
-
-| Parameter   | Default              | Description                                        |
-|-------------|----------------------|----------------------------------------------------|
-| `title`     | `none`               | Document title (PDF metadata).                     |
-| `author`    | `()`                 | Author name or array of names (PDF metadata).      |
-| `date`      | `auto`               | Document date (PDF metadata).                      |
-| `font`      | see [Fonts](#fonts)  | Font family or array of fallback families.         |
-| `lang`      | `"en"`               | Text language.                                     |
-| `footer`    | `none`               | Content shown bottom left, next to the page number.|
-| `highlight` | `palette.red`        | Accent colour for list markers.                    |
-
-## `slides`
 
 ### `slide.title`
 
@@ -62,9 +57,19 @@ The default font stack is `Helvetica Neue, Helvetica, Arial, Liberation Sans`; t
 )
 ```
 
-### `slide.base`
+### `slide.title-split`
 
-Content slide with margins, footer, and an optional title. The body is vertically centred.
+```typ
+#(slides.slide.title-split)(
+  image("cover.jpg"),
+  [Presentation Title],
+  subtitle: [Optional subtitle],
+  meta-top: [Optional content at the top],
+  meta-bot: [Optional content at the bottom],
+)
+```
+
+### `slide.base`
 
 ```typ
 #(slides.slide.base)(title: [Slide title])[
@@ -100,18 +105,6 @@ Content slide with margins, footer, and an optional title. The body is verticall
 ]
 ```
 
-| Parameter   | Default              | Description                                        |
-|-------------|----------------------|----------------------------------------------------|
-| `title`     | `none`               | Title, shown on the sheet and set as PDF metadata. |
-| `subtitle`  | `none`               | Shown below the title.                             |
-| `author`    | `()`                 | Author name or array of names (PDF metadata).      |
-| `date`      | `auto`               | Document date (PDF metadata).                      |
-| `meta-top`  | `none`               | Content above the title, e.g. authors.             |
-| `meta-bot`  | `none`               | Content at the bottom of the sheet, e.g. venue.    |
-| `columns`   | `3`                  | Number of body columns.                            |
-| `paper`     | `"a0"`               | Paper size.                                        |
-
-
 ## Components
 
 ### `card`
@@ -146,21 +139,6 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 )
 ```
 
-## Design System
-
-The following dictionaries are exported so that custom content matches the design. 
-
-| Name      | Keys                                       | Values                                    |
-|-----------|--------------------------------------------|-------------------------------------------|
-| `palette` | `red`, `green`, `blue`, `olive`, `magenta` | Accent colours.                           |
-| `grey`    | `dark`, `medium`, `light`                  | Text, secondary text, background grey.    |
-| `span`    | `p1` … `p25`                               | Widths on a 25-column grid; `p25` = 100 %.|
 
 
-Span, size, and space derive from `base-unit-grid` (12), `base-unit-space` (1.6cm), and `base-unit-text` (16pt) are the constants these tokens are derived from.
 
-| Name      | Keys                                       | Values                                    |
-|-----------|--------------------------------------------|-------------------------------------------|
-| `size`    | `xxl`, `xl`, `lg`, `base`, `sm`            | Text sizes: 48, 36, 24, 16, 12 pt.        |
-| `space`   | `base`, `md`, `sm`, `xs`                   | Spacing: 1.6, 0.8, 0.4, 0.2 cm.           |
-| `weight`  | `xl`, `lg`, `base`, `sm`                   | Line widths: 4, 2, 1, 0.5 pt.             |

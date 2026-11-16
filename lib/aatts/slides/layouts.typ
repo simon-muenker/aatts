@@ -26,6 +26,20 @@
 
 #let base(title: none, body) = page(base-content(title: title, body))
 
+// title + subtitle block, shared by the title layouts
+#let title-heading(title, subtitle: none) = {
+  heading(level: 1, title)
+  if subtitle != none {
+    set par(leading: 0.6em)
+    text(
+      size: units.font.lg, 
+      fill: constants.palette.grey.medium,
+      subtitle
+    )
+  }
+  v(-units.space.sm)
+}
+
 // title, (sub-)title + bot/top meta w/o footer
 #let title-content(
   title, 
@@ -37,18 +51,7 @@
     align(left + top, meta-top)
   }
 
-  align(left + horizon)[
-    #heading(level: 1, title)
-    #if subtitle != none {
-      set par(leading: 0.6em)
-      text(
-        size: units.font.lg, 
-        fill: constants.palette.grey.medium,
-        subtitle
-      )
-    }
-    #v(-units.space.sm)
-  ]
+  align(left + horizon, title-heading(title, subtitle: subtitle))
 
   if meta-bot != none { 
     align(left + bottom, meta-bot)
@@ -56,3 +59,34 @@
 }
 
 #let title(..args) = page(header: none, footer: none, title-content(..args))
+
+// title-split, borderless image left + title content right w/o footer
+#let title-split(
+  image,
+  title,
+  subtitle: none,
+  meta-top: none,
+  meta-bot: none,
+  columns: (1fr, 1fr),
+) = page(
+  margin: 0pt,
+  header: none,
+  footer: none,
+  grid(
+    columns: columns,
+    rows: 100%,
+    block(width: 100%, height: 100%, clip: true, {
+      set std.image(width: 100%, height: 100%, fit: "cover")
+      image
+    }),
+    pad(units.space.base, grid(
+      rows: (auto, 1fr, auto),
+      row-gutter: units.space.sm,
+      align: left,
+      meta-top,
+      align(horizon, title-heading(title, subtitle: subtitle)),
+      meta-bot,
+    )),
+  ),
+)
+
