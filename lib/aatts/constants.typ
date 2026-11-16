@@ -22,9 +22,7 @@
   "Liberation Sans", "Arial"
 )
 
-#let base-unit-grid = 25
-#let base-unit-space = 1.6cm
-#let base-unit-font = 16pt
+#let base-unit-grid = 12
 
 // generate (1/base-unit-grid) grid
 #let span = (

@@ -1,5 +1,5 @@
-#import "../constants.typ": base-unit-space, base-unit-font
-
+#let base-unit-space = 1.6cm
+#let base-unit-font = 16pt
 
 #let space = (
   base: base-unit-space,

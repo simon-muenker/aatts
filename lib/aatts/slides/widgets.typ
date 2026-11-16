@@ -4,7 +4,7 @@
 
 #let card(
   title: none,
-  width: span.p25,
+  width: span.p12,
   highlight: palette.red,
   body
   ) = {
@@ -33,7 +33,7 @@
 
 #let statement(
   byline: none,
-  width: span.p25,
+  width: span.p12,
   highlight: palette.red,
   body
   ) = {
@@ -45,7 +45,7 @@
     
     #v(-(space.xs + space.sm))
     #line(
-      length: span.p18, 
+      length: span.p8, 
       stroke: weight.xl + highlight
     )
 
