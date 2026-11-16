@@ -23,8 +23,8 @@
   // paragraphs, denser than slides and posters
   set par(
     justify: true,
-    leading: 0.65em,
-    spacing: 1.1em,
+    leading: 0.68em,
+    spacing: 1.2em,
   )
 
   // headings, numbered sections (= 1, == 1.1, === unnumbered run-in)

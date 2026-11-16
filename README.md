@@ -163,7 +163,6 @@ Stacks `meta-top`, the title with an optional subtitle, and the body set in `col
   subtitle: [A short subtitle that frames the article],
   authors: [*Author Name* \ Affiliation],
   abstract: [A short abstract.],
-  keywords: ([Keyword One], [Keyword Two]),
 )[
   = Introduction
 
@@ -177,7 +176,7 @@ The theme sets an A4 page (`paper`), a running `header` from the second page on,
 
 ### `layouts.base`
 
-Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors`, `abstract` with `keywords`) and the body. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
+Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors`, `abstract`) and the body. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
 
 ## Widgets
 

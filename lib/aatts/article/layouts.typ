@@ -3,20 +3,13 @@
 
 
 // labelled abstract, set slightly smaller and indented
-#let abstract-block(abstract, keywords: none) = pad(x: units.space.md, {
+#let abstract-block(abstract) = pad(x: units.space.md, {
   set text(size: units.font.sm)
   set par(justify: true, leading: .72em)
 
   text(weight: "bold", fill: constants.palette.grey.dark)[Abstract]
   h(units.space.sm)
   abstract
-
-  if keywords != none {
-    v(units.space.xs)
-    text(weight: "bold")[Keywords]
-    h(units.space.sm)
-    text(fill: constants.palette.grey.medium, keywords.join[ · ])
-  }
 })
 
 
@@ -27,7 +20,6 @@
   authors: none,
   meta-top: none,
   abstract: none,
-  keywords: none,
   highlight: constants.palette.red,
 ) = block(width: 100%, below: units.space.base, {
   if meta-top != none {
@@ -59,7 +51,7 @@
 
   if abstract != none {
     v(units.space.sm)
-    abstract-block(abstract, keywords: keywords)
+    abstract-block(abstract)
   }
 })
 
@@ -71,7 +63,6 @@
   authors: none,
   meta-top: none,
   abstract: none,
-  keywords: none,
   highlight: constants.palette.red,
   columns: 2,
   body
@@ -83,7 +74,6 @@
       authors: authors,
       meta-top: meta-top,
       abstract: abstract,
-      keywords: keywords,
       highlight: highlight,
     )
   }

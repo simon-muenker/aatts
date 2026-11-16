@@ -37,7 +37,6 @@
   abstract: [
     A short abstract that states the question, the data, the method, and the main finding in a few sentences. #lorem(112)
   ],
-  keywords: ([Keyword One], [Keyword Two], [Keyword Three]),
 )
 
 
@@ -77,7 +76,7 @@
     sqrt(sum_(k=1)^l c_(1,k)^2) sqrt(sum_(k=1)^l c_(2,k)^2)
   ) $ <eq-sim>
 
-  #lorem(42)
+  #lorem(52)
 
   #figure(
     image("assets/image-graph_ega.pdf"),
@@ -101,21 +100,20 @@
     caption: [Cronbach's Alpha per humor style. The highest score per column is set in *bold*.],
   ) <tab-results>
 
-  #lorem(36)
+  
+  *Alignment.* #lorem(36)
 
-  *Agreement.* Share of items on which annotators agree, per group. #lorem(16)
+  *Agreement.* Share of items on which annotators agree, per group. #lorem(48)
 
   = Discussion
 
-  #lorem(80)
+  #lorem(64)
 
-  #article.widgets.statement(byline: [The one sentence a reader should take away.])[
-    Key Message
-  ]
+  #lorem(42)
 
   = Conclusion
 
-  #lorem(48) @plum-etal-2026-ltzglue.
+  #lorem(86) @plum-etal-2026-ltzglue.
 
   #bibliography("assets/references.bib", title: [References], style: "apa")
 ]
