@@ -47,7 +47,7 @@
     block(
       width: width,
     )[
-      #heading(level: 2, body)
+      #heading(level: 2, numbering: none, outlined: false, body)
     
       #line(
         length: constants.span.p3, 

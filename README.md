@@ -1,15 +1,15 @@
 # Atomized Academic Typst Template Starters (aatts)
 
-A small design system for academic slides and posters: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, and widgets for cards, key statements and simple bar charts. Both themes share the same building blocks, so a deck and a poster look like they belong together.
+A small design system for academic slides, posters and articles: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster and a paper look like they belong together.
 
 ![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/2ea7eb9bba32ab7f632ad2b2360571d4b8f7e062/docs/preview.png?raw=true)
 
 Rendered examples: [docs/example_slides.pdf](https://github.com/simon-muenker/aatts/blob/2ea7eb9bba32ab7f632ad2b2360571d4b8f7e062/docs/example_slides.pdf) · [docs/example_poster.pdf](https://github.com/simon-muenker/aatts/blob/2ea7eb9bba32ab7f632ad2b2360571d4b8f7e062/docs/example_poster.pdf)
 
-The package exports three modules:
+The package exports four modules:
 
 ```typ
-#import "@preview/aatts:0.1.0": constants, slides, poster
+#import "@preview/aatts:0.1.0": constants, slides, poster, article
 ```
 
 | Module      | Contents                                         |
@@ -17,6 +17,7 @@ The package exports three modules:
 | `constants` | `palette`, `span`, `font-families`               |
 | `slides`    | `theme`, `layouts`, `widgets`, `units` (16:9)    |
 | `poster`    | `theme`, `layouts`, `widgets`, `units` (A0)      |
+| `article`   | `theme`, `layouts`, `widgets`, `units` (A4)      |
 
 ## Design System
 
@@ -31,13 +32,13 @@ The package exports three modules:
 
 ### `units`
 
-`slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value: the poster uses 1.75 × the slide base for type and spacing, and 2 × for stroke weights.
+`slides.units`, `poster.units` and `article.units` hold the size tokens. Each scale is derived from one base value: the poster uses 1.75 × the slide base for type and spacing, and 2 × for stroke weights; the article uses an 11 pt base.
 
-| Name     | Keys                            | `slides`                    | `poster`                    |
-|----------|---------------------------------|-----------------------------|-----------------------------|
-| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12 pt       | 84, 63, 42, 28, 21 pt       |
-| `space`  | `base`, `md`, `sm`, `xs`        | 1.6, 0.8, 0.4, 0.2 cm       | 2.8, 1.4, 0.7, 0.35 cm      |
-| `weight` | `xl`, `lg`, `base`, `sm`        | 4, 2, 1, 0.5 pt             | 8, 4, 2, 1 pt               |
+| Name     | Keys                            | `slides`                    | `poster`                    | `article`                     |
+|----------|---------------------------------|-----------------------------|-----------------------------|-------------------------------|
+| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | 48, 36, 24, 16, 12 pt       | 84, 63, 42, 28, 21 pt       | 33, 24.75, 16.5, 11, 8.25 pt  |
+| `space`  | `base`, `md`, `sm`, `xs`        | 1.6, 0.8, 0.4, 0.2 cm       | 2.8, 1.4, 0.7, 0.35 cm      | 1, 0.5, 0.25, 0.125 cm        |
+| `weight` | `xl`, `lg`, `base`, `sm`        | 4, 2, 1, 0.5 pt             | 8, 4, 2, 1 pt               | 2, 1, 0.5, 0.25 pt            |
 
 ```typ
 #v(slides.units.space.md)
@@ -149,9 +150,38 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 
 Stacks `meta-top`, the title with an optional subtitle, and the body set in `columns` columns (default 3). Use `== Heading` for sections and `#colbreak()` to start the next column.
 
+## `article`
+
+```typ
+#import "@preview/aatts:0.1.0": constants, article
+
+#show: article.theme.style.with(header: [Short Title · Author Name])
+#set document(title: "Article Title", author: "Author Name")
+
+#article.layouts.base(
+  title: [Article Title],
+  subtitle: [A short subtitle that frames the article],
+  authors: [*Author Name* \ Affiliation],
+  abstract: [A short abstract.],
+  keywords: ([Keyword One], [Keyword Two]),
+)[
+  = Introduction
+
+  #lorem(80)
+
+  #bibliography("references.bib", title: [References])
+]
+```
+
+The theme sets an A4 page (`paper`), a running `header` from the second page on, centred page numbers, justified text, numbered sections (`=` and `==`, `===` stays unnumbered) and numbered equations.
+
+### `layouts.base`
+
+Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors`, `abstract` with `keywords`) and the body. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
+
 ## Widgets
 
-The same widgets are available as `slides.widgets` and `poster.widgets`.
+The same widgets are available as `slides.widgets`, `poster.widgets` and `article.widgets`.
 
 ### `card`
 
@@ -193,7 +223,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 | `make test`           | Initialise a project from the template and compile it.                |
 | `make check`          | Lint the package with `typst-package-check`.                          |
 | `make thumbnail`      | Render `thumbnail.png` and `docs/preview.png` from `template/main.typ`. |
-| `make examples`       | Render `docs/example_slides.pdf` and `docs/example_poster.pdf`.       |
+| `make examples`       | Render `docs/example_slides.pdf`, `docs/example_poster.pdf` and `docs/example_article.pdf`. |
 | `make link`           | Link the checkout into the system package folder (for editors).       |
 | `make unlink`         | Remove that link again.                                               |
 | `make clean`          | Remove the build directory.     

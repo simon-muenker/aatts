@@ -1,4 +1,5 @@
 #let space(base: 1.6cm) = (
+  lg: base * 2,
   base: base,
   md: base / 2,
   sm: base / 4,

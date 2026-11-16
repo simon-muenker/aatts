@@ -51,6 +51,7 @@ thumbnail: packages
 examples: packages
 	typst compile --root . -f pdf --ppi 300 template/poster.typ docs/example_poster.pdf
 	typst compile --root . -f pdf --ppi 300 template/slides.typ docs/example_slides.pdf
+	typst compile --root . -f pdf --ppi 300 template/article.typ docs/example_article.pdf
 
 clean:
 	rm -rf "$(BUILD)"
