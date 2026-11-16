@@ -48,7 +48,6 @@
       Conference Name · Venue, Date · author\@affiliation.org
     ]
   ],
-  columns: 3,
 )
 
 

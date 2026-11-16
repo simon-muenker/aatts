@@ -132,7 +132,6 @@ Page without margins, header or footer, e.g. for a full-bleed image.
   title: [Poster Title],
   subtitle: [A short subtitle that frames the poster],
   meta-top: [*Author Name* \ Affiliation #h(1fr) Conference Name · Venue, Date],
-  columns: 2,
 )[
   == Motivation
 
