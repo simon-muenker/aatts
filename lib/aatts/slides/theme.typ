@@ -1,4 +1,4 @@
-#import "../constants.typ": grey, palette, font-families
+#import "../constants.typ": grey, palette, font-families, span
 #import "sizing.typ": space, font, weight
 
 
@@ -80,9 +80,12 @@
   // figures
   show figure.caption: set text(size: font.sm, fill: grey.medium)
   set figure(gap: space.sm)
-
+  
   // footnotes
-  set footnote.entry(separator: line(length: 20%, stroke: weight.sm + grey.medium))
+  set footnote(numbering: "[1]")
+  set footnote.entry(indent: 0pt, separator: none)
+
+  show footnote: set text(fill: palette.blue, weight: "bold")
   show footnote.entry: set text(size: font.sm)
 
   // links & bibliography
