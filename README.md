@@ -4,7 +4,7 @@ A small design system for academic slides, posters and articles: a shared palett
 
 ![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/preview.png?raw=true)
 
-**Rendered examples:** [docs/example_article.pdf](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/example_article.pdf) ·[docs/example_poster.pdf](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/example_poster.pdf) · [docs/example_slides.pdf](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/example_slides.pdf)
+**Rendered examples:** [docs/example_article.pdf](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/example_article.pdf) · [docs/example_poster.pdf](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/example_poster.pdf) · [docs/example_slides.pdf](https://github.com/simon-muenker/aatts/blob/1edbc4c5fe94bc3d000d8523d89c0c32b48e8967/docs/example_slides.pdf)
 
 The package exports four modules:
 
