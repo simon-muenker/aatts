@@ -42,5 +42,9 @@ test: packages
 thumbnail: packages
 	typst compile --root . -f png --ppi 200 main.typ thumbnail.png
 
+examples: packages
+	typst compile --root . -f pdf --ppi 200 template/poster.typ examples/poster.pdf
+	typst compile --root . -f pdf --ppi 200 template/slides.typ examples/slides.pdf
+
 clean:
 	rm -rf "$(BUILD)"
