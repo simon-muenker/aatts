@@ -9,7 +9,7 @@ repository = "https://github.com/simon-muenker/aatts"
 keywords = ["academic", "research", "presentation", "slides", "poster"]
 categories = ["presentation", "poster", "paper"]
 compiler = "0.15.0"
-exclude = ["Makefile", ".gitignore", "/docs/", "/.git/"]
+exclude = ["Makefile", ".gitignore", "/.git/", "/docs/", "/scripts/"]
 
 [template]
 path = "template"
