@@ -42,7 +42,7 @@ To use the design system in an existing project, import the modules directly as 
 | `palette`       | `red, green, blue, olive, magenta`          | Accent colours (`red` is the default highlight). |
 | `palette.grey`  | `dark, medium, light`                           | Text, secondary text, background grey.           |
 | `span`          | `p1` … `p12`                                        | Widths on a 12-column grid; `p12` = 100 %.       |
-| `font-families` | —                                                   | Helvetica Neue, Liberation Sans, Arial.          |
+| `font-families` | —                                                   | Helvetica (Neue), Liberation Sans, Arial.          |
 
 ### `units`
 
