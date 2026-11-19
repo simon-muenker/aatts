@@ -33,6 +33,7 @@ unlink:
 
 test: export TYPST_PACKAGE_PATH := $(BUILD)/packages
 thumbnail: export TYPST_PACKAGE_PATH := $(BUILD)/packages
+examples: export TYPST_PACKAGE_PATH := $(BUILD)/packages
 
 packages:
 	@mkdir -p "$(BUILD)/packages/preview/$(NAME)"
@@ -51,7 +52,7 @@ thumbnail: packages
 examples: packages
 	typst compile --root . -f pdf template/poster.typ docs/example_poster.pdf
 	typst compile --root . -f pdf template/slides.typ docs/example_slides.pdf
-	typst compile --root . -f pdf emplate/article.typ docs/example_article.pdf
+	typst compile --root . -f pdf template/article.typ docs/example_article.pdf
 
 clean:
 	rm -rf "$(BUILD)"
