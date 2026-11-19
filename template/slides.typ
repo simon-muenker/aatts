@@ -101,7 +101,7 @@
   #v(slides.units.space.md)
 
   #segment(3, "Plugins", [Plots, Trees, Code & QR], constants.palette.blue)[
-    `simple-plot`, `tdtr`, `codly` and `cades` styled with the aatts constants.palette.
+    `tdtr`, `codly` and `cades` styled with the aatts constants.palette.
   ]
 ]
 
@@ -282,7 +282,7 @@
   subtitle: [Third-party packages, styled with the aatts constants.palette.],
   meta-top: section-label(3, constants.palette.blue),
   meta-bot: text(fill: constants.palette.grey.medium)[
-    `@preview/simple-plot` · `@preview/tdtr` · `@preview/codly` · `@preview/cades`
+    `@preview/tdtr` · `@preview/codly` · `@preview/cades`
   ],
 )
 
