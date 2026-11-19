@@ -206,7 +206,11 @@ The same widgets are available as `slides.widgets, poster.widgets` and `article.
 Tinted box with a coloured bar on the left.
 
 ```typ
-#slides.widgets.card(title: [Note], highlight: constants.palette.blue, width: constants.span.p6)[
+#slides.widgets.card(
+  title: [Note], 
+  highlight: constants.palette.blue, 
+  width: constants.span.p6
+)[
   Additional context in a highlighted card.
 ]
 ```
@@ -216,7 +220,10 @@ Tinted box with a coloured bar on the left.
 Large bold statement with an accent line and an optional byline.
 
 ```typ
-#slides.widgets.statement(byline: [Supporting byline], highlight: constants.palette.red)[
+#slides.widgets.statement(
+  byline: [Supporting byline], 
+  highlight: constants.palette.red
+)[
   One sentence the audience should remember.
 ]
 ```
