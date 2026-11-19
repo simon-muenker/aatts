@@ -265,9 +265,9 @@ The package (everything outside `template/`) is licensed under the [MIT License]
 
 ## Roadmap
 
-- [ ] **Global: Units via State** — Let settings made in `units` apply everywhere. Store the unit setup in `state` and resolve `auto` parameters (e.g. `space`, `fonts`, `weight`) from it in `context`.
-- [ ] **Poster: QR-Code Header**: a key visual in the top left leads the eye to an A4-sized QR code in the right header, giving readers a self-paced way into the content. The QR area can be covered with an updated print to always link the latest version of the paper.
-- [ ] **New: Letter Theme** — Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
-- [ ] **Templates: IMRaD as Article Example** — rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
+-  **Global: Units via State:** Let settings made in `units` apply everywhere. Store the unit setup in `state` and resolve `auto` parameters (e.g. `space`, `fonts`, `weight`) from it in `context`.
+- **Poster: QR-Code Header**: a key visual in the top left leads the eye to an A4-sized QR code in the right header, giving readers a self-paced way into the content. The QR area can be covered with an updated print to always link the latest version of the paper.
+- **New: Letter Theme:** Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
+- **Templates: IMRaD as Article Example:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
 
 
