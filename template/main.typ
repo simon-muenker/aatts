@@ -17,7 +17,6 @@
 #let slide-w = slide-h * 16 / 9
 #let poster-w = inner-h / calc.sqrt(2)
 
-// overrides the page set by the slides theme
 #set page(
   width: poster-w + gutter + cols * slide-w + (cols - 1) * gutter + 2 * margin,
   height: inner-h + 2 * margin,
