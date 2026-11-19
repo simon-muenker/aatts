@@ -251,3 +251,6 @@ The full examples in [template](template/) also show third-party packages (`tdtr
 ## License
 
 The package (everything outside `template/`) is licensed under the [MIT License](LICENSE). The files in `template/` are licensed under [MIT-0](https://spdx.org/licenses/MIT-0.html): you can use, modify, and distribute documents created from the template without attribution. However, the photograph `template/assets/image-header_split.webp` was taken on film and digitized by the author, Simon Münker, and is released under the same MIT. Please attribute the author when using the picture.
+
+
+# Roadmap

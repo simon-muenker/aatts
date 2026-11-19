@@ -18,7 +18,7 @@ BUILD := /tmp/$(NAME)-test
 DOC   := $(BUILD)/project/main.typ
 LINK  := $(HOME)/Library/Application Support/typst/packages/preview/$(NAME)/$(VERSION)
 
-.PHONY: install_extras test thumbnail clean link unlink packages check
+.PHONY: install_extras test thumbnail examples clean link unlink packages check
 
 install_extras:
 	cargo install oxipng
