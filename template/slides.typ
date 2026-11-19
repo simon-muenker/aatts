@@ -279,7 +279,7 @@
 
 #slides.layouts.title(
   [Plugins],
-  subtitle: [Third-party packages, styled with the aatts constants.palette.],
+  subtitle: [Third-party packages, styled with the aatts palette.],
   meta-top: section-label(3, constants.palette.blue),
   meta-bot: text(fill: constants.palette.grey.medium)[
     `@preview/tdtr` · `@preview/codly` · `@preview/cades`
@@ -295,7 +295,7 @@
       compact: true,
       spacing: (12pt, 24pt),
       node-inset: 4pt,
-      draw-node: (stroke: slides.units.weight.base + constants.palette.grey.dark, corner-radius: 2pt),
+      draw-node: (stroke: slides.units.weight.base + constants.palette.grey.dark, corner-radius: slides.units.weight.lg),
       draw-edge: (stroke: slides.units.weight.base + constants.palette.grey.medium),
     )[
       - *Culture*
