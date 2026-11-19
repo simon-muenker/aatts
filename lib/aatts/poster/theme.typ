@@ -21,8 +21,8 @@
   )
 
   set par(justify: true)
-  set table(inset: (x: units.font.base * .96, y: units.font.base * .32))
-  show bibliography: set text(size: units.font.sm)
+  set table(inset: (x: units.font.md * .96, y: units.font.md * .32))
+  show bibliography: set text(size: units.font.xs)
 
   body
 }
@@ -37,7 +37,7 @@
   ) = {
   set page(
     paper: paper,
-    margin: units.space.base,
+    margin: units.space.lg,
   )
 
   show: typography.with(

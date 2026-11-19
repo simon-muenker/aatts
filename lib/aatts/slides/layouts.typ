@@ -83,7 +83,7 @@
     set std.image(width: 100%, height: 100%, fit: "cover")
     image
   }),
-  pad(units.space.base, grid(
+  pad(units.space.md, grid(
     rows: (auto, 1fr, auto),
     row-gutter: units.space.sm,
     align: left,

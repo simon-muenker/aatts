@@ -51,14 +51,16 @@ To use the design system in an existing project, import the modules directly as 
 | Scale         | `article` | `slides` | `poster` |
 |---------------|-----------|----------|----------|
 | `font` (pt)   | 10        | 1.6 ×    | 2.8 ×    |
-| `space` (cm)  | 1         | 1.6 ×    | 2.8 ×    |
+| `space` (cm)  | 0.5       | 1.6 ×    | 2.8 ×    |
 | `weight` (pt) | 0.5       | 2 ×      | 4 ×      |
 
-| Name     | Keys                            | Multipliers of `base`            |
-|----------|---------------------------------|----------------------------------|
-| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | `3`, `2.25`, `1.5`, `1`, `0.75`  |
-| `space`  | `lg`, `base`, `md`, `sm`, `xs`  | `2`, `1`, `0.5`, `0.25`, `0.125` |
-| `weight` | `xl`, `lg`, `base`, `sm`        | `4`, `2`, `1`, `0.5`             |
+Every scale uses the same t-shirt sizes; `md` is always the base value.
+
+| Name     | Keys                                    | Multipliers of the base            |
+|----------|-----------------------------------------|------------------------------------|
+| `font`   | `xxl`, `xl`, `lg`, `md`, `sm`, `xs`     | `3`, `2.25`, `1.5`, `1`, `0.9`, `0.75` |
+| `space`  | `xxl`, `xl`, `lg`, `md`, `sm`, `xs`     | `8`, `4`, `2`, `1`, `0.5`, `0.25`  |
+| `weight` | `xxl`, `xl`, `lg`, `md`, `sm`           | `8`, `4`, `2`, `1`, `0.5`          |
 
 ```typ
 #v(slides.units.space.md)

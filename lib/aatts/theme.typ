@@ -15,12 +15,12 @@
   set text(
     font: font-families,
     fill: constants.palette.grey.dark,
-    size: font.base,
+    size: font.md,
     lang: lang,
   )
   set par(
     leading: 0.8em,
-    spacing: 1.2em
+    spacing: 1.0em
   )
 
   // headings
@@ -29,7 +29,7 @@
   
   show heading.where(level: 1): set text(size: font.xxl)
   show heading.where(level: 2): set text(size: font.xl)
-  show heading.where(level: 2): set block(above: space.base, below: space.md)
+  show heading.where(level: 2): set block(above: space.lg, below: space.md)
 
   // listings
   set list(
@@ -46,10 +46,10 @@
 
   // tables
   set table(
-    inset: (x: font.base * .5, y: font.base * .625),
+    inset: (x: font.md * .5, y: font.md * .625),
     stroke: (_, y) =>
       if y == 0 {
-        (bottom: weight.base + constants.palette.grey.dark)
+        (bottom: weight.md + constants.palette.grey.dark)
       } else {
         (bottom:weight.sm + constants.palette.grey.medium)
       }

@@ -37,7 +37,7 @@
 ]
 
 // cells side by side
-#let split(columns: (1fr, 1fr), gutter: slides.units.space.md, align: left + top, ..cells) = grid(
+#let split(columns: (1fr, 1fr), gutter: slides.units.space.lg, align: left + top, ..cells) = grid(
   columns: columns,
   column-gutter: gutter,
   align: align,
@@ -198,7 +198,7 @@
 #let results = arguments(title: [Group A Varies, Group B Converges])[
   #split(
     columns: (1.25fr, 1fr),
-    gutter: slides.units.space.base,
+    gutter: slides.units.space.lg,
     [
       #slides.widgets.bar-chart(
         ([*X* - Group A], .59, constants.palette.green, [59%]),
@@ -221,7 +221,7 @@
     [
       Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer.
 
-      #v(slides.units.space.sm)
+      #v(slides.units.space.md)
 
       #slides.widgets.card(title: [Interpretation])[
         High agreement can reflect a shared default rather than independent judgments.
@@ -235,7 +235,7 @@
 #let design = arguments(title: [Design Choices])[
   #split(
     columns: (1.75fr, 1fr),
-    gutter: slides.units.space.base,
+    gutter: slides.units.space.lg,
     table(
       columns: (auto, 1fr, auto, auto),
       align: (left, left, right, right),
@@ -252,7 +252,7 @@
     ],
   )
 
-  #v(slides.units.space.sm)
+  #v(slides.units.space.md)
 
   #slides.widgets.card(
     title: [Assumption],
@@ -267,7 +267,7 @@
 
 #slides.layouts.base(title: [Imported PDF as Figure])[
     #figure(
-      image("assets/image-graph_ega.pdf", height: 82%),
+      image("assets/image-graph_ega.pdf", height: 76%),
       caption: [The EGA plot of human answers to the HSQ @munker-2025-fingerprinting],
   )
 ]
@@ -289,14 +289,14 @@
 #slides.layouts.base(title: [Tidy Trees #h(slides.units.space.sm) #plugin[tdtr]])[
   #split(
     columns: (1.5fr, 1fr),
-    gutter: slides.units.space.base,
+    gutter: slides.units.space.md,
     align: left + horizon,
     align(center, scale(160%, reflow: true, tdtr.tidy-tree-graph(
       compact: true,
       spacing: (12pt, 24pt),
       node-inset: 4pt,
-      draw-node: (stroke: slides.units.weight.base + constants.palette.grey.dark, corner-radius: slides.units.weight.lg),
-      draw-edge: (stroke: slides.units.weight.base + constants.palette.grey.medium),
+      draw-node: (stroke: slides.units.weight.md + constants.palette.grey.dark, corner-radius: slides.units.weight.lg),
+      draw-edge: (stroke: slides.units.weight.md + constants.palette.grey.medium),
     )[
       - *Culture*
         - Practice

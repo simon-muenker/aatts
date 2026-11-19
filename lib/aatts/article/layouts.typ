@@ -3,7 +3,7 @@
 
 
 // labelled abstract, set slightly smaller and indented
-#let abstract-block(abstract) = pad(x: units.space.md, {
+#let abstract-block(abstract) = pad(x: units.space.lg, {
   set text(size: units.font.sm)
   set par(justify: true, leading: .72em)
 
@@ -21,7 +21,7 @@
   meta-top: none,
   abstract: none,
   highlight: constants.palette.red,
-) = block(width: 100%, below: units.space.base, {
+) = block(width: 100%, below: units.space.md, {
   if meta-top != none {
     text(size: units.font.sm, fill: constants.palette.grey.medium, meta-top)
     v(units.space.sm)
@@ -50,9 +50,10 @@
   }
 
   if abstract != none {
-    v(units.space.sm)
+    v(units.space.md)
     abstract-block(abstract)
   }
+  v(units.space.md)
 })
 
 
@@ -79,7 +80,7 @@
   }
 
   if columns > 1 {
-    std.columns(columns, gutter: units.space.base, body)
+    std.columns(columns, gutter: units.space.lg, body)
   } else {
     body
   }

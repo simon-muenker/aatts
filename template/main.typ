@@ -44,12 +44,12 @@
 )
 
 // "presentation-16-9", w/ the footer of the slides theme unless n is none
-#let slide(n, body, inset: slides.units.space.base) = minipage(28cm, 15.75cm, inset, slide-w, {
+#let slide(n, body, inset: slides.units.space.lg) = minipage(28cm, 15.75cm, inset, slide-w, {
   show: slides.theme.typography
 
   body
   if n != none {
-    place(bottom, dy: slides.units.space.base / 2, text(
+    place(bottom, dy: slides.units.space.lg / 2, text(
       size: slides.units.font.sm,
       fill: constants.palette.grey.medium,
       grid(columns: (1fr, auto), example-slides.footer, str(n)),
@@ -58,7 +58,7 @@
 })
 
 // "a4", first page only (the rest is clipped), fit to the height of two stacked slides
-#let a4(body) = minipage(21cm, 29.7cm, article.units.space.lg, (2 * slide-h + gutter) / calc.sqrt(2), block(
+#let a4(body) = minipage(21cm, 29.7cm, article.units.space.xl, (2 * slide-h + gutter) / calc.sqrt(2), block(
   height: 100%,
   clip: true,
   {
@@ -69,7 +69,7 @@
 ))
 
 // "a0"
-#let a0(body) = minipage(84.1cm, 118.9cm, poster.units.space.base, poster-w, {
+#let a0(body) = minipage(84.1cm, 118.9cm, poster.units.space.lg, poster-w, {
   show: poster.theme.typography
   body
 })

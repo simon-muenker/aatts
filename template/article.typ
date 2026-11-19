@@ -50,7 +50,7 @@
 
   *Setting the scene.* A paragraph describing the question and why it matters @schwager-etal-2026-unsampled. #lorem(56) @plank-2022-problem.
 
-  #lorem(48) @adilazuarda-etal-2024-towards.#footnote[A footnote with additional detail that would break the reading flow.] #lorem(32)
+  #lorem(48) @adilazuarda-etal-2024-towards.#footnote[A footnote with additional detail that would break the reading flow.] #lorem(24)
 
   #article.widgets.card(title: [Research Question], highlight: constants.palette.blue)[
     One or two questions this article answers, phrased so the reader can check them at the end.
@@ -85,7 +85,7 @@
 
   = Results
 
-  @fig-ega shows the structure of the human answers, @tab-results the reliability scores across conditions. #lorem(48)
+  @fig-ega shows the structure of the human answers, @tab-results the reliability scores across conditions. #lorem(4)
 
   #figure(
     table(

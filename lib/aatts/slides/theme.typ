@@ -35,13 +35,14 @@
   set page(
     paper: paper,
     margin: (
-      x: units.space.base, 
-      y: units.space.base
+      x: units.space.lg, 
+      y: units.space.lg
     ),
     footer: context {
       set text(
-        size: units.font.sm, 
-        fill: constants.palette.grey.medium
+        size: units.font.xs, 
+        fill: constants.palette.grey.medium,
+        spacing: 160%,
       )
       grid(
         columns: (1fr, auto),

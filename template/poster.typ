@@ -118,7 +118,7 @@
 
   #colbreak()
 
-  *Implementation:* #lorem(72)
+  *Implementation:* #lorem(48)
 
   == Results
 

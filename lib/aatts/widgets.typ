@@ -56,9 +56,9 @@
 
       #if byline != none {
         text(
-          size: font.base,
+          size: font.md,
           weight: "light", 
-          tracking: font.base * .01,
+          tracking: font.md * .01,
           fill: constants.palette.grey.medium,
           byline
         )
@@ -70,7 +70,7 @@
   // ---- bar-plot
   let bar(share, color) = box(
     width: 100%,
-    height: font.base, 
+    height: font.md, 
     fill: constants.palette.grey.light, 
     radius: weight.xl, 
     align(

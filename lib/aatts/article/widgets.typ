@@ -10,7 +10,7 @@
 // statement w/ spacing to the surrounding flow text
 #let statement = (..args) => block(
   above: units.space.md,
-  below: units.space.base,
+  below: units.space.md,
   {
     statement(..args)
     // compensates the negative spacing after the byline
