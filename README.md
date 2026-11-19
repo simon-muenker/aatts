@@ -46,13 +46,19 @@ To use the design system in an existing project, import the modules directly as 
 
 ### `units`
 
-`slides.units, poster.units` and `article.units` hold the size tokens. Each scale is derived from one base value: the poster uses 1.75 × the slide base for type and spacing, and 2 × for stroke weights; the article uses an 11 pt base.
+`article.units`, `slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value. The article sets the reference bases. Slides and poster scale them up as follows
 
-| Name     | Keys                            | `slides`                    | `poster`                    | `article`                     |
-|----------|---------------------------------|-----------------------------|-----------------------------|-------------------------------|
-| `font` (pt)   | `xxl, xl, lg, base, sm` | `48, 36, 24, 16, 12`     | `84, 63, 42, 28, 21`       | `30, 24, 16, 10, 8`  |
-| `space` (cm)  | `base, md, sm, xs`        | `1.6, 0.8, 0.4, 0.2`      | `2.8, 1.4, 0.7, 0.35`      | `1, 0.5, 0.25, 0.125`         |
-| `weight` (pt) | `xl, lg, base, sm`        | `4, 2, 1, 0.5`              | `8, 4, 2, 1`        | `2, 1, 0.5, 0.25`          |
+| Scale         | `article` | `slides` | `poster` |
+|---------------|-----------|----------|----------|
+| `font` (pt)   | 10        | 1.6 ×    | 2.8 ×    |
+| `space` (cm)  | 1         | 1.6 ×    | 2.8 ×    |
+| `weight` (pt) | 0.5       | 2 ×      | 4 ×      |
+
+| Name     | Keys                            | Multipliers of `base`            |
+|----------|---------------------------------|----------------------------------|
+| `font`   | `xxl`, `xl`, `lg`, `base`, `sm` | `3`, `2.25`, `1.5`, `1`, `0.75`  |
+| `space`  | `lg`, `base`, `md`, `sm`, `xs`  | `2`, `1`, `0.5`, `0.25`, `0.125` |
+| `weight` | `xl`, `lg`, `base`, `sm`        | `4`, `2`, `1`, `0.5`             |
 
 ```typ
 #v(slides.units.space.md)
@@ -75,13 +81,13 @@ Fonts are not bundled with the package. The themes try Helvetica Neue, Helvetica
 #show: slides.theme.style.with(footer: [Presentation Title · Venue, Date])
 #set document(title: "Presentation Title", author: "Author Name")
 
-#(slides.layouts.title)(
+#slides.layouts.title(
   [Presentation Title],
   subtitle: [A short subtitle that frames the talk],
   meta-bot: [*Author Name* \ Affiliation],
 )
 
-#(slides.layouts.base)(title: [Overview])[
+#slides.layouts.base(title: [Overview])[
   - First point
   - Second point
 ]
