@@ -31,9 +31,7 @@ link:
 unlink:
 	rm -f "$(LINK)"
 
-test: export TYPST_PACKAGE_PATH := $(BUILD)/packages
-thumbnail: export TYPST_PACKAGE_PATH := $(BUILD)/packages
-examples: export TYPST_PACKAGE_PATH := $(BUILD)/packages
+test thumbnail examples: export TYPST_PACKAGE_PATH := $(BUILD)/packages
 
 packages:
 	@mkdir -p "$(BUILD)/packages/preview/$(NAME)"
