@@ -1,10 +1,11 @@
 #import "constants.typ" as constants
+#import "units.typ" as units
 
 
 #let style(
-  space: (),
-  font: (),
-  weight: (),
+  space: units.space(),
+  font: units.font(),
+  weight: units.weight(),
   font-families: constants.font-families,
   lang: "en",
   highlight: constants.palette.red,
