@@ -244,8 +244,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 
 ## Development
 
-> [!NOTE]
-> The development workflow is optimized and test for macOS only. The `make` targets may break on other operating systems.
+**NOTE:** The development workflow is optimized and test for macOS only. The `make` targets may break on other operating systems.
 
 | Command               | Description                                                           |
 |-----------------------|-----------------------------------------------------------------------|
