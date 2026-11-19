@@ -23,6 +23,7 @@ LINK  := $(HOME)/Library/Application Support/typst/packages/preview/$(NAME)/$(VE
 install_extras:
 	cargo install oxipng
 	cargo install --git https://github.com/typst/package-check.git
+	brew install fswatch
 
 link:
 	@mkdir -p "$$(dirname "$(LINK)")"
@@ -36,6 +37,7 @@ test thumbnail examples: export TYPST_PACKAGE_PATH := $(BUILD)/packages
 packages:
 	@mkdir -p "$(BUILD)/packages/preview/$(NAME)"
 	@ln -sfn "$(CURDIR)" "$(BUILD)/packages/preview/$(NAME)/$(VERSION)"
+	@echo "Build complete"
 
 test: packages
 	@rm -rf "$(BUILD)/project"
@@ -57,3 +59,6 @@ clean:
 
 check:
 	typst-package-check check
+
+watch:
+	fswatch ./lib | xargs -n 1 -I {} make test
