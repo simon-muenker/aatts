@@ -1,6 +1,6 @@
 #import "../units.typ" as units
 
 
-#let space = units.space(base: 1.6cm) 
-#let font = units.font(base: 16pt) 
-#let weight = units.weight(base: 1pt) 
+#let space = units.space(base: units.bases.space * 1.6)
+#let font = units.font(base: units.bases.font * 1.6)
+#let weight = units.weight(base: units.bases.weight * 2)
