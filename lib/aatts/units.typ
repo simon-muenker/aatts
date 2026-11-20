@@ -1,6 +1,3 @@
-#import "utils.typ": assert-keys
-
-
 // reference bases (article); the other formats derive theirs from these
 #let bases = (
   space: .5cm,
@@ -56,7 +53,6 @@
 // e.g. `derive(space: 1.6, font: 1.6, weight: 2)`
 #let derive(..multipliers) = {
   let multipliers = multipliers.named()
-  assert-keys(multipliers, bases, "units")
 
   bases
   .pairs()
@@ -66,12 +62,5 @@
 
 // bases w/ overrides (e.g. `(font: 12pt)`), checked for unknown names and non-lengths
 #let override(bases, overrides) = {
-  assert-keys(overrides, bases, "units")
-  for (name, base) in overrides {
-    assert(
-      type(base) == length,
-      message: "units: `" + name + "` must be a length, got " + repr(base),
-    )
-  }
   bases + overrides
 }

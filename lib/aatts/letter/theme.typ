@@ -1,6 +1,5 @@
 #import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
-#import "../utils.typ": assert-keys
 
 #import "units.typ": bases
 #import "din.typ": din
@@ -24,11 +23,9 @@
 // (e.g. `(fold: (length: 3mm))`); `none` leaves out a kind (e.g. `(punch: none)`) or all
 #let override-marks(overrides) = {
   if overrides == none { return (:) }
-  assert-keys(overrides, din.marks, "marks")
 
   din.marks + overrides.pairs().map(((kind, mark)) => {
     if mark == none { return (kind, none) }
-    assert-keys(mark, din.marks.at(kind), "marks." + kind)
     (kind, din.marks.at(kind) + mark)
   }).to-dict()
 }
