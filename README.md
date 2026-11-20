@@ -1,6 +1,6 @@
 # Atomized Academic Typst Template Starters (aatts)
 
-A small design system for academic slides, posters and articles: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster and a paper look like they belong together. This repository should be used in academic teaching (including Trier University) as an easy way into Typst: all students can use these as building templates for their slides, poster or paper and fulfill thereby the layout requirements.
+A small design system for academic slides, posters, articles and theses: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, a single-column A4 book theme for theses with a title page, front matter, chapters and appendix, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster, a paper and a thesis look like they belong together. This repository should be used in academic teaching (including Trier University) as an easy way into Typst: all students can use these as building templates for their slides, poster, paper or thesis and fulfill thereby the layout requirements.
 
 ![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/v0.1.0/docs/preview.png?raw=true)
 
@@ -22,6 +22,7 @@ The project contains one starter file per format. Pick the one you need, edit it
 | `slides.typ`  | a 16:9 slide deck                                    |
 | `poster.typ`  | an A0 poster                                         |
 | `article.typ` | an A4 article                                        |
+| `book.typ`    | an A4 thesis                                         |
 | `main.typ`    | nothing: it only renders an overview of the examples |
 | `partials/`   | helpers, plugin setups, and placeholder content shared by the starters |
 | `assets/`     | placeholder image, figure, and bibliography          |
@@ -29,7 +30,7 @@ The project contains one starter file per format. Pick the one you need, edit it
 `main.typ` is the default compilation target, so compile your chosen file explicitly (in the web app, open your file and click the eye icon next to its name to preview it instead of `main.typ`):
 
 ```sh
-typst watch slides.typ  # or poster.typ, article.typ
+typst watch slides.typ  # or poster.typ, article.typ, book.typ
 ```
 
 To use the design system in an existing project, import the modules directly as below describes.
@@ -47,13 +48,13 @@ To use the design system in an existing project, import the modules directly as 
 
 ### `units`
 
-`article.units`, `slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value. The article sets the reference bases. Slides and poster scale them up as follows
+`article.units`, `book.units`, `slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value. The article sets the reference bases. Book, slides and poster scale them up as follows
 
-| Scale         | `article` | `slides` | `poster` |
-|---------------|-----------|----------|----------|
-| `font` (pt)   | 10        | 1.6 ×    | 2.8 ×    |
-| `space` (cm)  | 0.5       | 1.6 ×    | 2.8 ×    |
-| `weight` (pt) | 0.5       | 2 ×      | 4 ×      |
+| Scale         | `article` | `book` | `slides` | `poster` |
+|---------------|-----------|--------|----------|----------|
+| `font` (pt)   | 10        | 1.1 ×  | 1.6 ×    | 2.8 ×    |
+| `space` (cm)  | 0.5       | 1 ×    | 1.6 ×    | 2.8 ×    |
+| `weight` (pt) | 0.5       | 1 ×    | 2 ×      | 4 ×      |
 
 Every scale uses the same t-shirt sizes; `md` is always the base value.
 
@@ -226,9 +227,62 @@ The theme sets an A4 page (`paper`), a running `header` from the second page on,
 
 Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. The title block is left out when none of its parts are given. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
 
+## `book`
+
+```typ
+#import "@preview/aatts:0.1.0": constants, book
+
+#show: book.theme.style
+#set document(title: "Thesis Title", author: "Author Name")
+
+#book.layouts.title-page(
+  [Thesis Title],
+  subtitle: [A short subtitle that frames the thesis],
+  authors: [*Author Name* \ Affiliation],
+  meta-top: [Master's Thesis · University Name],
+  meta-bot: [Supervisor: Supervisor Name \ Submitted Month Day, Year],
+)
+
+#show: book.layouts.front-matter
+
+= Abstract
+
+#lorem(120)
+
+#outline()
+#book.layouts.figures()
+#book.layouts.tables()
+
+#show: book.layouts.main-matter
+
+= Introduction
+
+#lorem(200)
+
+#show: book.layouts.appendix
+
+= Supplementary Material
+
+#bibliography("references.bib", title: [References])
+```
+
+The theme sets the typography of the article in a single column, with a slightly larger font (11 pt) and wider margins on an A4 page (`paper`). Chapters (`=`) open a new page and are set larger above an accent line; sections (`==`) are numbered, `===` stays unnumbered. The running header shows the title of the current chapter and is left out on pages that open a chapter; pass `header` to replace it with your own content, or `none` to remove it. Page numbers are centred in the footer. The bibliography is set as the last, unnumbered chapter.
+
+### `layouts.title-page`
+
+Title page without header and footer: `meta-top` at the top, the title block of the article (title, `subtitle`, accent line, `authors`) vertically centred, and `meta-bot` at the bottom. The content alone is available as `layouts.title-content`.
+
+### `layouts.front-matter`, `layouts.main-matter`, `layouts.appendix`
+
+Apply them with a show rule; each one holds until the next. The front matter (abstract, table of contents, lists) numbers its pages in roman numerals and leaves its chapters unnumbered. The main matter restarts the page count in arabic numerals and numbers its chapters (`1`, `1.1`). The appendix letters its chapters (`A`, `A.1`) and continues the page count.
+
+### `layouts.figures`, `layouts.tables`
+
+Lists of figures and tables, titled *List of Figures* and *List of Tables*. Further arguments go to the `outline`, e.g. `title: [Abbildungsverzeichnis]`. `layouts.list-of(kind)` lists the figures of any other kind. The table of contents is the plain `#outline()`.
+
 ## Widgets
 
-The same widgets are available as `widgets` and as `slides.widgets, poster.widgets` and `article.widgets`. Without a `highlight`, they use the one of the theme.
+The same widgets are available as `widgets` and as `slides.widgets, poster.widgets, article.widgets` and `book.widgets`. Without a `highlight`, they use the one of the theme.
 
 ### `card`
 
@@ -279,7 +333,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 | `make test`           | Initialise a project from the template and compile it.                |
 | `make check`          | Lint the package with `typst-package-check`.                          |
 | `make thumbnail`      | Render `thumbnail.png` and `docs/preview.png` from `template/main.typ`. |
-| `make examples`       | Render `docs/example_slides.pdf, docs/example_poster.pdf` and `docs/example_article.pdf`. |
+| `make examples`       | Render `docs/example_slides.pdf, docs/example_poster.pdf, docs/example_article.pdf` and `docs/example_book.pdf`. |
 | `make link`           | Link the checkout into the system package folder (for editors).       |
 | `make unlink`         | Remove that link again.                                               |
 | `make clean`          | Remove the build directory.     
@@ -292,7 +346,6 @@ The package (everything outside `template/`) is licensed under the [MIT License]
 
 ## Roadmap
 
-- **New: Book Theme:** Add a book theme that serves as a template for theses: title page, front matter (abstract, table of contents, lists of figures and tables), chapters, appendix, and bibliography.
 - **New: Letter Theme:** Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
 - **Templates: Article:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
 - **Templates: Book:** write the example book as a short thesis with educational content similar to the IMRaD article, explaining the structure of a thesis (chapters, front and back matter) while demonstrating the theme's features.

@@ -5,8 +5,8 @@
 
 // authors and affiliations, e.g. for the cover slide or the poster header
 #let byline = [
-  #text(weight: "semibold")[Author Name, Co-Author Name] \
-  Affiliation, Second Affiliation
+  #text(weight: "semibold")[Author Name] \
+  Affiliation
 ]
 
 // project website, e.g. behind a QR code

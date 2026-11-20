@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `book` theme for theses: a single-column A4 page with the typography of the article (11 pt), chapters that open a new page above an accent line, a running header with the current chapter, and centred page numbers. Layouts for the title page (`title-page`), the front matter (roman page numbers, unnumbered chapters), the main matter (arabic page numbers from 1, numbered chapters), the appendix (lettered chapters) and lists of figures and tables (`figures`, `tables`). The bibliography is set as the last, unnumbered chapter.
+- Template: `book.typ`, a starter for a thesis with title page, front matter, chapters, appendix and bibliography.
 - Themes take a `units` argument that overrides the unit bases, e.g. `slides.theme.style.with(units: (font: 18pt))`. Theme, layouts and widgets all follow, since the unit setup is stored in `state` and resolved in `context`.
 - `units.get()` returns the scales currently set by the theme (requires `context`); `units.bases` holds the default bases of a format.
 - Poster header: `poster.layouts.base` takes an `abstract` (set as a labelled TL;DR below an accent line in the `highlight` colour) and an `aside` placed on the right of the header, e.g. a large QR code. The header alone is available as `poster.layouts.title-content`. Without both, the poster renders as before.

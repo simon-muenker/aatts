@@ -4,10 +4,10 @@ version = "0.1.0"
 entrypoint = "lib/aatts/lib.typ"
 authors = ["Simon Münker <https://simon-muenker.github.io/>"]
 license = "MIT"
-description = "Academic slides, posters and articles with a shared design system"
+description = "Academic slides, posters, articles and theses with a shared design system"
 repository = "https://github.com/simon-muenker/aatts"
-keywords = ["academic", "research", "presentation", "slides", "poster"]
-categories = ["presentation", "poster", "paper"]
+keywords = ["academic", "research", "presentation", "slides", "poster", "thesis"]
+categories = ["presentation", "poster", "paper", "thesis"]
 compiler = "0.15.0"
 exclude = ["Makefile", ".gitignore", "/.git/", "/docs/", "/scripts/"]
 

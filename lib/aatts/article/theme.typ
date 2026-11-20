@@ -57,6 +57,16 @@
 #let typography = base-theme.typography(bases, format-rules: format-rules)
 
 
+// centred page number, for the page footer (own context, resolved per page)
+#let page-number = context {
+  set text(
+    size: setup.scales().font.sm,
+    fill: constants.palette.grey.medium
+  )
+  align(center, counter(page).display())
+}
+
+
 // typography and page setup, takes the arguments of `typography`
 #let style(
   paper: "a4",
@@ -84,13 +94,7 @@
         )
         header
       },
-      footer: context {
-        set text(
-          size: font.sm,
-          fill: constants.palette.grey.medium
-        )
-        align(center, counter(page).display())
-      },
+      footer: page-number,
     )
 
     body

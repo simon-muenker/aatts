@@ -53,6 +53,7 @@ examples: packages
 	typst compile --root . -f pdf template/poster.typ docs/example_poster.pdf
 	typst compile --root . -f pdf template/slides.typ docs/example_slides.pdf
 	typst compile --root . -f pdf template/article.typ docs/example_article.pdf
+	typst compile --root . -f pdf template/book.typ docs/example_book.pdf
 
 clean:
 	rm -rf "$(BUILD)"
