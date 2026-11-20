@@ -185,7 +185,7 @@ Page without margins, header or footer, e.g. for a full-bleed image.
   subtitle: [A short subtitle that frames the poster],
   meta-top: [*Author Name* \ Affiliation #h(1fr) Conference Name · Venue, Date],
   abstract: [The main finding in two or three sentences.],
-  aside: image("qr-code.svg", width: 20cm),
+  aside: image("qr-code.svg", width: 12cm),
 )
 
 == Motivation
