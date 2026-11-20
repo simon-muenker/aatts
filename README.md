@@ -199,7 +199,7 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 
 Stacks the header and the body set in `columns` columns (default 3). Use `== Heading` for sections and `#colbreak()` to start the next column.
 
-The header holds `meta-top`, the title and an optional subtitle on the left; it is left out when none of its parts are given. An optional `abstract` follows below an accent line (coloured by `highlight`) and is set larger, as a labelled *TL;DR*. The optional `aside` sits vertically centred on the right; it is meant for a large QR code that gives readers a self-paced way into the paper, code or data. The package does not generate QR codes, so pass any content, e.g. an image or the output of a QR package (the template uses [`cades`](https://typst.app/universe/package/cades)). The header alone is available as `layouts.title-content`.
+The header holds `meta-top`, the title and an optional subtitle on the left; it is left out when none of its parts are given. An optional `abstract` follows below an accent line (coloured by `highlight`) and is set larger, as a labelled *TL;DR*. The optional `aside` sits at the top right; it is meant for a large QR code that gives readers a self-paced way into the paper, code or data. The package does not generate QR codes, so pass any content, e.g. an image or the output of a QR package (the template uses [`cades`](https://typst.app/universe/package/cades)). The header alone is available as `layouts.title-content`.
 
 ## `article`
 
@@ -307,7 +307,7 @@ Lists of figures and tables, titled *List of Figures* and *List of Tables*. Furt
 
 The theme sets an A4 page after DIN 5008 form B for postal dispatch in a DL window envelope: margins of 25 mm (left) and 20 mm (right), an empty header and footer, paragraphs set apart by about one blank line, and fold and punch marks on the left edge of the first page. The geometry is available as `letter.theme.din`.
 
-The `marks` object overrides the marks by kind, the defaults are the fold marks (`fold`, folded to DL) and the punch mark (`punch`, centre of the page). Each kind gives its distances from the top of the page (`at`) and its `length`; `none` leaves a kind out, `marks: none` all of them:
+The `marks` object overrides the marks by kind, the defaults are the fold marks (`fold`, folded to DL) and the punch mark (`punch`, centre of the page). Each kind gives its distances from the top of the page (`at`) and its `length`, a kind given in part keeps the defaults of the rest (e.g. `fold: (length: 3mm)`); `none` leaves a kind out, `marks: none` all of them:
 
 ```typ
 #show: letter.theme.style.with(

@@ -58,9 +58,7 @@
 
 // base, the first-page head + body; the head is left out if all its parts are none
 #let base(highlight: auto, ..head, body) = {
-  if head.named().values().any(part => part != none) {
-    title-content(..head, highlight: highlight)
-  }
+  parts.head(title-content, head, highlight: highlight)
 
   body
 }

@@ -65,10 +65,11 @@
 // base, ?title block + body in ?columns; `head` takes the parts of `title-content`
 // (title, subtitle, authors, meta-top, abstract), the title block is left out if all are none
 #let base(highlight: auto, columns: 2, ..head, body) = {
-  let head = head.named()
-  if head.values().any(part => part != none) {
-    title-content(head.remove("title", default: none), ..head, highlight: highlight)
-  }
+  parts.head(
+    (title: none, ..args) => title-content(title, ..args),
+    head,
+    highlight: highlight,
+  )
 
   parts.columns(columns, body)
 }

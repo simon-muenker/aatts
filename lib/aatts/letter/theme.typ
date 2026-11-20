@@ -20,11 +20,17 @@
 #let typography = base-theme.typography(bases, format-rules: format-rules)
 
 
-// default marks w/ `overrides` by kind (e.g. `(punch: none)`), `none` leaves out all
+// default marks w/ `overrides` by kind, each merged into the default of its kind
+// (e.g. `(fold: (length: 3mm))`); `none` leaves out a kind (e.g. `(punch: none)`) or all
 #let override-marks(overrides) = {
   if overrides == none { return (:) }
   assert-keys(overrides, din.marks, "marks")
-  din.marks + overrides
+
+  din.marks + overrides.pairs().map(((kind, mark)) => {
+    if mark == none { return (kind, none) }
+    assert-keys(mark, din.marks.at(kind), "marks." + kind)
+    (kind, din.marks.at(kind) + mark)
+  }).to-dict()
 }
 
 // fold and punch marks on the left edge of the page

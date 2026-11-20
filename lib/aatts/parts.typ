@@ -42,6 +42,21 @@
   body
 }
 
+// head of a `base` layout, `title-content` called w/ the named `parts` and `highlight`;
+// none if all parts are none, fails on positional arguments (e.g. a title not passed as `title:`)
+#let head(title-content, parts, highlight: auto) = {
+  assert(
+    parts.pos() == (),
+    message: "layouts: the head parts of `base` are named (e.g. `title: [..]`), got "
+      + str(parts.pos().len()) + " positional",
+  )
+  let parts = parts.named()
+
+  if parts.values().any(part => part != none) {
+    title-content(..parts, highlight: highlight)
+  }
+}
+
 // page w/o header and footer (e.g. a title page), takes the arguments of `page`
 #let bare-page = page.with(header: none, footer: none)
 

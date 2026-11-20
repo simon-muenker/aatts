@@ -5,7 +5,7 @@
 #import "units.typ": bases
 
 
-// rules of the article, w/ chapters (level 1) set larger above an accent line
+// rules of the article, w/ chapters (level 1) set larger and further apart from their text
 #let format-rules(scales, body) = {
   let (space, font) = scales
 
@@ -13,7 +13,7 @@
 
   // chapters
   show heading.where(level: 1): set text(size: font.xl)
-  show heading.where(level: 1): it => block(below: space.lg, it)
+  show heading.where(level: 1): set block(below: space.lg)
 
   // table of contents, headings set apart by level, chapters in bold
   show outline.entry: it => if it.element.func() == heading and it.level <= 3 {
@@ -74,8 +74,7 @@
   ),
   ..args,
   {
-    // chapters open a new page (not part of the typography, which is also used in boxes);
-    // set after the typography, so the page break stays outside the chapter block
+    // chapters open a new page (not part of the typography, which is also used in boxes)
     show heading.where(level: 1): it => pagebreak(weak: true) + it
 
     body

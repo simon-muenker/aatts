@@ -103,6 +103,8 @@
     lang: "en",
     body,
   ) = {
+    // `auto` is the default accent colour, as for the widgets
+    let highlight = if highlight == auto { setup.default.highlight } else { highlight }
     let active = override(defaults, units)
     let sizes = scales(active)
 
