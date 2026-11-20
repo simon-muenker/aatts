@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Themes take a `units` argument that overrides the unit bases, e.g. `slides.theme.style.with(units: (font: 18pt))`. Theme, layouts and widgets all follow, since the unit setup is stored in `state` and resolved in `context`.
 - `units.get()` returns the scales currently set by the theme (requires `context`); `units.bases` holds the default bases of a format.
+- Poster header: `poster.layouts.base` takes an `abstract` (set as a labelled TL;DR below an accent line in the `highlight` colour) and an `aside` placed on the right of the header, e.g. a large QR code. The header alone is available as `poster.layouts.title-content`. Without both, the poster renders as before.
+- Template: the poster moves its TL;DR and QR code into the header; the placeholder text is shortened to keep the poster on one page.
 
 ### Changed
 

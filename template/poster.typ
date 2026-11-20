@@ -1,8 +1,9 @@
 // ---- theme
-#import "@preview/aatts:0.1.0": constants, poster
+// FIXME #import "@preview/aatts:0.1.0": constants, poster
+#import "../lib/aatts/lib.typ": constants, poster
 
 // ---- partials
-#import "partials/helpers.typ": split, gap, note, meta
+#import "partials/helpers.typ": gap, note, meta
 #import "partials/plugins.typ": tree, qr
 #import "partials/content.typ": byline, website, taxonomy, ega-figure, references
 
@@ -26,6 +27,8 @@
     #h(1fr)
     #meta[Conference Name · Venue, Date · author\@affiliation.org]
   ],
+  abstract: [#lorem(64)],
+  aside: stack(qr(website, width: 12cm)),
 )
 
 
@@ -35,17 +38,19 @@
 
 #let body = [
 
-  *TL;DR:* _#lorem(52)_
-
   == Motivation
 
-  *Setting the scene.* A short paragraph describing the question, the data, or the method. Keep it to a few sentences, a poster is read while standing @schwager-etal-2026-unsampled. #lorem(42) @plank-2022-problem.
+  *Setting the scene.* A short paragraph describing the question, the data, or the method. Keep it to a few sentences, a poster is read while standing @schwager-etal-2026-unsampled. #lorem(32) @plank-2022-problem.
 
-  #lorem(12) @adilazuarda-etal-2024-towards. #lorem(28)
+  #lorem(12) @adilazuarda-etal-2024-towards. #lorem(36)
+
+  #poster.widgets.card(title: [Research Question], highlight: constants.palette.green)[
+    A question phrased for the discussion at the poster? #lorem(12)
+  ]
 
   == Method
 
-  *Fingerprint.* Describe the material and the procedure. Use `#gap` between blocks to keep the vertical rhythm consistent across columns. #lorem(42)
+  *Fingerprint.* Describe the material and the procedure. Use `#gap` between blocks to keep the vertical rhythm consistent across columns. #lorem(24)
 
   #gap
 
@@ -64,7 +69,7 @@
 
   #gap
 
-  *Taxonomy.* Categories ($C$) are mapped onto a shared hierarchy, written as a nested list. #lorem(48)
+  *Taxonomy.* Categories ($C$) are mapped onto a shared hierarchy, written as a nested list. #lorem(32)
 
   #gap
 
@@ -72,15 +77,13 @@
 
   #gap
 
-  *Procedure.* Agreement is computed per item over adjacent label pairs. #lorem(32)
+  *Procedure.* Agreement is computed per item over adjacent label pairs. #lorem(28)
 
   #colbreak()
 
-  *Implementation:* #lorem(48)
+  == Experiment
 
-  == Results
-
-  #lorem(64)
+  *Graphs:* #lorem(68)
 
   #gap
 
@@ -89,7 +92,7 @@
   #gap
 
 
-  Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer. #lorem(48)
+  Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer. #lorem(36)
 
   #let group(title) = (
     table.hline(stroke: 0.05em),
@@ -97,78 +100,59 @@
     table.hline(stroke: 0.05em),
   )
 
+  #gap
 
+  #figure(
+    kind: table,
+    text(size: 0.8em, table(
+      columns: 5,
+      align: (left, right, right, right, right),
+      stroke: none,
+      table.vline(x: 1, stroke: 0.05em),
 
-#figure(
-  kind: table,
-  placement: auto,
-  text(size: 0.8em, table(
-    columns: 5,
-    align: (left, right, right, right, right),
-    stroke: none,
-    table.vline(x: 1, stroke: 0.05em),
+      table.header[][Aff.][See.][Agg.][Sed.],
 
-    table.header[][Aff.][See.][Agg.][Sed.],
+      ..group[Baseline Conditions],
+      [Random],       [0.089],   [0.134],   [0.083],   [0.065],
+      [Human Items],  [0.118],   [0.105],   [0.084],   [0.103],
+      [Human Full],   [*0.841*], [*0.820*], [*0.790*], [*0.815*],
 
-    ..group[Baseline Conditions],
-    [Random],       [0.089],   [0.134],   [0.083],   [0.065],
-    [Human Items],  [0.118],   [0.105],   [0.084],   [0.103],
-    [Human Full],   [*0.841*], [*0.820*], [*0.790*], [*0.815*],
-
-    ..group[LLMs w/o context window],
-    [Llama3.1 8B],  [0.118],   [0.081],   [0.104],   [0.110],
-    [Llama3.3 70B], [0.034],   [0.070],   [0.024],   [0.013],
-    [Mistral 7B],   [0.121],   [0.130],   [0.089],   [0.122],
-    [Mistral 123B], [*0.184*], [*0.189*], [*0.177*], [*0.206*],
-    [Qwen2.5 7B],   [0.095],   [0.061],   [0.116],   [0.096],
-    [Qwen2.5 72B],  [0.008],   [0.073],   [0.103],   [0.041],
-
-    ..group[LLMs w/ 5-item context window],
-    [Llama3.1 8B],  [0.138],   [0.091],   [0.087],   [0.149],
-    [Llama3.3 70B], [0.063],   [0.144],   [0.087],   [0.076],
-    [Mistral 7B],   [0.460],   [0.513],   [0.514],   [*0.617*],
-    [Mistral 123B], [0.220],   [0.242],   [0.157],   [0.232],
-    [Qwen2.5 7B],   [*0.492*], [*0.535*], [*0.551*], [0.298],
-    [Qwen2.5 72B],  [0.094],   [0.138],   [0.084],   [0.113],
-  )),
-  caption: [
-    Cronbach's Alpha reliability scores for four humor styles across different experimental conditions. The
-    table compares the baseline conditions with both LLM experiments. Values above 0.8 indicate acceptable reliability for applied research The highest score within each group-column  combination is highlighted in *bold*.
-  ],
-)
-
-  #colbreak()
-
-  == Discussion
-
-  *What it means* @munker-2025-fingerprinting: #lorem(32).
-
-  #lorem(68)
-
-  == Conclusion
-
-  *What it means* @munker-2025-fingerprinting: #lorem(32).
-
-  #lorem(16) @plum-etal-2026-ltzglue. #lorem(24)
+      ..group[LLMs w/ 5-item context window],
+      [Llama3.1 8B],  [0.138],   [0.091],   [0.087],   [0.149],
+      [Llama3.3 70B], [0.063],   [0.144],   [0.087],   [0.076],
+      [Mistral 7B],   [0.460],   [0.513],   [0.514],   [*0.617*],
+      [Mistral 123B], [0.220],   [0.242],   [0.157],   [0.232],
+      [Qwen2.5 7B],   [*0.492*], [*0.535*], [*0.551*], [0.298],
+      [Qwen2.5 72B],  [0.094],   [0.138],   [0.084],   [0.113],
+    )),
+    caption: [
+      Cronbach's Alpha reliability scores for four humor styles across different experimental conditions. The
+      table compares the baseline conditions with both LLM experiments.
+    ],
+  )
 
   #gap
 
-  #poster.widgets.card(title: [Open Question], highlight: constants.palette.blue)[
-    A question phrased for the discussion at the poster? #lorem(12)
+  *Implementation:* #lorem(56)
+
+  #colbreak()
+
+  == Conclusion
+
+  #lorem(56).
+
+  #gap
+
+  #poster.widgets.card(title: [Question Answer], highlight: constants.palette.blue)[
+    #lorem(24)
   ]
 
   #gap
 
-  #split(
-    columns: (1fr, auto),
-    align: (left + horizon, right + horizon),
-    [
-      #poster.widgets.statement[Let's talk!]
-      author\@affiliation.org \
-      #note[Scan for the paper, code, and data.]
-    ],
-    qr(website, width: 8cm),
-  )
+  *What it means* @munker-2025-fingerprinting: #lorem(62).
+
+
+  *Future Work:* #lorem(8) @plum-etal-2026-ltzglue. #lorem(48)
 
   #references()
 ]

@@ -167,6 +167,8 @@ Page without margins, header or footer, e.g. for a full-bleed image.
   title: [Poster Title],
   subtitle: [A short subtitle that frames the poster],
   meta-top: [*Author Name* \ Affiliation #h(1fr) Conference Name · Venue, Date],
+  abstract: [The main finding in two or three sentences.],
+  aside: image("qr-code.svg", width: 20cm),
 )[
   == Motivation
 
@@ -182,7 +184,9 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 
 ### `layouts.base`
 
-Stacks `meta-top`, the title with an optional subtitle, and the body set in `columns` columns (default 3). Use `== Heading` for sections and `#colbreak()` to start the next column.
+Stacks the header and the body set in `columns` columns (default 3). Use `== Heading` for sections and `#colbreak()` to start the next column.
+
+The header holds `meta-top`, the title and an optional subtitle on the left. An optional `abstract` follows below an accent line (coloured by `highlight`) and is set larger, as a labelled *TL;DR*. The optional `aside` sits vertically centred on the right; it is meant for a large QR code that gives readers a self-paced way into the paper, code or data. The package does not generate QR codes, so pass any content, e.g. an image or the output of a QR package (the template uses [`cades`](https://typst.app/universe/package/cades)). The header alone is available as `layouts.title-content`.
 
 ## `article`
 
@@ -278,7 +282,6 @@ The package (everything outside `template/`) is licensed under the [MIT License]
 
 ## Roadmap
 
-- **Poster: QR-Code Header**: a key visual in the top left leads the eye to an A4-sized QR code in the right header, giving readers a self-paced way into the content. The QR area can be covered with an updated print to always link the latest version of the paper.
 - **New: Letter Theme:** Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
 - **Templates: IMRaD as Article Example:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
 
