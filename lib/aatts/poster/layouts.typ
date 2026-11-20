@@ -58,26 +58,12 @@
 }
 
 
-// base, ?header + body in ?columns; the header is left out if all its parts are none
-#let base(
-  title: none,
-  subtitle: none,
-  meta-top: none,
-  abstract: none,
-  aside: none,
-  highlight: auto,
-  columns: 3,
-  body
-  ) = {
-  if (title, subtitle, meta-top, abstract, aside).any(part => part != none) {
-    title-content(
-      title,
-      subtitle: subtitle,
-      meta-top: meta-top,
-      abstract: abstract,
-      aside: aside,
-      highlight: highlight,
-    )
+// base, ?header + body in ?columns; `head` takes the parts of `title-content`
+// (title, subtitle, meta-top, abstract, aside), the header is left out if all are none
+#let base(highlight: auto, columns: 3, ..head, body) = {
+  let head = head.named()
+  if head.values().any(part => part != none) {
+    title-content(head.remove("title", default: none), ..head, highlight: highlight)
 
     context v(setup.scales().space.lg)
   }
