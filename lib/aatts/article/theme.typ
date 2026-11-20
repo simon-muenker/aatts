@@ -50,9 +50,6 @@
 }
 
 
-// text styling w/o page setup, usable inside boxes (e.g. scaled previews)
-// takes `units` (overrides of the bases, e.g. `(font: 11pt)`), `font-families`,
-// `highlight` and `lang`
 #let typography = base-theme.typography(bases, format-rules: format-rules)
 
 

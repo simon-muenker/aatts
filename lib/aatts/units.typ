@@ -60,7 +60,7 @@
   .to-dict()
 }
 
-// bases w/ overrides (e.g. `(font: 12pt)`), checked for unknown names and non-lengths
+// bases w/ overrides
 #let override(bases, overrides) = {
   bases + overrides
 }

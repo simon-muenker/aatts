@@ -4,11 +4,7 @@
 #import "units.typ": bases
 
 
-// text styling w/o page setup, usable inside boxes (e.g. scaled previews)
-// takes `units` (overrides of the bases, e.g. `(font: 18pt)`), `font-families`,
-// `highlight` and `lang`
 #let typography = base-theme.typography(bases)
-
 
 // typography and page setup, takes the arguments of `typography`
 #let style(paper: "presentation-16-9", footer: none, ..args, body) = base-theme.page-style(

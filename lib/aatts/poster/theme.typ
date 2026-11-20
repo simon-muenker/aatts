@@ -15,11 +15,7 @@
 }
 
 
-// text styling w/o page setup, usable inside boxes (e.g. scaled previews)
-// takes `units` (overrides of the bases, e.g. `(font: 32pt)`), `font-families`,
-// `highlight` and `lang`
 #let typography = base-theme.typography(bases, format-rules: format-rules)
-
 
 // typography and page setup, takes the arguments of `typography`
 #let style(paper: "a0", ..args, body) = base-theme.page-style(

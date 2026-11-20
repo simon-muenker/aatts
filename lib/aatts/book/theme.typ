@@ -29,11 +29,7 @@
 }
 
 
-// text styling w/o page setup, usable inside boxes (e.g. scaled previews)
-// takes `units` (overrides of the bases, e.g. `(font: 12pt)`), `font-families`,
-// `highlight` and `lang`
 #let typography = base-theme.typography(bases, format-rules: format-rules)
-
 
 // title of the last of the level-1 headings `chapters`, w/ its number
 #let chapter-title(chapters) = if chapters != () {
