@@ -41,7 +41,9 @@
 
   *Setting the scene.* A short paragraph describing the question, the data, or the method. Keep it to a few sentences, a poster is read while standing @schwager-etal-2026-unsampled. #lorem(32) @plank-2022-problem.
 
-  #lorem(12) @adilazuarda-etal-2024-towards. #lorem(36)
+  #lorem(12) @adilazuarda-etal-2024-towards. #lorem(24)
+
+  #gap
 
   #poster.widgets.card(title: [Research Question], highlight: constants.palette.green)[
     A question phrased for the discussion at the poster? #lorem(12)

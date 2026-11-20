@@ -28,6 +28,17 @@
   show heading.where(level: 2): set text(size: font.xl)
   show heading.where(level: 2): set block(above: space.lg, below: space.md)
 
+  show heading.where(level: 3): set text(size: font.lg)
+  show heading.where(level: 3): set block(above: space.md, below: space.sm)
+
+  // levels 4+: body size, muted
+  let minor-headings = selector.or(..range(4, 7).map(l => heading.where(level: l)))
+  show minor-headings: set text(size: font.md, fill: constants.palette.grey.medium)
+  show minor-headings: set block(above: space.md, below: space.sm)
+
+  // divider
+  show divider: set block(above: space.lg, below: space.lg)
+
   // listings, bullet and numbered alike
   let listing = (
     spacing: 1em,
@@ -35,7 +46,7 @@
     body-indent: .6em,
   )
   set list(marker: text(fill: highlight, sym.bullet), ..listing)
-  set enum(..listing)
+  set enum(..listing, numbering: n => text(fill: highlight, numbering("1.", n)))
 
   // tables, inset relative to the body text (not the table text)
   set table(
@@ -58,6 +69,9 @@
   // (e.g. Helvetica Neue) report tiny superscript sizes
   set super(size: .6em, baseline: -.5em)
 
+  // `std.`: `highlight`
+  set std.highlight(fill: constants.palette.olive.transparentize(80%))
+
   // footnotes
   set footnote(numbering: "[1]")
   set footnote.entry(indent: 0pt, separator: none)
@@ -78,6 +92,7 @@
   // links & bibliography
   show link: set text(fill: constants.palette.blue)
   show cite: set text(fill: constants.palette.blue)
+  show ref: set text(fill: constants.palette.blue)
   show bibliography: set heading(offset: 1)
 
   // content

@@ -27,7 +27,6 @@
   show heading.where(level: 2): set text(size: font.lg * sub)
   show heading.where(level: 2): set block(above: space.lg * sub, below: space.md * sub)
 
-  show heading.where(level: 3): set heading(numbering: none)
   show heading.where(level: 3): set text(size: font.md)
   show heading.where(level: 3): set block(above: space.md, below: space.sm)
 
