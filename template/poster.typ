@@ -1,6 +1,6 @@
 // ---- theme
 // FIXME #import "@preview/aatts:0.1.0": constants, poster
-#import "../lib/aatts/lib.typ": constants, poster
+#import "@preview/aatts:0.1.0": constants, poster
 
 // ---- partials
 #import "partials/helpers.typ": gap, note, meta
