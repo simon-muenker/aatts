@@ -1,6 +1,6 @@
 # Atomized Academic Typst Template Starters (aatts)
 
-A small design system for academic slides, posters, articles and theses: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, a single-column A4 book theme for theses with a title page, front matter, chapters and appendix, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster, a paper and a thesis look like they belong together. This repository should be used in academic teaching (including Trier University) as an easy way into Typst: all students can use these as building templates for their slides, poster, paper or thesis and fulfill thereby the layout requirements.
+A small design system for academic slides, posters, articles, theses and letters: a shared palette and type scale, a 16:9 slide theme with title, split-title and content layouts, an A0 poster theme with a multi-column layout, an A4 article theme with a title block, abstract and numbered sections, a single-column A4 book theme for theses with a title page, front matter, chapters and appendix, a DIN 5008 letter theme with letterhead, address field and fold marks, and widgets for cards, key statements and simple bar charts. All themes share the same building blocks, so a deck, a poster, a paper, a thesis and a letter look like they belong together. This repository should be used in academic teaching (including Trier University) as an easy way into Typst: all students can use these as building templates for their slides, poster, paper or thesis and fulfill thereby the layout requirements.
 
 ![Poster and slides built with the template](https://github.com/simon-muenker/aatts/blob/v0.1.0/docs/preview.png?raw=true)
 
@@ -23,6 +23,7 @@ The project contains one starter file per format. Pick the one you need, edit it
 | `poster.typ`  | an A0 poster                                         |
 | `article.typ` | an A4 article                                        |
 | `book.typ`    | an A4 thesis                                         |
+| `letter.typ`  | a DIN 5008 letter                                    |
 | `main.typ`    | nothing: it only renders an overview of the examples |
 | `partials/`   | helpers, plugin setups, and placeholder content shared by the starters |
 | `assets/`     | placeholder image, figure, and bibliography          |
@@ -30,7 +31,7 @@ The project contains one starter file per format. Pick the one you need, edit it
 `main.typ` is the default compilation target, so compile your chosen file explicitly (in the web app, open your file and click the eye icon next to its name to preview it instead of `main.typ`):
 
 ```sh
-typst watch slides.typ  # or poster.typ, article.typ, book.typ
+typst watch slides.typ  # or poster.typ, article.typ, book.typ, letter.typ
 ```
 
 To use the design system in an existing project, import the modules directly as below describes.
@@ -48,13 +49,13 @@ To use the design system in an existing project, import the modules directly as 
 
 ### `units`
 
-`article.units`, `book.units`, `slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value. The article sets the reference bases. Book, slides and poster scale them up as follows
+`article.units`, `book.units`, `letter.units`, `slides.units` and `poster.units` hold the size tokens. Each scale is derived from one base value. The article sets the reference bases. Book, letter, slides and poster scale them up as follows
 
-| Scale         | `article` | `book` | `slides` | `poster` |
-|---------------|-----------|--------|----------|----------|
-| `font` (pt)   | 10        | 1.1 ×  | 1.6 ×    | 2.8 ×    |
-| `space` (cm)  | 0.5       | 1 ×    | 1.6 ×    | 2.8 ×    |
-| `weight` (pt) | 0.5       | 1 ×    | 2 ×      | 4 ×      |
+| Scale         | `article` | `book` | `letter` | `slides` | `poster` |
+|---------------|-----------|--------|----------|----------|----------|
+| `font` (pt)   | 10        | 1.1 ×  | 1.1 ×    | 1.6 ×    | 2.8 ×    |
+| `space` (cm)  | 0.5       | 1 ×    | 1 ×      | 1.6 ×    | 2.8 ×    |
+| `weight` (pt) | 0.5       | 1 ×    | 1 ×      | 2 ×      | 4 ×      |
 
 Every scale uses the same t-shirt sizes; `md` is always the base value.
 
@@ -266,7 +267,7 @@ Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, ab
 #bibliography("references.bib", title: [References])
 ```
 
-The theme sets the typography of the article in a single column, with a slightly larger font (11 pt) and wider margins on an A4 page (`paper`). Chapters (`=`) open a new page and are set larger above an accent line; sections (`==`) are numbered, `===` stays unnumbered. The running header shows the title of the current chapter and is left out on pages that open a chapter; pass `header` to replace it with your own content, or `none` to remove it. Page numbers are centred in the footer. The bibliography is set as the last, unnumbered chapter.
+Chapters (`=`) open a new page and are set larger above an accent line; sections (`==`) are numbered, `===` stays unnumbered. The running header shows the title of the current chapter and is left out on pages that open a chapter; pass `header` to replace it with your own content, or `none` to remove it.
 
 ### `layouts.title-page`
 
@@ -280,9 +281,46 @@ Apply them with a show rule; each one holds until the next. The front matter (ab
 
 Lists of figures and tables, titled *List of Figures* and *List of Tables*. Further arguments go to the `outline`, e.g. `title: [Abbildungsverzeichnis]`. `layouts.list-of(kind)` lists the figures of any other kind. The table of contents is the plain `#outline()`.
 
+## `letter`
+
+```typ
+#import "@preview/aatts:0.1.0": constants, letter
+
+#show: letter.theme.style
+#set document(title: "Letter Subject", author: "Author Name")
+
+#letter.layouts.base(
+  sender: [*Author Name* \ Affiliation],
+  return-address: [Author Name · Street 1 · 12345 City],
+  recipient: [Recipient Name \ Street 2 \ 54321 City],
+  info: [Date: November 20, 2026],
+  subject: [Subject of the Letter],
+)[
+  Dear Recipient Name,
+
+  #lorem(80)
+
+  Kind regards
+]
+```
+
+The theme sets an A4 page after DIN 5008 form B for postal dispatch in a DL window envelope: margins of 25 mm (left) and 20 mm (right), an empty header and footer, paragraphs set apart by about one blank line, and fold and punch marks on the left edge of the first page. The geometry is available as `letter.theme.din`.
+
+The `marks` object overrides the marks by kind, the defaults are the fold marks (`fold`, folded to DL) and the punch mark (`punch`, centre of the page). Each kind gives its distances from the top of the page (`at`) and its `length`; `none` leaves a kind out, `marks: none` all of them:
+
+```typ
+#show: letter.theme.style.with(
+  marks: (fold: (at: (87mm, 192mm), length: 5mm), punch: none),
+)
+```
+
+### `layouts.base`
+
+Stacks the head of the first page and the body. The head sets the `sender` in the letterhead (45 mm) above an accent line (coloured by `highlight`), the address field (85 × 45 mm at 20 mm from the left) with the `return-address` set small at the bottom of its notes zone and up to six lines of the `recipient` below, and the `info` block (75 mm wide at 125 mm from the left, e.g. contact and date) on the right. The bold `subject` starts at 98.46 mm, the body follows. The head alone is available as `layouts.title-content`.
+
 ## Widgets
 
-The same widgets are available as `widgets` and as `slides.widgets, poster.widgets, article.widgets` and `book.widgets`. Without a `highlight`, they use the one of the theme.
+The same widgets are available as `widgets` and as `slides.widgets, poster.widgets, article.widgets, book.widgets` and `letter.widgets`. Without a `highlight`, they use the one of the theme.
 
 ### `card`
 
@@ -333,7 +371,7 @@ Takes one array per row: label, share between 0 and 1, colour, and the value sho
 | `make test`           | Initialise a project from the template and compile it.                |
 | `make check`          | Lint the package with `typst-package-check`.                          |
 | `make thumbnail`      | Render `thumbnail.png` and `docs/preview.png` from `template/main.typ`. |
-| `make examples`       | Render `docs/example_slides.pdf, docs/example_poster.pdf, docs/example_article.pdf` and `docs/example_book.pdf`. |
+| `make examples`       | Render `docs/example_slides.pdf, docs/example_poster.pdf, docs/example_article.pdf, docs/example_book.pdf` and `docs/example_letter.pdf`. |
 | `make link`           | Link the checkout into the system package folder (for editors).       |
 | `make unlink`         | Remove that link again.                                               |
 | `make clean`          | Remove the build directory.     
@@ -346,7 +384,6 @@ The package (everything outside `template/`) is licensed under the [MIT License]
 
 ## Roadmap
 
-- **New: Letter Theme:** Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
 - **Templates: Article:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
 - **Templates: Book:** write the example book as a short thesis with educational content similar to the IMRaD article, explaining the structure of a thesis (chapters, front and back matter) while demonstrating the theme's features.
 - **Templates: Slides:** rewrite the example slides with educational content similar to the IMRaD article, explaining how to structure a talk while demonstrating the theme's features.
