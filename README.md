@@ -282,7 +282,8 @@ The package (everything outside `template/`) is licensed under the [MIT License]
 
 ## Roadmap
 
+- **New: Book Theme:** Add a book theme that serves as a template for theses: title page, front matter (abstract, table of contents, lists of figures and tables), chapters, appendix, and bibliography.
 - **New: Letter Theme:** Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
-- **Templates: IMRaD as Article Example:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
-
-
+- **Templates: Article:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.
+- **Templates: Book:** write the example book as a short thesis with educational content similar to the IMRaD article, explaining the structure of a thesis (chapters, front and back matter) while demonstrating the theme's features.
+- **Templates: Slides:** rewrite the example slides with educational content similar to the IMRaD article, explaining how to structure a talk while demonstrating the theme's features.
