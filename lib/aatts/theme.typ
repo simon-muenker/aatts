@@ -2,15 +2,22 @@
 #import "units.typ" as units
 
 
+// `auto` scales resolve from the unit setup
 #let style(
-  space: units.space(),
-  font: units.font(),
-  weight: units.weight(),
+  space: auto,
+  font: auto,
+  weight: auto,
   font-families: constants.font-families,
   lang: "en",
   highlight: constants.palette.red,
   body,
-) = {
+) = context {
+  let (space, font, weight) = units.resolve(
+    space: space, 
+    font: font, 
+    weight: weight
+  )
+
   // paragraphs
   set text(
     font: font-families,

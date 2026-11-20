@@ -3,14 +3,18 @@
 
 
 // labelled abstract, set slightly smaller and indented
-#let abstract-block(abstract) = pad(x: units.space.lg, {
-  set text(size: units.font.sm)
-  set par(justify: true, leading: .72em)
+#let abstract-block(abstract) = context {
+  let (space, font) = units.get()
 
-  text(weight: "bold", fill: constants.palette.grey.dark)[Abstract]
-  h(units.space.sm)
-  abstract
-})
+  pad(x: space.lg, {
+    set text(size: font.sm)
+    set par(justify: true, leading: .72em)
+
+    text(weight: "bold", fill: constants.palette.grey.dark)[Abstract]
+    h(space.sm)
+    abstract
+  })
+}
 
 
 // title block: ?meta-top, title, ?subtitle, ?authors, ?abstract
@@ -21,40 +25,44 @@
   meta-top: none,
   abstract: none,
   highlight: constants.palette.red,
-) = block(width: 100%, below: units.space.md, {
-  if meta-top != none {
-    text(size: units.font.sm, fill: constants.palette.grey.medium, meta-top)
-    v(units.space.sm)
-  }
+) = context {
+  let (space, font, weight) = units.get()
 
-  block(below: units.space.sm, {
-    set par(leading: 0.5em, justify: false)
-    text(size: units.font.xl, weight: "bold", title)
-  })
+  block(width: 100%, below: space.md, {
+    if meta-top != none {
+      text(size: font.sm, fill: constants.palette.grey.medium, meta-top)
+      v(space.sm)
+    }
 
-  if subtitle != none {
-    block(above: units.space.md, below: units.space.sm, {
-      set par(leading: 0.6em, justify: false)
-      text(size: units.font.lg, fill: constants.palette.grey.medium, subtitle)
+    block(below: space.sm, {
+      set par(leading: 0.5em, justify: false)
+      text(size: font.xl, weight: "bold", title)
     })
-  }
 
-  block(above: units.space.md, below: units.space.md, line(
-    length: constants.span.p2,
-    stroke: units.weight.xl + highlight,
-  ))
+    if subtitle != none {
+      block(above: space.md, below: space.sm, {
+        set par(leading: 0.6em, justify: false)
+        text(size: font.lg, fill: constants.palette.grey.medium, subtitle)
+      })
+    }
 
-  if authors != none {
-    set par(justify: false)
-    authors
-  }
+    block(above: space.md, below: space.md, line(
+      length: constants.span.p2,
+      stroke: weight.xl + highlight,
+    ))
 
-  if abstract != none {
-    v(units.space.md)
-    abstract-block(abstract)
-  }
-  v(units.space.md)
-})
+    if authors != none {
+      set par(justify: false)
+      authors
+    }
+
+    if abstract != none {
+      v(space.md)
+      abstract-block(abstract)
+    }
+    v(space.md)
+  })
+}
 
 
 // base, title block + body in ?columns
@@ -80,7 +88,7 @@
   }
 
   if columns > 1 {
-    std.columns(columns, gutter: units.space.lg, body)
+    context std.columns(columns, gutter: units.get().space.lg, body)
   } else {
     body
   }

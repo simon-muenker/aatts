@@ -67,6 +67,18 @@ Every scale uses the same t-shirt sizes; `md` is always the base value.
 #text(size: slides.units.font.lg, fill: constants.palette.grey.medium)[Large Muted Text]
 ```
 
+To change the sizes, pass new bases (the `md` value of a scale) to the theme with `units`. Bases you leave out keep their default. The theme, layouts and widgets all read the units from the theme, so the whole document scales consistently:
+
+```typ
+#show: slides.theme.style.with(units: (font: 18pt, space: 1cm))
+```
+
+`slides.units.space`, `.font` and `.weight` always hold the defaults. To use the sizes set in the theme in your own code, call `get()` in `context`:
+
+```typ
+#context v(slides.units.get().space.md)
+```
+
 ## Fonts
 
 Fonts are not bundled with the package. The themes try Helvetica Neue, Helvetica, Liberation Sans and Arial in that order; if none is available, Typst falls back to its default font. Pass your own stack to either theme to change it:
@@ -265,7 +277,6 @@ The package (everything outside `template/`) is licensed under the [MIT License]
 
 ## Roadmap
 
--  **Global: Units via State:** Let settings made in `units` apply everywhere. Store the unit setup in `state` and resolve `auto` parameters (e.g. `space`, `fonts`, `weight`) from it in `context`.
 - **Poster: QR-Code Header**: a key visual in the top left leads the eye to an A4-sized QR code in the right header, giving readers a self-paced way into the content. The QR area can be covered with an updated print to always link the latest version of the paper.
 - **New: Letter Theme:** Add DIN 5008 compliant letter for postal dispatch: standard letterhead, empty footer, and fold and punch marks (configurable as an object).
 - **Templates: IMRaD as Article Example:** rewrite the example article as an IMRaD short paper that keeps the tree and the table to explain the structure, and the results to illustrate the Results section.

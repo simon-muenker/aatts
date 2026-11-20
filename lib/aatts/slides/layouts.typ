@@ -31,17 +31,19 @@
 // ---
 
 // title + ?subtitle, shared by the title layouts
-#let title-heading(title, subtitle: none) = {
+#let title-heading(title, subtitle: none) = context {
+  let (space, font) = units.get()
+
   heading(level: 1, title)
   if subtitle != none {
     set par(leading: 0.6em)
     text(
-      size: units.font.lg, 
+      size: font.lg, 
       fill: constants.palette.grey.medium,
       subtitle
     )
   }
-  v(-units.space.sm)
+  v(-space.sm)
 }
 
 // ---
@@ -83,14 +85,18 @@
     set std.image(width: 100%, height: 100%, fit: "cover")
     image
   }),
-  pad(units.space.md, grid(
-    rows: (auto, 1fr, auto),
-    row-gutter: units.space.sm,
-    align: left,
-    meta-top,
-    align(horizon, title-heading(title, subtitle: subtitle)),
-    meta-bot,
-  )),
+  context {
+    let (space,) = units.get()
+
+    pad(space.md, grid(
+      rows: (auto, 1fr, auto),
+      row-gutter: space.sm,
+      align: left,
+      meta-top,
+      align(horizon, title-heading(title, subtitle: subtitle)),
+      meta-bot,
+    ))
+  },
 )
 
 #let title-split(..args) = page(

@@ -1,101 +1,113 @@
 #import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
+#import "../units.typ": update, get
 
-#import "units.typ" as units
+#import "units.typ": bases
 
 
 // text styling w/o page setup, usable inside boxes (e.g. scaled previews)
+// `units` overrides the bases of the unit setup, e.g. (font: 11pt)
 #let typography(
+  units: (:),
   font-families: constants.font-families,
   highlight: constants.palette.red,
   lang: "en",
   body
   ) = {
+  update(bases, units)
+
   show: base-theme.style.with(
-    space: units.space,
-    font: units.font,
-    weight: units.weight,
     font-families: font-families,
     lang: lang,
     highlight: highlight,
   )
 
-  // paragraphs, denser than slides and posters
-  set par(
-    justify: true,
-    leading: 0.68em,
-    spacing: 1.2em,
-  )
+  context {
+    let (space, font) = get()
 
-  // headings, numbered sections (= 1, == 1.1, === unnumbered run-in)
-  set heading(numbering: "1.1")
+    // paragraphs, denser than slides and posters
+    set par(
+      justify: true,
+      leading: 0.68em,
+      spacing: 1.2em,
+    )
 
-  show heading.where(level: 1): set text(size: units.font.lg)
-  show heading.where(level: 1): set block(above: units.space.lg, below: units.space.md)
+    // headings, numbered sections (= 1, == 1.1, === unnumbered run-in)
+    set heading(numbering: "1.1")
 
-  show heading.where(level: 2): set text(size: units.font.lg * 0.8)
-  show heading.where(level: 2): set block(above: units.space.lg * 0.8, below: units.space.md  * 0.8)
+    show heading.where(level: 1): set text(size: font.lg)
+    show heading.where(level: 1): set block(above: space.lg, below: space.md)
 
-  show heading.where(level: 3): set heading(numbering: none)
-  show heading.where(level: 3): set text(size: units.font.md)
-  show heading.where(level: 3): set block(above: units.space.md, below: units.space.sm)
+    show heading.where(level: 2): set text(size: font.lg * 0.8)
+    show heading.where(level: 2): set block(above: space.lg * 0.8, below: space.md  * 0.8)
 
-  // equations
-  set math.equation(numbering: "(1)")
+    show heading.where(level: 3): set heading(numbering: none)
+    show heading.where(level: 3): set text(size: font.md)
+    show heading.where(level: 3): set block(above: space.md, below: space.sm)
 
-  show table: set text(size: units.font.sm)
-  set table(inset: (x: units.font.md * .64, y: units.font.md * .42))
+    // equations
+    set math.equation(numbering: "(1)")
 
-  // figures
-  show figure.caption: set align(left)
-  set figure(gap: units.space.md)
-  show figure: set block(above: units.space.lg, below: units.space.lg)
+    show table: set text(size: font.sm)
+    set table(inset: (x: font.md * .64, y: font.md * .42))
 
-  // bibliography as top-level, unnumbered section
-  show bibliography: set heading(offset: 0, numbering: none)
-  show bibliography: set text(size: units.font.sm)
+    // figures
+    show figure.caption: set align(left)
+    set figure(gap: space.md)
+    show figure: set block(above: space.lg, below: space.lg)
 
-  body
+    // bibliography as top-level, unnumbered section
+    show bibliography: set heading(offset: 0, numbering: none)
+    show bibliography: set text(size: font.sm)
+
+    body
+  }
 }
 
 
 #let style(
   paper: "a4",
   header: none,
+  units: (:),
   font-families: constants.font-families,
   highlight: constants.palette.red,
   lang: "en",
   body
   ) = {
-  set page(
-    paper: paper,
-    margin: (
-      x: units.space.xl, 
-      top: units.space.xl, 
-      bottom: units.space.xl
-    ),
-    // running header, skipped on the first page
-    header: context if header != none and counter(page).get().first() > 1 {
-      set text(
-        size: units.font.xs, 
-        fill: constants.palette.grey.medium
-      )
-      header
-    },
-    footer: context {
-      set text(
-        size: units.font.sm, 
-        fill: constants.palette.grey.medium
-      )
-      align(center, counter(page).display())
-    },
-  )
-
   show: typography.with(
+    units: units,
     font-families: font-families,
     lang: lang,
     highlight: highlight,
   )
 
-  body
+  context {
+    let (space, font) = get()
+
+    set page(
+      paper: paper,
+      margin: (
+        x: space.xl,
+        top: space.xl,
+        bottom: space.xl
+      ),
+      // running header, skipped on the first page
+      header: context if header != none and counter(page).get().first() > 1 {
+        set text(
+          size: font.xs,
+          fill: constants.palette.grey.medium
+        )
+        header
+      },
+      footer: context {
+        set text(
+          size: font.sm,
+          fill: constants.palette.grey.medium
+        )
+        align(center, counter(page).display())
+      },
+    )
+
+    body
+  }
 }

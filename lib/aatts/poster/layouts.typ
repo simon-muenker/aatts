@@ -8,23 +8,25 @@
   meta-top: none,
   columns: 3,
   body
-  ) = {
+  ) = context {
+  let (space, font) = units.get()
+
   meta-top
 
   heading(level: 1, title)
   if subtitle != none {
     set par(leading: 0.6em)
     text(
-      size: units.font.xl,
+      size: font.xl,
       fill: constants.palette.grey.medium,
       subtitle
     )
   }
-  v(units.space.md)
+  v(space.md)
 
   grid(
     columns: 100%,
-    column-gutter: units.space.lg,
-    std.columns(columns, gutter: units.space.lg, body)
+    column-gutter: space.lg,
+    std.columns(columns, gutter: space.lg, body)
   )
 }

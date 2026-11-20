@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Themes take a `units` argument that overrides the unit bases, e.g. `slides.theme.style.with(units: (font: 18pt))`. Theme, layouts and widgets all follow, since the unit setup is stored in `state` and resolved in `context`.
+- `units.get()` returns the scales currently set by the theme (requires `context`); `units.bases` holds the default bases of a format.
+
 ### Changed
 
+- `slides.widgets`, `poster.widgets` and `article.widgets` are now the same shared module, since widgets read their units from the theme. `statement` adds spacing to the surrounding flow text in every format, and its box now includes the byline, which can shift vertically centred statements slightly.
 - **Breaking:** `units` scales now share one set of key names, with `md` as the base value; the `base` key is gone. For `font` and `weight`, rename `base` → `md` (e.g. `units.font.base` → `units.font.md`).
 - **Breaking:** `units.space` uses a base of 0.5 cm (was 1 cm) and the keys `xxl`, `xl`, `lg`, `md`, `sm`, `xs` (multipliers 8, 4, 2, 1, 0.5, 0.25). Absolute sizes are unchanged, but two keys shift: `space.lg` → `space.xl` and `space.base` → `space.lg`; `md`, `sm` and `xs` stay as they are. `xxl` is new.
 - `units.font` adds `xs` (0.75 ×) and sets `sm` to 0.9 × (was 0.75 ×).
