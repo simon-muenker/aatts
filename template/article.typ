@@ -1,20 +1,15 @@
 // ---- theme
 #import "@preview/aatts:0.1.0": constants, article
 
+// ---- partials
+#import "partials/helpers.typ": split
+#import "partials/content.typ": ega-figure, references
+
 #show: article.theme.style.with(header: [Short Article Title · Author Name])
 #set document(
   title: "Article Title",
   author: "Author Name",
   date: auto,
-)
-
-
-// cells side by side
-#let split(columns: (1fr, 1fr), gutter: article.units.space.md, align: left + top, ..cells) = grid(
-  columns: columns,
-  column-gutter: gutter,
-  align: align,
-  ..cells
 )
 
 
@@ -78,10 +73,7 @@
 
   #lorem(52)
 
-  #figure(
-    image("assets/image-graph_ega.pdf"),
-    caption: [The EGA plot of human answers to the HSQ @munker-2025-fingerprinting.],
-  ) <fig-ega>
+  #ega-figure() <fig-ega>
 
   = Results
 
@@ -115,7 +107,7 @@
 
   #lorem(86) @plum-etal-2026-ltzglue.
 
-  #bibliography("assets/references.bib", title: [References], style: "apa")
+  #references(title: [References])
 ]
 
 #article.layouts.base(..hero, body)

@@ -1,9 +1,10 @@
-// ---- plugins
-#import "@preview/cades:0.3.1" as cades
-#import "@preview/tdtr:0.6.1" as tdtr
-
 // ---- theme
 #import "@preview/aatts:0.1.0": constants, poster
+
+// ---- partials
+#import "partials/helpers.typ": split, gap, note, meta
+#import "partials/plugins.typ": tree, qr
+#import "partials/content.typ": byline, website, taxonomy, ega-figure, references
 
 #show: poster.theme.style
 #set document(
@@ -11,26 +12,6 @@
   author: "Author Name",
   date: auto,
 )
-
-
-// cells side by side
-#let split(columns: (1fr, 1fr), gutter: poster.units.space.md, align: left + top, ..cells) = grid(
-  columns: columns,
-  column-gutter: gutter,
-  align: align,
-  ..cells
-)
-
-// muted caption below a chart that is not a numbered figure
-#let note(body) = text(
-  size: poster.units.font.sm,
-  fill: constants.palette.grey.medium,
-  style: "italic",
-  body,
-)
-
-// vertical rhythm between blocks of a section
-#let gap = v(poster.units.space.md)
 
 
 // ============================================================
@@ -41,12 +22,9 @@
   title: [A Poster Title],
   subtitle: [A short subtitle that frames the poster and its central question],
   meta-top: [
-    #text(weight: "semibold")[Author Name, Co-Author Name] \
-    Affiliation, Second Affiliation
+    #byline
     #h(1fr)
-    #text(weight: "light", fill: constants.palette.grey.medium)[
-      Conference Name · Venue, Date · author\@affiliation.org
-    ]
+    #meta[Conference Name · Venue, Date · author\@affiliation.org]
   ],
 )
 
@@ -90,27 +68,7 @@
 
   #gap
 
-  #align(center, scale(230%, reflow: true, tdtr.tidy-tree-graph(
-    compact: true,
-    spacing: (12pt, 24pt),
-    node-inset: 4pt,
-    draw-node: (
-      stroke: poster.units.weight.sm + constants.palette.grey.dark,
-      corner-radius: poster.units.weight.lg,
-    ),
-    draw-edge: (stroke: poster.units.weight.sm + constants.palette.grey.medium),
-  )[
-    - *Culture*
-      - Practice
-        - Food
-        - Holidays
-      - Norms
-        - Etiquette
-        - Values
-      - Knowledge
-        - History
-        - Geography
-  ]))
+  #tree(scale: 230%, stroke: poster.units.weight.sm, taxonomy)
 
   #gap
 
@@ -126,10 +84,7 @@
 
   #gap
 
-  #figure(
-    image("assets/image-graph_ega.pdf"),
-    caption: [The EGA plot of human answers to the HSQ @munker-2025-fingerprinting],
-  )
+  #ega-figure()
 
   #gap
 
@@ -212,10 +167,10 @@
       author\@affiliation.org \
       #note[Scan for the paper, code, and data.]
     ],
-    cades.qr-code("https://simon-muenker.github.io/", width: 8cm, color: constants.palette.grey.dark),
+    qr(website, width: 8cm),
   )
 
-  #bibliography("assets/references.bib", style: "apa")
+  #references()
 ]
 
 #poster.layouts.base(..hero, body)

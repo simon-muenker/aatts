@@ -23,6 +23,7 @@ The project contains one starter file per format. Pick the one you need, edit it
 | `poster.typ`  | an A0 poster                                         |
 | `article.typ` | an A4 article                                        |
 | `main.typ`    | nothing: it only renders an overview of the examples |
+| `partials/`   | helpers, plugin setups, and placeholder content shared by the starters |
 | `assets/`     | placeholder image, figure, and bibliography          |
 
 `main.typ` is the default compilation target, so compile your chosen file explicitly (in the web app, open your file and click the eye icon next to its name to preview it instead of `main.typ`):

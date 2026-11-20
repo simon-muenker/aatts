@@ -1,6 +1,4 @@
 // ---- plugins
-#import "@preview/cades:0.3.1" as cades
-#import "@preview/tdtr:0.6.1" as tdtr
 #import "@preview/codly:2.0.0" as codly
 
 // code blocks setup
@@ -10,6 +8,10 @@
 // ---- theme
 #import "@preview/aatts:0.1.0": constants, slides
 
+// ---- partials
+#import "partials/helpers.typ": split, gap, meta
+#import "partials/plugins.typ": tree, qr
+#import "partials/content.typ": byline, website, taxonomy, ega-figure, references
 
 #let footer = [Presentation Title · Venue, Date]
 
@@ -36,13 +38,8 @@
   #block(width: constants.span.p7, body)
 ]
 
-// cells side by side
-#let split(columns: (1fr, 1fr), gutter: slides.units.space.lg, align: left + top, ..cells) = grid(
-  columns: columns,
-  column-gutter: gutter,
-  align: align,
-  ..cells
-)
+// cells side by side, w/ more room between the columns on slides
+#let split = split.with(gutter: slides.units.space.lg)
 
 // colored name of a third-party package, used in slide titles
 #let plugin(name) = text(fill: constants.palette.blue)[[#name]]
@@ -55,13 +52,10 @@
 #let cover = arguments(
   [Presentation Title \ Spanning Two Lines],
   subtitle: [A short subtitle that frames the talk and its central question],
-  meta-top: text(weight: "light", fill: constants.palette.grey.medium)[
+  meta-top: meta[
     Optional top line, e.g. a funding note or the name of the venue.
   ],
-  meta-bot: [
-    #text(weight: "semibold")[Author Name, Co-Author Name] \
-    Affiliation, Second Affiliation
-  ],
+  meta-bot: byline,
 )
 
 #slides.layouts.title(..cover)
@@ -71,13 +65,10 @@
   image("assets/image-header_split.webp"),
   [Short Title],
   subtitle: [A subtitle that frames the talk],
-  meta-top: text(weight: "light", fill: constants.palette.grey.medium)[
+  meta-top: meta[
     Optional top line, e.g. the venue.
   ],
-  meta-bot: [
-    #text(weight: "semibold")[Author Name, Co-Author Name] \
-    Affiliation, Second Affiliation
-  ],
+  meta-bot: byline,
 )
 
 #(slides.layouts.title-split)(..cover-split)
@@ -92,13 +83,13 @@
     Two-column grids, highlighted cards, and a statement for the one sentence the audience should remember.
   ]
 
-  #v(slides.units.space.md)
+  #gap
 
   #segment(2, "Data", [Bars, Tables & Numbers], constants.palette.green)[
     Built-in bar charts and themed tables to report results without leaving Typst.
   ]
 
-  #v(slides.units.space.md)
+  #gap
 
   #segment(3, "Plugins", [Plots, Trees, Code & QR], constants.palette.blue)[
     `tdtr`, `codly` and `cades` styled with the aatts constants.palette.
@@ -124,16 +115,16 @@
     [
       *Setting the scene.* A short paragraph describing the data, the participants, or the method. Keep it to two or three sentences.
 
-      #v(slides.units.space.md)
+      #gap
 
-      *Second thought.* Use `#v(slides.units.space.md)` between blocks to keep vertical rhythm consistent across slides.
+      *Second thought.* Use `#gap` between blocks to keep vertical rhythm consistent across slides.
     ],
     [
       - *First point* with a short explanation
       - *Second point* referencing a footnote#footnote[Footnotes are set small and muted.]
       - *Third point* with inline math $kappa = .82$
 
-      #v(slides.units.space.md)
+      #gap
 
       *Instruction* (simplified): #text(style: "italic")[
         Does this example need additional context?
@@ -198,7 +189,6 @@
 #let results = arguments(title: [Group A Varies, Group B Converges])[
   #split(
     columns: (1.25fr, 1fr),
-    gutter: slides.units.space.lg,
     [
       #slides.widgets.bar-chart(
         ([*X* - Group A], .59, constants.palette.green, [59%]),
@@ -208,7 +198,7 @@
       )
       _Share of positive answers per item (mean)_
 
-      #v(slides.units.space.md)
+      #gap
 
       #table(
         columns: (1fr, auto, auto),
@@ -221,7 +211,7 @@
     [
       Group A reaches only *fair agreement* in both conditions. In contrast, Group B agrees strongly, but almost always gives the same answer.
 
-      #v(slides.units.space.md)
+      #gap
 
       #slides.widgets.card(title: [Interpretation])[
         High agreement can reflect a shared default rather than independent judgments.
@@ -235,7 +225,6 @@
 #let design = arguments(title: [Design Choices])[
   #split(
     columns: (1.75fr, 1fr),
-    gutter: slides.units.space.lg,
     table(
       columns: (auto, 1fr, auto, auto),
       align: (left, left, right, right),
@@ -252,7 +241,7 @@
     ],
   )
 
-  #v(slides.units.space.md)
+  #gap
 
   #slides.widgets.card(
     title: [Assumption],
@@ -266,10 +255,7 @@
 #slides.layouts.base(..design)
 
 #slides.layouts.base(title: [Imported PDF as Figure])[
-    #figure(
-      image("assets/image-graph_ega.pdf", height: 76%),
-      caption: [The EGA plot of human answers to the HSQ @munker-2025-fingerprinting],
-  )
+  #ega-figure(height: 76%)
 ]
 
 
@@ -291,24 +277,7 @@
     columns: (1.5fr, 1fr),
     gutter: slides.units.space.md,
     align: left + horizon,
-    align(center, scale(160%, reflow: true, tdtr.tidy-tree-graph(
-      compact: true,
-      spacing: (12pt, 24pt),
-      node-inset: 4pt,
-      draw-node: (stroke: slides.units.weight.md + constants.palette.grey.dark, corner-radius: slides.units.weight.lg),
-      draw-edge: (stroke: slides.units.weight.md + constants.palette.grey.medium),
-    )[
-      - *Culture*
-        - Practice
-          - Food
-          - Holidays
-        - Norms
-          - Etiquette
-          - Values
-        - Knowledge
-          - History
-          - Geography
-    ])),
+    tree(scale: 160%, taxonomy),
     [
       Trees are written as a *nested bullet list*; nesting depth defines the hierarchy.
 
@@ -381,7 +350,7 @@
 
     *$arrow$ Recommendation.* What the audience should do differently after this talk, in one or two sentences.
 
-    #v(slides.units.space.md)
+    #gap
 
     *? Open question one, phrased for discussion?* \
     *? Open question two, phrased for discussion?*
@@ -389,7 +358,7 @@
 ]
 
 #slides.layouts.base[
-  #bibliography("assets/references.bib", style: "apa")
+  #references()
 ]
 
 #slides.layouts.base[
@@ -403,7 +372,7 @@
     [
       _visit our website_ #h(slides.units.space.xs) #plugin[cades]
       #v(slides.units.space.xs)
-      #cades.qr-code("https://simon-muenker.github.io/", width: 7cm, color: constants.palette.grey.dark)
+      #qr(website, width: 7cm)
     ],
   )
 ]
