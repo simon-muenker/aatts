@@ -1,4 +1,3 @@
-#import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
 #import "../parts.typ" as parts
 #import "../article/theme.typ" as article-theme
