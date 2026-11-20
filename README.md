@@ -45,7 +45,7 @@ To use the design system in an existing project, import the modules directly as 
 | `palette`       | `red, green, blue, olive, magenta`          | Accent colours (`red` is the default highlight). |
 | `palette.grey`  | `dark, medium, light`                           | Text, secondary text, background grey.           |
 | `span`          | `p1` … `p12`                                        | Widths on a 12-column grid; `p12` = 100 %.       |
-| `leading`       | `body, tight`                                       | Line spacing of body text and of headings/titles. |
+| `leading`       | `body, abstract, dense, large, tight, title`        | Line spacing, from body text to multi-line titles. |
 | `font-families` | —                                                   | Helvetica (Neue), Liberation Sans, Arial.          |
 
 ### `units`
@@ -77,11 +77,15 @@ To change the sizes, pass new bases (the `md` value of a scale) to the theme wit
 #show: slides.theme.style.with(units: (font: 18pt, space: 1cm))
 ```
 
-`slides.units.space`, `.font` and `.weight` always hold the defaults. To use the sizes set in the theme in your own code, call `get()` in `context`:
+`slides.units.space`, `.font` and `.weight` always hold the defaults. To use the sizes set in the theme in your own code, call `scales()` (or the same `get()` of any format) in `context`:
 
 ```typ
-#context v(slides.units.get().space.md)
+#import "@preview/aatts:0.1.0": scales
+
+#context v(scales().space.md)
 ```
+
+Unknown bases and values that are not lengths fail with a message naming them, e.g. `units: unknown `fonts`, expected space, font, weight`.
 
 A theme only applies to its own body. Nesting themes, e.g. a slide rendered as a preview inside an article with `slides.theme.typography`, restores the outer units and highlight after the inner body.
 
@@ -110,7 +114,7 @@ Every theme takes a `highlight` colour (default `constants.palette.red`). It col
 #set document(title: "Presentation Title", author: "Author Name")
 
 #slides.layouts.title(
-  [Presentation Title],
+  title: [Presentation Title],
   subtitle: [A short subtitle that frames the talk],
   meta-bottom: [*Author Name* \ Affiliation],
 )
@@ -127,7 +131,7 @@ Title slide without footer. `meta-top` is placed at the top, `meta-bottom` at th
 
 ```typ
 #slides.layouts.title(
-  [Presentation Title],
+  title: [Presentation Title],
   subtitle: [Optional subtitle],
   meta-top: [Optional content at the top, e.g. event name],
   meta-bottom: [Optional content at the bottom, e.g. author and affiliation],
@@ -141,7 +145,7 @@ Borderless image on the left, title content on the right. `columns` sets the spl
 ```typ
 #slides.layouts.title-split(
   image("cover.jpg"),
-  [Presentation Title],
+  title: [Presentation Title],
   subtitle: [Optional subtitle],
   meta-top: [Optional content at the top],
   meta-bottom: [Optional content at the bottom],
@@ -150,7 +154,7 @@ Borderless image on the left, title content on the right. `columns` sets the spl
 
 ### `layouts.base`
 
-Content slide with an optional title and the footer. The body is vertically centred.
+Content slide with an optional title and the footer. The body is vertically centred. The slide content alone, without its page, is available as `layouts.base-content`.
 
 ```typ
 #slides.layouts.base(title: [Slide title])[
@@ -229,6 +233,8 @@ The theme sets an A4 page (`paper`), a running `header` from the second page on,
 
 Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. The title block is left out when none of its parts are given; `meta-top` is set as given, like in the other formats. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
 
+All head parts are named, including `title:`; a positional argument before the body fails instead of being dropped. The same holds for the poster and letter `base` and for all title layouts. `layouts.base-content` is the same as `layouts.base` (the pages follow the flow of the body), for symmetry with the slides.
+
 ## `book`
 
 ```typ
@@ -238,7 +244,7 @@ Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, ab
 #set document(title: "Thesis Title", author: "Author Name")
 
 #book.layouts.title(
-  [Thesis Title],
+  title: [Thesis Title],
   subtitle: [A short subtitle that frames the thesis],
   authors: [*Author Name* \ Affiliation],
   meta-top: [Master's Thesis · University Name],
@@ -339,7 +345,7 @@ Tinted box with a coloured bar on the left.
 
 ### `statement`
 
-Large bold statement with an accent line and an optional byline.
+Large bold statement with an accent line and an optional byline. It is sized like a level-2 heading of the slides in every format, but is no heading of the document (no outline, bookmark or heading show rule applies).
 
 ```typ
 #slides.widgets.statement(

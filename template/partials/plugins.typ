@@ -4,20 +4,20 @@
 #import "@preview/tdtr:0.6.1" as tdtr
 
 #import "@preview/aatts:0.1.0": constants
-#import "helpers.typ": scales
+#import "helpers.typ": scales, pick
 
 
-// tidy tree from a nested bullet list, centred and scaled up
-// `auto` stroke is the medium weight, `auto` radius the large weight of the theme
+// tidy tree from a nested bullet list, centred and scaled up;
+// `stroke` and `radius` are keys of the weight scale of the theme or lengths
 #let tree(
   scale: 100%,
-  stroke: auto,
-  radius: auto,
+  stroke: "md",
+  radius: "lg",
   body
 ) = context {
   let weight = scales().weight
-  let stroke = if stroke == auto { weight.md } else { stroke }
-  let radius = if radius == auto { weight.lg } else { radius }
+  let stroke = pick(weight, stroke)
+  let radius = pick(weight, radius)
 
   align(center, std.scale(scale, reflow: true, tdtr.tidy-tree-graph(
     compact: true,

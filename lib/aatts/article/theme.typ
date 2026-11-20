@@ -1,3 +1,4 @@
+#import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
 #import "../parts.typ" as parts
 
@@ -11,7 +12,7 @@
   // paragraphs
   set par(
     justify: true,
-    leading: 0.68em,
+    leading: constants.leading.dense,
     spacing: 1.2em,
   )
 

@@ -2,10 +2,11 @@
 // sizes read from the active theme setup
 #import "constants.typ" as constants
 #import "setup.typ" as setup
+#import "utils.typ": assert-named
 
 
 // thick accent line, `auto` highlight is the accent colour of the theme
-#let accent-line(length, highlight: auto) = context line(
+#let accent-line(length: constants.span.p2, highlight: auto) = context line(
   length: length,
   stroke: setup.scales().weight.xl + setup.highlight(highlight),
 )
@@ -43,7 +44,9 @@
 }
 
 // head of a `base` layout, `title-content` called w/ the named `parts` and `highlight`;
+// none if all parts are none, fails on positional arguments (e.g. a title not passed as `title:`)
 #let head(title-content, parts, highlight: auto) = {
+  assert-named(parts, "layouts.base", "the head parts are named, e.g. `title: [..]`")
   let parts = parts.named()
 
   if parts.values().any(part => part != none) {

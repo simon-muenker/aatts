@@ -7,14 +7,14 @@
 #let abstract-block(abstract) = context {
   let (font,) = setup.scales()
 
-  parts.labelled([TL;DR], abstract, size: font.lg, leading: .64em)
+  parts.labelled([TL;DR], abstract, size: font.lg, leading: constants.leading.large)
 }
 
 
 // header: ?meta-top, ?title, ?subtitle on the left, ?aside (e.g. a QR code) on the right,
 // ?abstract below an accent line
 #let title-content(
-  title,
+  title: none,
   subtitle: none,
   meta-top: none,
   abstract: none,
@@ -51,7 +51,7 @@
     block(
       above: space.md * 1.4,
       below: space.md * 1.4,
-      parts.accent-line(constants.span.p2, highlight: highlight),
+      parts.accent-line(highlight: highlight),
     )
     abstract-block(abstract)
   }
@@ -61,11 +61,7 @@
 // base, ?header + body in ?columns; `head` takes the parts of `title-content`
 // (title, subtitle, meta-top, abstract, aside), the header is left out if all are none
 #let base(highlight: auto, columns: 3, ..head, body) = {
-  let header = parts.head(
-    (title: none, ..args) => title-content(title, ..args),
-    head,
-    highlight: highlight,
-  )
+  let header = parts.head(title-content, head, highlight: highlight)
   if header != none {
     header
 
@@ -74,3 +70,8 @@
 
   parts.columns(columns, body)
 }
+
+
+// the same as `base`: the pages are set by the flow of the body, so unlike the slides
+// there is no page to leave out (named for symmetry w/ `slides.layouts.base-content`)
+#let base-content = base

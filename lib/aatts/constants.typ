@@ -18,10 +18,20 @@
   magenta: rgb("#B31FC2"),
 )
 
-// line spacing (par leading) of the body text, and the tight one of headings and titles
+// line spacing (par leading), from loose to tight
 #let leading = (
+  // body text (slides, poster, letter)
   body: .8em,
+  // small, justified text set apart, e.g. the article abstract
+  abstract: .72em,
+  // dense body text of the article and the book
+  dense: .68em,
+  // large running text, e.g. the poster TL;DR
+  large: .64em,
+  // headings and subtitles
   tight: .6em,
+  // large, multi-line titles, e.g. the article title
+  title: .5em,
 )
 
 #let font-families = (

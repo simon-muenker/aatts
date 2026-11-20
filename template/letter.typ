@@ -1,8 +1,8 @@
 // ---- theme
-#import "@preview/aatts:0.1.0": letter
+#import "@preview/aatts:0.1.0": letter, scales
 
 // ---- partials
-#import "partials/helpers.typ": meta
+#import "partials/helpers.typ": meta, vspace
 
 #show: letter.theme.style
 #set document(
@@ -18,7 +18,7 @@
 
 #let head = (
   sender: [
-    #text(size: letter.units.font.lg, weight: "bold")[Author Name] \
+    #context text(size: scales().font.lg, weight: "bold")[Author Name] \
     #meta[Affiliation · Department]
   ],
   return-address: [Author Name · Street 1 · 12345 City],
@@ -28,10 +28,10 @@
     Street 2 \
     54321 City
   ],
-  info: grid(
+  info: context grid(
     columns: 2,
-    column-gutter: letter.units.space.md,
-    row-gutter: letter.units.space.sm,
+    column-gutter: scales().space.md,
+    row-gutter: scales().space.sm,
     meta[Phone], [+49 123 456789],
     meta[Email], [author\@affiliation.org],
     meta[Date], datetime.today().display("[month repr:long] [day], [year]"),
@@ -53,7 +53,7 @@
 
   Kind regards
 
-  #v(letter.units.space.xl)
+  #vspace("xl")
 
   Author Name
 ]

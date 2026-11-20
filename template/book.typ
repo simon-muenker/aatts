@@ -1,5 +1,5 @@
 // ---- theme
-#import "@preview/aatts:0.1.0": constants, book
+#import "@preview/aatts:0.1.0": constants, book, scales
 
 // ---- partials
 #import "partials/helpers.typ": meta
@@ -18,7 +18,7 @@
 // ============================================================
 
 #book.layouts.title(
-  [#lorem(8)],
+  title: [#lorem(8)],
   subtitle: [#lorem(8)],
   authors: byline,
   meta-top: meta[Master's Thesis · Department Name · University Name],
@@ -37,8 +37,8 @@
 #show: book.layouts.front-matter
 
 #align(center)[
-  #block(
-    inset: (top: book.units.space.xxl),
+  #context block(
+    inset: (top: scales().space.xxl),
     width: constants.span.p8
     )[
     #align(left)[

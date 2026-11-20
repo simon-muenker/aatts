@@ -6,10 +6,10 @@
 #show: codly.theme("github-light")
 
 // ---- theme
-#import "@preview/aatts:0.1.0": constants, slides
+#import "@preview/aatts:0.1.0": constants, slides, scales
 
 // ---- partials
-#import "partials/helpers.typ": split, gap, meta
+#import "partials/helpers.typ": split, gap, meta, vspace, hspace
 #import "partials/plugins.typ": tree, qr
 #import "partials/content.typ": byline, website, taxonomy, ega-figure, references
 
@@ -23,8 +23,8 @@
 )
 
 // ---- helpers
-#let section-label(n, fill) = text(
-  size: slides.units.font.lg,
+#let section-label(n, fill) = context text(
+  size: scales().font.lg,
   fill: fill,
   weight: "extrabold",
   [Segment :: #n],
@@ -33,13 +33,13 @@
 // colored segment entry for the agenda slide
 #let segment(n, label, title, fill, body) = [
   #text(fill: fill, weight: "semibold")[#n :: #upper(label)]
-  #h(slides.units.space.sm)
+  #hspace("sm")
   #text(weight: "semibold", title)
   #block(width: constants.span.p7, body)
 ]
 
 // cells side by side, w/ more room between the columns on slides
-#let split = split.with(gutter: slides.units.space.lg)
+#let split = split.with(gutter: "lg")
 
 // colored name of a third-party package, used in slide titles
 #let plugin(name) = text(fill: constants.palette.blue)[[#name]]
@@ -50,7 +50,7 @@
 // ============================================================
 
 #let cover = arguments(
-  [Presentation Title \ Spanning Two Lines],
+  title: [Presentation Title \ Spanning Two Lines],
   subtitle: [A short subtitle that frames the talk and its central question],
   meta-top: meta[
     Optional top line, e.g. a funding note or the name of the venue.
@@ -63,7 +63,7 @@
 // alternative cover: borderless image on the left, title content on the right
 #let cover-split = arguments(
   image("assets/image-header_split.webp"),
-  [Short Title],
+  title: [Short Title],
   subtitle: [A subtitle that frames the talk],
   meta-top: meta[
     Optional top line, e.g. the venue.
@@ -102,7 +102,7 @@
 // ============================================================
 
 #slides.layouts.title(
-  [Layout Building Blocks],
+  title: [Layout Building Blocks],
   subtitle: [How to structure a slide with grids, cards, and statements.],
   meta-top: section-label(1, constants.palette.red),
   meta-bottom: [
@@ -149,9 +149,9 @@
 #slides.layouts.base(..key-message)
 
 #let cards = arguments(title: [Cards in the Palette])[
-  #grid(
+  #context grid(
     columns: (1fr, 1fr, 1fr),
-    gutter: slides.units.space.md,
+    gutter: scales().space.md,
     slides.widgets.card(title: [Red], highlight: constants.palette.red)[
       Default highlight, for the main finding.
     ],
@@ -181,7 +181,7 @@
 // ============================================================
 
 #slides.layouts.title(
-  [Reporting Results],
+  title: [Reporting Results],
   subtitle: [Bar charts and tables that match the rest of the deck.],
   meta-top: section-label(2, constants.palette.green),
 )
@@ -235,7 +235,7 @@
       [*Delta*], [history and geography], [10], [1,819],
     ),
     [
-      #v(slides.units.space.sm)
+      #vspace("sm")
       - *41 models* grouped by family, 0.27--14B parameters.
       - Categories ($C$) mapped by questions ($Q$) onto *seven regions*.
     ],
@@ -264,7 +264,7 @@
 // ============================================================
 
 #slides.layouts.title(
-  [Plugins],
+  title: [Plugins],
   subtitle: [Third-party packages, styled with the aatts palette.],
   meta-top: section-label(3, constants.palette.blue),
   meta-bottom: text(fill: constants.palette.grey.medium)[
@@ -272,16 +272,16 @@
   ],
 )
 
-#slides.layouts.base(title: [Tidy Trees #h(slides.units.space.sm) #plugin[tdtr]])[
+#slides.layouts.base(title: [Tidy Trees #hspace("sm") #plugin[tdtr]])[
   #split(
     columns: (1.5fr, 1fr),
-    gutter: slides.units.space.md,
+    gutter: "md",
     align: left + horizon,
     tree(scale: 160%, taxonomy),
     [
       Trees are written as a *nested bullet list*; nesting depth defines the hierarchy.
 
-      #v(slides.units.space.sm)
+      #vspace("sm")
 
       #slides.widgets.card(title: [Tip], highlight: constants.palette.blue)[
         `draw-node` and `draw-edge` accept stroke and fill, so trees can follow the deck colors.
@@ -290,7 +290,7 @@
   )
 ]
 
-#slides.layouts.base(title: [Code Listings #h(slides.units.space.sm) #plugin[codly]])[
+#slides.layouts.base(title: [Code Listings #hspace("sm") #plugin[codly]])[
   #split(
     codly.new(
       ```py
@@ -318,7 +318,7 @@
        }
       ```
 
-      #v(slides.units.space.xs)
+      #vspace("xs")
       _Fenced blocks become codly listings via one show rule; diffs use the `diff-<lang>` tag._
     ],
   )
@@ -346,7 +346,7 @@
     *First takeaway.* Disagreement between annotators is a signal, not noise @schwager-etal-2026-unsampled. \
     *Second takeaway.* Results must be scoped to the material they were measured on @munker-2025-fingerprinting.
 
-    #v(slides.units.space.xs)
+    #vspace("xs")
 
     *$arrow$ Recommendation.* What the audience should do differently after this talk, in one or two sentences.
 
@@ -370,8 +370,8 @@
       ]
     ],
     [
-      _visit our website_ #h(slides.units.space.xs) #plugin[cades]
-      #v(slides.units.space.xs)
+      _visit our website_ #hspace("xs") #plugin[cades]
+      #vspace("xs")
       #qr(website, width: 7cm)
     ],
   )

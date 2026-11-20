@@ -28,18 +28,14 @@
   show heading.where(level: 2): set text(size: font.xl)
   show heading.where(level: 2): set block(above: space.lg, below: space.md)
 
-  // listings
-  set list(
-    marker: text(fill: highlight, sym.bullet),
+  // listings, bullet and numbered alike
+  let listing = (
     spacing: 1em,
     indent: 0em,
     body-indent: .6em,
   )
-  set enum(
-    spacing: 1em,
-    indent: 0em,
-    body-indent: .6em,
-  )
+  set list(marker: text(fill: highlight, sym.bullet), ..listing)
+  set enum(..listing)
 
   // tables, inset relative to the body text (not the table text)
   set table(
@@ -99,12 +95,12 @@
   let apply(
     units: (:),
     font-families: constants.font-families,
-    highlight: setup.default.highlight,
+    highlight: auto,
     lang: "en",
     body,
   ) = {
-    // `auto` is the default accent colour, as for the widgets
-    let highlight = if highlight == auto { setup.default.highlight } else { highlight }
+    // `auto` is the default accent colour (no outer theme is inherited)
+    let highlight = setup.resolve(highlight, setup.default.highlight)
     let active = override(defaults, units)
     let sizes = scales(active)
 

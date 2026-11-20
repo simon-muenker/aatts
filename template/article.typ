@@ -1,5 +1,5 @@
 // ---- theme
-#import "@preview/aatts:0.1.0": constants, article
+#import "@preview/aatts:0.1.0": constants, article, scales
 
 // ---- partials
 #import "partials/helpers.typ": split
@@ -20,14 +20,14 @@
 #let hero = (
   title: [An Article Title That May Span Two Lines],
   subtitle: [A short subtitle that frames the article and its central question],
-  meta-top: text(size: article.units.font.sm, fill: constants.palette.grey.medium)[
+  meta-top: context text(size: scales().font.sm, fill: constants.palette.grey.medium)[
     Preprint · Under Review · #datetime.today().display("[month repr:long] [year]")
   ],
   authors: [
     #text(weight: "semibold")[Author Name#super[1], Co-Author Name#super[1,2]] \
-    #text(size: article.units.font.sm, fill: constants.palette.grey.medium)[
-      #super[1]Affiliation, City #h(article.units.space.sm)
-      #super[2]Second Affiliation, City #h(article.units.space.sm)
+    #context text(size: scales().font.sm, fill: constants.palette.grey.medium)[
+      #super[1]Affiliation, City #h(scales().space.sm)
+      #super[2]Second Affiliation, City #h(scales().space.sm)
       author\@affiliation.org
     ]
   ],

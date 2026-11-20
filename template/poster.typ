@@ -72,7 +72,7 @@
 
   #gap
 
-  #tree(scale: 230%, stroke: poster.units.weight.sm, taxonomy)
+  #tree(scale: 230%, stroke: "sm", taxonomy)
 
   #gap
 

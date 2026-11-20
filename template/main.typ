@@ -79,7 +79,7 @@
 #grid(
   columns: (poster-w, auto),
   column-gutter: gutter,
-  a0((poster.layouts.base)(..example-poster.hero, example-poster.body)),
+  a0(poster.layouts.base-content(..example-poster.hero, example-poster.body)),
   grid(
     columns: cols,
     rows: (slide-h,) * rows,
@@ -87,7 +87,7 @@
     slide(none, slides.layouts.title-content(..example-slides.cover)),
     slide(none, inset: 0pt, slides.layouts.title-split-content(..example-slides.cover-split)),
     slide(8, slides.layouts.base-content(..example-slides.results)),
-    grid.cell(rowspan: 2, align: center, a4(article.layouts.base(..example-article.hero, example-article.body))),
+    grid.cell(rowspan: 2, align: center, a4(article.layouts.base-content(..example-article.hero, example-article.body))),
     slide(14, slides.layouts.base-content(..example-slides.closing)),
   ),
 )

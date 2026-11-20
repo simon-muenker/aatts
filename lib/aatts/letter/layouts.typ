@@ -28,7 +28,7 @@
       inset: (bottom: space.md),
       align(bottom, {
         sender
-        block(above: space.md, parts.accent-line(constants.span.p2, highlight: highlight))
+        block(above: space.md, parts.accent-line(highlight: highlight))
       }),
     )
 
@@ -62,3 +62,8 @@
 
   body
 }
+
+
+// the same as `base`: the pages are set by the flow of the body, so unlike the slides
+// there is no page to leave out (named for symmetry w/ `slides.layouts.base-content`)
+#let base-content = base

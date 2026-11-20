@@ -13,7 +13,12 @@
   body
   ) = context {
   let (space, weight) = setup.scales()
-  let highlight = rgb(setup.highlight(highlight))
+  let highlight = setup.highlight(highlight)
+  assert(
+    type(highlight) == color,
+    message: "card: `highlight` must be a colour, got " + repr(highlight),
+  )
+  let highlight = rgb(highlight)
   block(
     width: width,
     fill: highlight.desaturate(32%).lighten(86%),
@@ -21,13 +26,14 @@
     inset: (
       left: space.sm + weight.xl,
       right: space.md,
-      y: space.md
+      // a title sits slightly higher
+      top: if title != none { space.md - space.xs } else { space.md },
+      bottom: space.md,
     ),
     stroke: (left: weight.xl + highlight),
     radius: weight.lg,
   )[
     #if title != none {
-      v(-space.xs)
       text(
         weight: "bold",
         title
@@ -51,9 +57,13 @@
     above: space.md,
     below: space.md,
   )[
-    #heading(level: 2, numbering: none, outlined: false, body)
+    // sized like a level-2 heading of the slides, but no heading of the document
+    #block(below: space.md, {
+      set par(leading: constants.leading.tight)
+      text(size: font.xl, weight: "bold", body)
+    })
 
-    #parts.accent-line(constants.span.p3, highlight: highlight)
+    #parts.accent-line(length: constants.span.p3, highlight: highlight)
 
     #if byline != none {
       text(

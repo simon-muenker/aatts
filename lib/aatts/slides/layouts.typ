@@ -22,22 +22,26 @@
 
 // ---
 
-// title + ?subtitle, shared by the title layouts
-#let title-heading(title, subtitle: none) = context {
+// ?title + ?subtitle, shared by the title layouts
+#let title-heading(title: none, subtitle: none) = context {
   let (space, font) = setup.scales()
 
-  heading(level: 1, title)
+  if title != none {
+    heading(level: 1, title)
+  }
   if subtitle != none {
     parts.subtitle(subtitle, font.lg)
   }
+  // optical centring: the vertically centred title layouts place the heading
+  // slightly lower than its box (removing this shifts every title slide)
   v(-space.sm)
 }
 
 // ---
 
-// title, (?sub-)title + top/bottom ?meta w/o footer
+// title, ?title + ?subtitle + top/bottom ?meta w/o footer
 #let title-content(
-  title,
+  title: none,
   subtitle: none,
   meta-top: none,
   meta-bottom: none
@@ -46,7 +50,7 @@
     align(left + top, meta-top)
   }
 
-  align(left + horizon, title-heading(title, subtitle: subtitle))
+  align(left + horizon, title-heading(title: title, subtitle: subtitle))
 
   if meta-bottom != none {
     align(left + bottom, meta-bottom)
@@ -60,7 +64,7 @@
 // title-split, borderless image left + title content right w/o footer
 #let title-split-content(
   image,
-  title,
+  title: none,
   subtitle: none,
   meta-top: none,
   meta-bottom: none,
@@ -80,7 +84,7 @@
       row-gutter: space.sm,
       align: left,
       meta-top,
-      align(horizon, title-heading(title, subtitle: subtitle)),
+      align(horizon, title-heading(title: title, subtitle: subtitle)),
       meta-bottom,
     ))
   },

@@ -26,5 +26,18 @@
 // scales of the active setup, e.g. (space: (xxl: .., ..), font: .., weight: ..) (context only)
 #let scales() = units.scales(current().bases)
 
+// `color`, or `fallback` if `auto`
+#let resolve(color, fallback) = if color == auto { fallback } else { color }
+
 // `color`, or the accent colour of the active setup if `auto` (context only)
-#let highlight(color) = if color == auto { current().highlight } else { color }
+#let highlight(color) = resolve(color, current().highlight)
+
+// units of a format: its bases (the reference bases, each multiplied by its named
+// multiplier, see `units.derive`), the default scales `space`, `font` and `weight`
+// (usable outside context; they ignore the `units` overrides of the theme), and
+// `get`, the scales actually in effect (context only)
+#let format-units(..multipliers) = {
+  let bases = units.derive(..multipliers)
+
+  (bases: bases, ..units.scales(bases), get: scales)
+}

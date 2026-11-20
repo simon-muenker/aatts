@@ -7,13 +7,13 @@
 #let abstract-block(abstract) = context {
   let (space, font) = setup.scales()
 
-  pad(x: space.lg, parts.labelled([Abstract], abstract, size: font.sm, leading: .72em))
+  pad(x: space.lg, parts.labelled([Abstract], abstract, size: font.sm, leading: constants.leading.abstract))
 }
 
 
 // title block: ?meta-top, ?title, ?subtitle, ?authors, ?abstract
 #let title-content(
-  title,
+  title: none,
   subtitle: none,
   authors: none,
   meta-top: none,
@@ -30,7 +30,7 @@
 
     if title != none {
       block(below: space.sm, {
-        set par(leading: 0.5em, justify: false)
+        set par(leading: constants.leading.title, justify: false)
         text(size: font.xl, weight: "bold", title)
       })
     }
@@ -45,7 +45,7 @@
     block(
       above: space.md,
       below: space.md,
-      parts.accent-line(constants.span.p2, highlight: highlight),
+      parts.accent-line(highlight: highlight),
     )
 
     if authors != none {
@@ -65,11 +65,12 @@
 // base, ?title block + body in ?columns; `head` takes the parts of `title-content`
 // (title, subtitle, authors, meta-top, abstract), the title block is left out if all are none
 #let base(highlight: auto, columns: 2, ..head, body) = {
-  parts.head(
-    (title: none, ..args) => title-content(title, ..args),
-    head,
-    highlight: highlight,
-  )
+  parts.head(title-content, head, highlight: highlight)
 
   parts.columns(columns, body)
 }
+
+
+// the same as `base`: the pages are set by the flow of the body, so unlike the slides
+// there is no page to leave out (named for symmetry w/ `slides.layouts.base-content`)
+#let base-content = base
