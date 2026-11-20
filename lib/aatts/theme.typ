@@ -68,12 +68,26 @@
   show figure.caption: set text(size: font.sm, fill: constants.palette.grey.medium)
   set figure(gap: space.sm)
 
+  // superscripts (footnote marks), fixed metrics as some fonts
+  // (e.g. Helvetica Neue) report tiny superscript sizes
+  set super(size: .6em, baseline: -.5em)
+
   // footnotes
   set footnote(numbering: "[1]")
   set footnote.entry(indent: 0pt, separator: none)
 
   show footnote: set text(fill: constants.palette.blue, weight: "bold")
-  show footnote.entry: set text(size: font.sm)
+  show footnote.entry: set text(size: font.sm, fill: constants.palette.grey.medium)
+  show footnote.entry: it => {
+    let loc = it.note.location()
+    grid(
+      columns: (1.2em, 1fr),
+      column-gutter: .4em,
+      align: (right, left),
+      link(loc, super(numbering(it.note.numbering, ..counter(footnote).at(loc)))),
+      it.note.body,
+    )
+  }
 
   // links & bibliography
   show link: set text(fill: constants.palette.blue)
