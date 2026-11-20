@@ -17,12 +17,12 @@
 // Title Page
 // ============================================================
 
-#book.layouts.title-page(
+#book.layouts.title(
   [#lorem(8)],
   subtitle: [#lorem(8)],
   authors: byline,
   meta-top: meta[Master's Thesis · Department Name · University Name],
-  meta-bot: meta[
+  meta-bottom: meta[
     First Supervisor: Supervisor Name \
     Second Supervisor: Supervisor Name \
     Submitted #datetime.today().display("[month repr:long] [day], [year]")

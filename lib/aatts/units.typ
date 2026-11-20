@@ -1,4 +1,7 @@
-// reference bases (article); slides and poster scale these up
+#import "utils.typ": assert-keys
+
+
+// reference bases (article); the other formats derive theirs from these
 #let bases = (
   space: .5cm,
   font: 10pt,
@@ -53,12 +56,8 @@
 // e.g. `derive(space: 1.6, font: 1.6, weight: 2)`
 #let derive(..multipliers) = {
   let multipliers = multipliers.named()
-  for name in multipliers.keys() {
-    assert(
-      name in bases,
-      message: "units: unknown `" + name + "`, expected " + bases.keys().join(", "),
-    )
-  }
+  assert-keys(multipliers, bases, "units")
+
   bases
   .pairs()
   .map(((name, base)) => (name, base * multipliers.at(name, default: 1)))
@@ -67,11 +66,8 @@
 
 // bases w/ overrides (e.g. `(font: 12pt)`), checked for unknown names and non-lengths
 #let override(bases, overrides) = {
+  assert-keys(overrides, bases, "units")
   for (name, base) in overrides {
-    assert(
-      name in bases,
-      message: "units: unknown `" + name + "`, expected " + bases.keys().join(", "),
-    )
     assert(
       type(base) == length,
       message: "units: `" + name + "` must be a length, got " + repr(base),

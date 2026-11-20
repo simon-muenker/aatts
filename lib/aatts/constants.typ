@@ -18,6 +18,12 @@
   magenta: rgb("#B31FC2"),
 )
 
+// line spacing (par leading) of the body text, and the tight one of headings and titles
+#let leading = (
+  body: .8em,
+  tight: .6em,
+)
+
 #let font-families = (
   "Helvetica Neue", "Helvetica", 
   "Liberation Sans", "Arial"

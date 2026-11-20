@@ -2,8 +2,8 @@
 #import "../setup.typ" as setup
 
 
-// the reference bases, w/ the slightly larger font of the book
-#let bases = units.derive(font: 1.1)
+// the reference bases of the book, w/ its slightly larger font
+#import "../book/units.typ": bases
 
 // default scales, usable outside context; they ignore the `units` overrides
 // of the theme, use `get()` for the scales actually in effect

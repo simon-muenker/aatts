@@ -1,6 +1,5 @@
-#import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
-#import "../setup.typ" as setup
+#import "../parts.typ" as parts
 
 #import "units.typ": bases
 
@@ -57,46 +56,18 @@
 #let typography = base-theme.typography(bases, format-rules: format-rules)
 
 
-// centred page number, for the page footer (own context, resolved per page)
-#let page-number = context {
-  set text(
-    size: setup.scales().font.sm,
-    fill: constants.palette.grey.medium
-  )
-  align(center, counter(page).display())
-}
-
-
 // typography and page setup, takes the arguments of `typography`
-#let style(
-  paper: "a4",
-  header: none,
+#let style(paper: "a4", header: none, ..args, body) = base-theme.page-style(
+  typography,
+  ((space, font)) => (
+    paper: paper,
+    margin: space.xl,
+    // running header, skipped on the first page (own context, resolved per page)
+    header: context if header != none and counter(page).get().first() > 1 {
+      parts.muted(header, font.xs)
+    },
+    footer: parts.page-number,
+  ),
   ..args,
-  body
-  ) = {
-  show: typography.with(..args)
-
-  context {
-    let (space, font) = setup.scales()
-
-    set page(
-      paper: paper,
-      margin: (
-        x: space.xl,
-        top: space.xl,
-        bottom: space.xl
-      ),
-      // running header, skipped on the first page (own context, resolved per page)
-      header: context if header != none and counter(page).get().first() > 1 {
-        set text(
-          size: font.xs,
-          fill: constants.palette.grey.medium
-        )
-        header
-      },
-      footer: page-number,
-    )
-
-    body
-  }
-}
+  body,
+)

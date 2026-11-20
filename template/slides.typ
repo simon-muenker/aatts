@@ -55,7 +55,7 @@
   meta-top: meta[
     Optional top line, e.g. a funding note or the name of the venue.
   ],
-  meta-bot: byline,
+  meta-bottom: byline,
 )
 
 #slides.layouts.title(..cover)
@@ -68,7 +68,7 @@
   meta-top: meta[
     Optional top line, e.g. the venue.
   ],
-  meta-bot: byline,
+  meta-bottom: byline,
 )
 
 #(slides.layouts.title-split)(..cover-split)
@@ -105,7 +105,7 @@
   [Layout Building Blocks],
   subtitle: [How to structure a slide with grids, cards, and statements.],
   meta-top: section-label(1, constants.palette.red),
-  meta-bot: [
+  meta-bottom: [
     Author Name, et al. 2026. *Title of the Paper this Segment is Based on.* _Conference Name_
   ],
 )
@@ -191,10 +191,10 @@
     columns: (1.25fr, 1fr),
     [
       #slides.widgets.bar-chart(
-        ([*X* - Group A], .59, constants.palette.green, [59%]),
-        ([*X* - Group B], .82, constants.palette.red, [82%]),
-        ([*Y* - Group A], .53, constants.palette.green, [53%]),
-        ([*Y* - Group B], .94, constants.palette.red, [94%]),
+        (label: [*X* - Group A], share: .59, value: [59%], color: constants.palette.green),
+        (label: [*X* - Group B], share: .82, value: [82%], color: constants.palette.red),
+        (label: [*Y* - Group A], share: .53, value: [53%], color: constants.palette.green),
+        (label: [*Y* - Group B], share: .94, value: [94%], color: constants.palette.red),
       )
       _Share of positive answers per item (mean)_
 
@@ -267,7 +267,7 @@
   [Plugins],
   subtitle: [Third-party packages, styled with the aatts palette.],
   meta-top: section-label(3, constants.palette.blue),
-  meta-bot: text(fill: constants.palette.grey.medium)[
+  meta-bottom: text(fill: constants.palette.grey.medium)[
     `@preview/tdtr` · `@preview/codly` · `@preview/cades`
   ],
 )

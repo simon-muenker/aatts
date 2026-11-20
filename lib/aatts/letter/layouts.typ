@@ -2,7 +2,7 @@
 #import "../setup.typ" as setup
 #import "../parts.typ" as parts
 
-#import "theme.typ": din
+#import "din.typ": din
 
 
 // `body` at a position of the page (`din`), placed from the top left corner of the text area
@@ -38,18 +38,9 @@
       inset: (x: din.margin.left - din.address.x),
       grid(
         rows: (din.address.notes, din.address.recipient),
-        align(
-          bottom, 
-          pad(
-            bottom: space.sm, 
-            text(
-              size: font.xs, 
-              fill: constants.palette.grey.medium, return-address
-            )
-          )
-        ),
+        align(bottom, pad(bottom: space.sm, parts.muted(return-address, font.xs))),
         {
-          set par(leading: .6em)
+          set par(leading: constants.leading.tight)
           recipient
         },
       ),
@@ -65,8 +56,11 @@
 }
 
 
-// base, the first-page head + body
-#let base(..args, body) = {
-  title-content(..args)
+// base, the first-page head + body; the head is left out if all its parts are none
+#let base(highlight: auto, ..head, body) = {
+  if head.named().values().any(part => part != none) {
+    title-content(..head, highlight: highlight)
+  }
+
   body
 }

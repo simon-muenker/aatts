@@ -45,6 +45,7 @@ To use the design system in an existing project, import the modules directly as 
 | `palette`       | `red, green, blue, olive, magenta`          | Accent colours (`red` is the default highlight). |
 | `palette.grey`  | `dark, medium, light`                           | Text, secondary text, background grey.           |
 | `span`          | `p1` … `p12`                                        | Widths on a 12-column grid; `p12` = 100 %.       |
+| `leading`       | `body, tight`                                       | Line spacing of body text and of headings/titles. |
 | `font-families` | —                                                   | Helvetica (Neue), Liberation Sans, Arial.          |
 
 ### `units`
@@ -111,7 +112,7 @@ Every theme takes a `highlight` colour (default `constants.palette.red`). It col
 #slides.layouts.title(
   [Presentation Title],
   subtitle: [A short subtitle that frames the talk],
-  meta-bot: [*Author Name* \ Affiliation],
+  meta-bottom: [*Author Name* \ Affiliation],
 )
 
 #slides.layouts.base(title: [Overview])[
@@ -122,14 +123,14 @@ Every theme takes a `highlight` colour (default `constants.palette.red`). It col
 
 ### `layouts.title`
 
-Title slide without footer. `meta-top` is placed at the top, `meta-bot` at the bottom.
+Title slide without footer. `meta-top` is placed at the top, `meta-bottom` at the bottom.
 
 ```typ
 #slides.layouts.title(
   [Presentation Title],
   subtitle: [Optional subtitle],
   meta-top: [Optional content at the top, e.g. event name],
-  meta-bot: [Optional content at the bottom, e.g. author and affiliation],
+  meta-bottom: [Optional content at the bottom, e.g. author and affiliation],
 )
 ```
 
@@ -143,7 +144,7 @@ Borderless image on the left, title content on the right. `columns` sets the spl
   [Presentation Title],
   subtitle: [Optional subtitle],
   meta-top: [Optional content at the top],
-  meta-bot: [Optional content at the bottom],
+  meta-bottom: [Optional content at the bottom],
 )
 ```
 
@@ -226,7 +227,7 @@ The theme sets an A4 page (`paper`), a running `header` from the second page on,
 
 ### `layouts.base`
 
-Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. The title block is left out when none of its parts are given. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
+Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. The title block is left out when none of its parts are given; `meta-top` is set as given, like in the other formats. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
 
 ## `book`
 
@@ -236,12 +237,12 @@ Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, ab
 #show: book.theme.style
 #set document(title: "Thesis Title", author: "Author Name")
 
-#book.layouts.title-page(
+#book.layouts.title(
   [Thesis Title],
   subtitle: [A short subtitle that frames the thesis],
   authors: [*Author Name* \ Affiliation],
   meta-top: [Master's Thesis · University Name],
-  meta-bot: [Supervisor: Supervisor Name \ Submitted Month Day, Year],
+  meta-bottom: [Supervisor: Supervisor Name \ Submitted Month Day, Year],
 )
 
 #show: book.layouts.front-matter
@@ -267,11 +268,11 @@ Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, ab
 #bibliography("references.bib", title: [References])
 ```
 
-Chapters (`=`) open a new page and are set larger above an accent line; sections (`==`) are numbered, `===` stays unnumbered. The running header shows the title of the current chapter and is left out on pages that open a chapter; pass `header` to replace it with your own content, or `none` to remove it.
+Chapters (`=`) open a new page; sections (`==`) are numbered, `===` stays unnumbered. The running header shows the title of the current chapter and is left out on pages that open a chapter; pass `header` to replace it with your own content, or `none` to remove it.
 
-### `layouts.title-page`
+### `layouts.title`
 
-Title page without header and footer: `meta-top` at the top, the title block of the article (title, `subtitle`, accent line, `authors`) vertically centred, and `meta-bot` at the bottom. The content alone is available as `layouts.title-content`.
+Title page without header and footer: `meta-top` at the top, the title block of the article (title, `subtitle`, accent line, `authors`) vertically centred, and `meta-bottom` at the bottom. The content alone is available as `layouts.title-content`.
 
 ### `layouts.front-matter`, `layouts.main-matter`, `layouts.appendix`
 
@@ -316,7 +317,7 @@ The `marks` object overrides the marks by kind, the defaults are the fold marks 
 
 ### `layouts.base`
 
-Stacks the head of the first page and the body. The head sets the `sender` in the letterhead (45 mm) above an accent line (coloured by `highlight`), the address field (85 × 45 mm at 20 mm from the left) with the `return-address` set small at the bottom of its notes zone and up to six lines of the `recipient` below, and the `info` block (75 mm wide at 125 mm from the left, e.g. contact and date) on the right. The bold `subject` starts at 98.46 mm, the body follows. The head alone is available as `layouts.title-content`.
+Stacks the head of the first page and the body. The head sets the `sender` in the letterhead (45 mm) above an accent line (coloured by `highlight`), the address field (85 × 45 mm at 20 mm from the left) with the `return-address` set small at the bottom of its notes zone and up to six lines of the `recipient` below, and the `info` block (75 mm wide at 125 mm from the left, e.g. contact and date) on the right. The bold `subject` starts at 98.46 mm, the body follows. The head is left out when none of its parts are given. The head alone is available as `layouts.title-content`.
 
 ## Widgets
 
@@ -351,13 +352,13 @@ Large bold statement with an accent line and an optional byline.
 
 ### `bar-chart`
 
-Takes one array per row: label, share between 0 and 1, colour, and the value shown on the right. A single bar is available as `bar(share, color)`.
+Takes one dictionary per row: the `label`, the `share` between 0 and 1, the `value` shown on the right and an optional `color` (default: the highlight of the theme). A single bar is available as `bar(share, color: auto)`.
 
 ```typ
 #slides.widgets.bar-chart(
-  ([Group A], 0.72, constants.palette.red, [72 %]),
-  ([Group B], 0.45, constants.palette.blue, [45 %]),
-  ([Group C], 0.18, constants.palette.green, [18 %]),
+  (label: [Group A], share: 0.72, value: [72 %]),
+  (label: [Group B], share: 0.45, value: [45 %], color: constants.palette.blue),
+  (label: [Group C], share: 0.18, value: [18 %], color: constants.palette.green),
 )
 ```
 

@@ -82,9 +82,5 @@
     context v(setup.scales().space.lg)
   }
 
-  if columns > 1 {
-    context std.columns(columns, gutter: setup.scales().space.lg, body)
-  } else {
-    body
-  }
+  parts.columns(columns, body)
 }

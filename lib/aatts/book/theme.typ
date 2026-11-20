@@ -1,6 +1,5 @@
 #import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
-#import "../setup.typ" as setup
 #import "../parts.typ" as parts
 #import "../article/theme.typ" as article-theme
 
@@ -15,24 +14,14 @@
 
   // chapters
   show heading.where(level: 1): set text(size: font.xl)
-  show heading.where(level: 1): it => block(
-    below: space.lg, it)
+  show heading.where(level: 1): it => block(below: space.lg, it)
 
-  // table of contents, chapters in bold and set apart
-  show outline.entry.where(level: 1): it => if it.element.func() == heading {
-    block(above: space.lg, strong(it))
-  } else {
-    it
-  }
-
-  show outline.entry.where(level: 2): it => if it.element.func() == heading {
-    block(above: space.md, it)
-  } else {
-    it
-  }
-
-  show outline.entry.where(level: 3): it => if it.element.func() == heading {
-    block(above: space.sm, it)
+  // table of contents, headings set apart by level, chapters in bold
+  show outline.entry: it => if it.element.func() == heading and it.level <= 3 {
+    block(
+      above: (space.lg, space.md, space.sm).at(it.level - 1),
+      if it.level == 1 { strong(it) } else { it },
+    )
   } else {
     it
   }
@@ -60,46 +49,36 @@
 
 // typography and page setup, takes the arguments of `typography`;
 // the running `header` is the title of the current chapter if `auto`
-#let style(
-  paper: "a4",
-  header: auto,
+#let style(paper: "a4", header: auto, ..args, body) = base-theme.page-style(
+  typography,
+  ((space, font)) => (
+    paper: paper,
+    margin: (
+      x: space.xl + space.lg,
+      y: space.xl + space.md
+    ),
+    // running header, skipped on pages that open a chapter (own context, resolved per page)
+    header: context {
+      let chapters = query(heading.where(level: 1))
+      let current = here().page()
+      let title = if header == auto {
+        chapter-title(chapters.filter(it => it.location().page() < current))
+      } else {
+        header
+      }
+
+      if title != none and chapters.all(it => it.location().page() != current) {
+        parts.muted(title, font.xs)
+      }
+    },
+    footer: parts.page-number,
+  ),
   ..args,
-  body
-  ) = {
-  show: typography.with(..args)
-
-  // chapters open a new page (not part of the typography, which is also used in boxes)
-  show heading.where(level: 1): it => pagebreak(weak: true) + it
-
-  context {
-    let (space, font) = setup.scales()
-
-    set page(
-      paper: paper,
-      margin: (
-        x: space.xl + space.lg,
-        y: space.xl + space.md
-      ),
-      // running header, skipped on pages that open a chapter (own context, resolved per page)
-      header: context {
-        let chapters = query(heading.where(level: 1))
-        let current = here().page()
-
-        if chapters.all(it => it.location().page() != current) {
-          set text(
-            size: font.xs,
-            fill: constants.palette.grey.medium
-          )
-          if header == auto {
-            chapter-title(chapters.filter(it => it.location().page() < current))
-          } else {
-            header
-          }
-        }
-      },
-      footer: article-theme.page-number,
-    )
+  {
+    // chapters open a new page (not part of the typography, which is also used in boxes);
+    // set after the typography, so the page break stays outside the chapter block
+    show heading.where(level: 1): it => pagebreak(weak: true) + it
 
     body
-  }
-}
+  },
+)

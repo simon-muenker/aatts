@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `book` theme for theses: a single-column A4 page with the typography of the article (11 pt), chapters that open a new page above an accent line, a running header with the current chapter, and centred page numbers. Layouts for the title page (`title-page`), the front matter (roman page numbers, unnumbered chapters), the main matter (arabic page numbers from 1, numbered chapters), the appendix (lettered chapters) and lists of figures and tables (`figures`, `tables`). The bibliography is set as the last, unnumbered chapter.
+- `book` theme for theses: a single-column A4 page with the typography of the article (11 pt), chapters that open a new page, a running header with the current chapter, and centred page numbers. Layouts for the title page (`title`), the front matter (roman page numbers, unnumbered chapters), the main matter (arabic page numbers from 1, numbered chapters), the appendix (lettered chapters) and lists of figures and tables (`figures`, `tables`). The bibliography is set as the last, unnumbered chapter.
 - Template: `book.typ`, a starter for a thesis with title page, front matter, chapters, appendix and bibliography.
 - `letter` theme for postal dispatch after DIN 5008 form B: an A4 page with an empty header and footer, and fold and punch marks on the first page, configurable by kind with the `marks` object. `layouts.base` sets the letterhead (`sender` above an accent line), the address field (`return-address`, `recipient`), the `info` block and the `subject` at their DIN positions, followed by the body. The geometry is available as `letter.theme.din`.
 - Template: `letter.typ`, a starter for a letter with letterhead, address field, info block and subject.
@@ -20,10 +20,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The theme `highlight` is the default of all widgets (`card`, `statement`) and the accent lines of the poster and article layouts; their `highlight` now defaults to `auto`.
 - `widgets` is exported at the top level of the package, next to `constants`.
 - `units.weight` adds `xs` (0.25 ×).
+- `constants.leading` names the line spacing of body text (`body`) and of headings and titles (`tight`).
 
 ### Changed
 
 - `slides.widgets`, `poster.widgets` and `article.widgets` are now the same shared module, since widgets read their units from the theme. `statement` adds spacing to the surrounding flow text in every format, and its box now includes the byline, which can shift vertically centred statements slightly.
+- **Breaking:** `meta-bot` is renamed to `meta-bottom` in `slides.layouts.title`, `slides.layouts.title-split` and their `-content` variants.
+- **Breaking:** `widgets.bar-chart` takes one dictionary per row, `(label: .., share: .., value: .., color: ..)`, instead of an array; `color` is optional and defaults to the theme `highlight`, as does the `color` of `widgets.bar`, now a named argument.
+- `article.layouts` sets `meta-top` as given (no longer small and muted), like the other formats.
+- `letter.layouts.base` leaves out the head when none of its parts are given, like poster and article.
+- The DIN 5008 geometry moved to `letter/din.typ`; it is still available as `letter.theme.din`.
+- Internal: shared building blocks (`parts.muted`, `parts.columns`, `parts.bare-page`, `parts.page-number`), one page-setup helper for all themes (`page-style`), one check for unknown keys, and a single source for the default highlight.
 - **Breaking:** `units` scales now share one set of key names, with `md` as the base value; the `base` key is gone. For `font` and `weight`, rename `base` → `md` (e.g. `units.font.base` → `units.font.md`).
 - **Breaking:** `units.space` uses a base of 0.5 cm (was 1 cm) and the keys `xxl`, `xl`, `lg`, `md`, `sm`, `xs` (multipliers 8, 4, 2, 1, 0.5, 0.25). Absolute sizes are unchanged, but two keys shift: `space.lg` → `space.xl` and `space.base` → `space.lg`; `md`, `sm` and `xs` stay as they are. `xxl` is new.
 - `units.font` adds `xs` (0.75 ×) and sets `sm` to 0.9 × (was 0.75 ×).

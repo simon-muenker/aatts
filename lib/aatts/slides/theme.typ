@@ -1,6 +1,5 @@
-#import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
-#import "../setup.typ" as setup
+#import "../parts.typ" as parts
 
 #import "units.typ": bases
 
@@ -12,37 +11,17 @@
 
 
 // typography and page setup, takes the arguments of `typography`
-#let style(
-  paper: "presentation-16-9",
-  footer: none,
+#let style(paper: "presentation-16-9", footer: none, ..args, body) = base-theme.page-style(
+  typography,
+  ((space, font)) => (
+    paper: paper,
+    margin: space.lg,
+    // own context, so the page counter resolves on each page
+    footer: context {
+      set text(spacing: 160%)
+      parts.muted(grid(columns: (1fr, auto), footer, counter(page).display()), font.xs)
+    },
+  ),
   ..args,
-  body
-  ) = {
-  show: typography.with(..args)
-
-  context {
-    let (space, font) = setup.scales()
-
-    set page(
-      paper: paper,
-      margin: (
-        x: space.lg,
-        y: space.lg
-      ),
-      // own context, so the page counter resolves on each page
-      footer: context {
-        set text(
-          size: font.xs,
-          fill: constants.palette.grey.medium,
-          spacing: 160%,
-        )
-        grid(
-          columns: (1fr, auto),
-          footer, counter(page).display(),
-        )
-      },
-    )
-
-    body
-  }
-}
+  body,
+)

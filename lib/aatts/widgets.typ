@@ -57,18 +57,17 @@
 
     #if byline != none {
       text(
-        size: font.md,
         weight: "light",
         tracking: .01em,
-        fill: constants.palette.grey.medium,
-        byline
+        parts.muted(byline, font.md)
       )
     }
   ]
 }
 
 // ---- bar-plot
-#let bar(share, color) = context {
+// single bar, filled to `share` (0 to 1), `auto` color is the accent colour of the theme
+#let bar(share, color: auto) = context {
   let (font, weight) = setup.scales()
   box(
     width: 100%,
@@ -80,13 +79,15 @@
       box(
         width: share * 100%,
         height: 100%,
-        fill: color,
+        fill: setup.highlight(color),
         radius: weight.xl
       ),
     )
   )
 }
 
+// one bar per row, each a dictionary of `label`, `share` (0 to 1), `value`
+// (shown on the right) and an optional `color` (default: the accent colour of the theme)
 #let bar-chart(..rows) = context {
   let (space, font) = setup.scales()
   grid(
@@ -96,18 +97,15 @@
     align: horizon,
     ..rows
     .pos()
-    .map(row => {
-      let (label, share, color, value) = row
-      (
-        text(size: font.sm, label),
-        bar(share, color),
-        text(
-          size: font.sm,
-          weight: "semibold",
-          value
-        )
+    .map(row => (
+      text(size: font.sm, row.label),
+      bar(row.share, color: row.at("color", default: auto)),
+      text(
+        size: font.sm,
+        weight: "semibold",
+        row.value
       )
-    })
+    ))
     .flatten()
   )
 }

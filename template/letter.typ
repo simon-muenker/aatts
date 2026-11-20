@@ -1,6 +1,5 @@
 // ---- theme
-// #import "@preview/aatts:0.1.0": letter
-#import "../lib/aatts/lib.typ": letter
+#import "@preview/aatts:0.1.0": letter
 
 // ---- partials
 #import "partials/helpers.typ": meta

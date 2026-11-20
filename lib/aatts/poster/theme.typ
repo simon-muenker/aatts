@@ -1,5 +1,4 @@
 #import "../theme.typ" as base-theme
-#import "../setup.typ" as setup
 
 #import "units.typ": bases
 
@@ -23,21 +22,9 @@
 
 
 // typography and page setup, takes the arguments of `typography`
-#let style(
-  paper: "a0",
+#let style(paper: "a0", ..args, body) = base-theme.page-style(
+  typography,
+  ((space,)) => (paper: paper, margin: space.lg),
   ..args,
-  body
-  ) = {
-  show: typography.with(..args)
-
-  context {
-    let (space,) = setup.scales()
-
-    set page(
-      paper: paper,
-      margin: space.lg,
-    )
-
-    body
-  }
-}
+  body,
+)

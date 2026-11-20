@@ -1,17 +1,18 @@
+#import "../parts.typ" as parts
 #import "../article/layouts.typ" as article-layouts
 
 
 // title page: ?meta-top at the top, the title block of the article
-// (title, ?subtitle, accent line, ?authors) centred, ?meta-bot at the bottom
-#let title-content(meta-top: none, meta-bot: none, ..args) = {
+// (title, ?subtitle, accent line, ?authors) centred, ?meta-bottom at the bottom
+#let title-content(meta-top: none, meta-bottom: none, ..args) = {
   meta-top
   v(1fr)
   article-layouts.title-content(..args)
   v(1fr)
-  meta-bot
+  meta-bottom
 }
 
-#let title-page(..args) = page(header: none, footer: none, title-content(..args))
+#let title(..args) = parts.bare-page(title-content(..args))
 
 // ---
 

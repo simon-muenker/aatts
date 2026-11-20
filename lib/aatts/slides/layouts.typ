@@ -3,15 +3,7 @@
 
 
 // empty, w/o borders
-#let empty(body) = {
-  page(
-    margin: 0pt,
-    header: none,
-    footer: none,
-  )[
-    #body
-  ]
-}
+#let empty(body) = parts.bare-page(margin: 0pt, body)
 
 // ---
 
@@ -43,25 +35,25 @@
 
 // ---
 
-// title, (?sub-)title + bot/top ?meta w/o footer
+// title, (?sub-)title + top/bottom ?meta w/o footer
 #let title-content(
-  title, 
-  subtitle: none, 
-  meta-top: none, 
-  meta-bot: none
+  title,
+  subtitle: none,
+  meta-top: none,
+  meta-bottom: none
 ) = {
-  if meta-top != none { 
+  if meta-top != none {
     align(left + top, meta-top)
   }
 
   align(left + horizon, title-heading(title, subtitle: subtitle))
 
-  if meta-bot != none { 
-    align(left + bottom, meta-bot)
+  if meta-bottom != none {
+    align(left + bottom, meta-bottom)
   }
 }
 
-#let title(..args) = page(header: none, footer: none, title-content(..args))
+#let title(..args) = parts.bare-page(title-content(..args))
 
 // ---
 
@@ -71,7 +63,7 @@
   title,
   subtitle: none,
   meta-top: none,
-  meta-bot: none,
+  meta-bottom: none,
   columns: (1fr, 1fr),
 ) = grid(
   columns: columns,
@@ -89,14 +81,9 @@
       align: left,
       meta-top,
       align(horizon, title-heading(title, subtitle: subtitle)),
-      meta-bot,
+      meta-bottom,
     ))
   },
 )
 
-#let title-split(..args) = page(
-  margin: 0pt,
-  header: none,
-  footer: none,
-  title-split-content(..args),
-)
+#let title-split(..args) = parts.bare-page(margin: 0pt, title-split-content(..args))

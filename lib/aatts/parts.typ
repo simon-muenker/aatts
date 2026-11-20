@@ -1,4 +1,4 @@
-// building blocks shared by the layouts and widgets of all formats,
+// building blocks shared by the themes, layouts and widgets of all formats,
 // sizes read from the active theme setup
 #import "constants.typ" as constants
 #import "setup.typ" as setup
@@ -10,24 +10,43 @@
   stroke: setup.scales().weight.xl + setup.highlight(highlight),
 )
 
+// secondary text in `size` (e.g. running headers, footers, notes)
+#let muted(body, size) = text(
+  size: size,
+  fill: constants.palette.grey.medium,
+  body,
+)
+
 // muted subtitle below a title, in text `size`
 #let subtitle(body, size) = {
-  set par(leading: 0.6em)
-  text(
-    size: size,
-    fill: constants.palette.grey.medium,
-    body
-  )
+  set par(leading: constants.leading.tight)
+  muted(body, size)
 }
 
-// justified block of text in `size`, introduced by a bold run-in `label`
+// justified block of text in `size`, introduced by a bold run-in `lead`
 // (e.g. an abstract)
-#let labelled(label, body, size: auto, leading: auto) = context {
+#let labelled(lead, body, size: auto, leading: auto) = context {
   set text(size: size) if size != auto
   set par(justify: true)
   set par(leading: leading) if leading != auto
 
-  text(weight: "bold", fill: constants.palette.grey.dark, label)
+  text(weight: "bold", fill: constants.palette.grey.dark, lead)
   h(setup.scales().space.sm)
   body
 }
+
+// `body` in `count` columns w/ a large gutter, as is if `count` is 1
+#let columns(count, body) = if count > 1 {
+  context std.columns(count, gutter: setup.scales().space.lg, body)
+} else {
+  body
+}
+
+// page w/o header and footer (e.g. a title page), takes the arguments of `page`
+#let bare-page = page.with(header: none, footer: none)
+
+// centred page number, for the page footer (own context, resolved per page)
+#let page-number = context align(
+  center,
+  muted(counter(page).display(), setup.scales().font.sm),
+)

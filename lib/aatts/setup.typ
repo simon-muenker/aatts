@@ -26,5 +26,5 @@
 // scales of the active setup, e.g. (space: (xxl: .., ..), font: .., weight: ..) (context only)
 #let scales() = units.scales(current().bases)
 
-// `highlight`, or the accent colour of the active setup if `auto` (context only)
-#let highlight(highlight) = if highlight == auto { current().highlight } else { highlight }
+// `color`, or the accent colour of the active setup if `auto` (context only)
+#let highlight(color) = if color == auto { current().highlight } else { color }

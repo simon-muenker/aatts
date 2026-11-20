@@ -4,13 +4,8 @@
 
 
 // typography shared by all formats, from the scales of the format
-#let rules(
-  scales,
-  font-families: constants.font-families,
-  lang: "en",
-  highlight: constants.palette.red,
-  body,
-) = {
+// (the defaults of the arguments are set by `typography`)
+#let rules(scales, font-families, lang, highlight, body) = {
   let (space, font, weight) = scales
 
   // paragraphs
@@ -21,13 +16,13 @@
     lang: lang,
   )
   set par(
-    leading: 0.8em,
+    leading: constants.leading.body,
     spacing: 1.0em
   )
 
   // headings
   show heading: set text(weight: "bold")
-  show heading: set par(leading: 0.6em)
+  show heading: set par(leading: constants.leading.tight)
 
   show heading.where(level: 1): set text(size: font.xxl)
   show heading.where(level: 2): set text(size: font.xl)
@@ -96,7 +91,7 @@
 
 // typography of a format w/o page setup, usable inside boxes (e.g. scaled previews)
 //
-// `bases` are the default bases of the format, `format-rules(scales, body)` adds
+// `defaults` are the default bases of the format, `format-rules(scales, body)` adds
 // its own rules on top of the shared ones; the returned function takes
 // `units` (overrides of the bases, e.g. `(font: 18pt)`), `font-families`,
 // `highlight` (accent colour, also the default of widgets and layouts) and `lang`
@@ -104,7 +99,7 @@
   let apply(
     units: (:),
     font-families: constants.font-families,
-    highlight: constants.palette.red,
+    highlight: setup.default.highlight,
     lang: "en",
     body,
   ) = {
@@ -112,12 +107,7 @@
     let sizes = scales(active)
 
     setup.scope((bases: active, highlight: highlight), {
-      show: rules.with(
-        sizes,
-        font-families: font-families,
-        lang: lang,
-        highlight: highlight,
-      )
+      show: rules.with(sizes, font-families, lang, highlight)
       show: format-rules.with(sizes)
 
       body
@@ -125,4 +115,17 @@
   }
 
   apply
+}
+
+
+// `typography` (w/ its `args`) and the page set up by `page-args(scales)`,
+// which returns the arguments of `page` from the scales in effect
+#let page-style(typography, page-args, ..args, body) = {
+  show: typography.with(..args)
+
+  context {
+    set page(..page-args(setup.scales()))
+
+    body
+  }
 }

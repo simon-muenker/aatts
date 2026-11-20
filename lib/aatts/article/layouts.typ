@@ -24,7 +24,7 @@
 
   block(width: 100%, below: space.md, {
     if meta-top != none {
-      text(size: font.sm, fill: constants.palette.grey.medium, meta-top)
+      meta-top
       v(space.sm)
     }
 
@@ -84,9 +84,5 @@
     )
   }
 
-  if columns > 1 {
-    context std.columns(columns, gutter: setup.scales().space.lg, body)
-  } else {
-    body
-  }
+  parts.columns(columns, body)
 }

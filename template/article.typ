@@ -20,7 +20,9 @@
 #let hero = (
   title: [An Article Title That May Span Two Lines],
   subtitle: [A short subtitle that frames the article and its central question],
-  meta-top: [Preprint · Under Review · #datetime.today().display("[month repr:long] [year]")],
+  meta-top: text(size: article.units.font.sm, fill: constants.palette.grey.medium)[
+    Preprint · Under Review · #datetime.today().display("[month repr:long] [year]")
+  ],
   authors: [
     #text(weight: "semibold")[Author Name#super[1], Co-Author Name#super[1,2]] \
     #text(size: article.units.font.sm, fill: constants.palette.grey.medium)[
