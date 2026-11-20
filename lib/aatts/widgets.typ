@@ -13,7 +13,7 @@
   body
   ) = context {
   let (space, weight) = setup.scales()
-  let highlight = setup.highlight(highlight)
+  let highlight = rgb(setup.highlight(highlight))
   block(
     width: width,
     fill: highlight.desaturate(32%).lighten(86%),
@@ -66,7 +66,7 @@
 }
 
 // ---- bar-plot
-// single bar, filled to `share` (0 to 1), `auto` color is the accent colour of the theme
+// single bar, filled to `share` (clamped to 0 to 1), `auto` color is the accent colour of the theme
 #let bar(share, color: auto) = context {
   let (font, weight) = setup.scales()
   box(
@@ -77,7 +77,7 @@
     align(
       left,
       box(
-        width: share * 100%,
+        width: calc.clamp(share, 0, 1) * 100%,
         height: 100%,
         fill: setup.highlight(color),
         radius: weight.xl
@@ -103,7 +103,7 @@
       text(
         size: font.sm,
         weight: "semibold",
-        row.value
+        [#row.value]
       )
     ))
     .flatten()
