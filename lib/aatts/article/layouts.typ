@@ -1,32 +1,26 @@
 #import "../constants.typ" as constants
-#import "units.typ" as units
+#import "../setup.typ" as setup
+#import "../parts.typ" as parts
 
 
 // labelled abstract, set slightly smaller and indented
 #let abstract-block(abstract) = context {
-  let (space, font) = units.get()
+  let (space, font) = setup.scales()
 
-  pad(x: space.lg, {
-    set text(size: font.sm)
-    set par(justify: true, leading: .72em)
-
-    text(weight: "bold", fill: constants.palette.grey.dark)[Abstract]
-    h(space.sm)
-    abstract
-  })
+  pad(x: space.lg, parts.labelled([Abstract], abstract, size: font.sm, leading: .72em))
 }
 
 
-// title block: ?meta-top, title, ?subtitle, ?authors, ?abstract
+// title block: ?meta-top, ?title, ?subtitle, ?authors, ?abstract
 #let title-content(
   title,
   subtitle: none,
   authors: none,
   meta-top: none,
   abstract: none,
-  highlight: constants.palette.red,
+  highlight: auto,
 ) = context {
-  let (space, font, weight) = units.get()
+  let (space, font) = setup.scales()
 
   block(width: 100%, below: space.md, {
     if meta-top != none {
@@ -34,22 +28,25 @@
       v(space.sm)
     }
 
-    block(below: space.sm, {
-      set par(leading: 0.5em, justify: false)
-      text(size: font.xl, weight: "bold", title)
-    })
-
-    if subtitle != none {
-      block(above: space.md, below: space.sm, {
-        set par(leading: 0.6em, justify: false)
-        text(size: font.lg, fill: constants.palette.grey.medium, subtitle)
+    if title != none {
+      block(below: space.sm, {
+        set par(leading: 0.5em, justify: false)
+        text(size: font.xl, weight: "bold", title)
       })
     }
 
-    block(above: space.md, below: space.md, line(
-      length: constants.span.p2,
-      stroke: weight.xl + highlight,
-    ))
+    if subtitle != none {
+      block(above: space.md, below: space.sm, {
+        set par(justify: false)
+        parts.subtitle(subtitle, font.lg)
+      })
+    }
+
+    block(
+      above: space.md,
+      below: space.md,
+      parts.accent-line(constants.span.p2, highlight: highlight),
+    )
 
     if authors != none {
       set par(justify: false)
@@ -65,18 +62,18 @@
 }
 
 
-// base, title block + body in ?columns
+// base, ?title block + body in ?columns; the title block is left out if all its parts are none
 #let base(
   title: none,
   subtitle: none,
   authors: none,
   meta-top: none,
   abstract: none,
-  highlight: constants.palette.red,
+  highlight: auto,
   columns: 2,
   body
   ) = {
-  if title != none {
+  if (title, subtitle, authors, meta-top, abstract).any(part => part != none) {
     title-content(
       title,
       subtitle: subtitle,
@@ -88,7 +85,7 @@
   }
 
   if columns > 1 {
-    context std.columns(columns, gutter: units.get().space.lg, body)
+    context std.columns(columns, gutter: setup.scales().space.lg, body)
   } else {
     body
   }

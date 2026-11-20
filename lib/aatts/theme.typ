@@ -1,22 +1,17 @@
 #import "constants.typ" as constants
-#import "units.typ" as units
+#import "units.typ": scales, override
+#import "setup.typ" as setup
 
 
-// `auto` scales resolve from the unit setup
-#let style(
-  space: auto,
-  font: auto,
-  weight: auto,
+// typography shared by all formats, from the scales of the format
+#let rules(
+  scales,
   font-families: constants.font-families,
   lang: "en",
   highlight: constants.palette.red,
   body,
-) = context {
-  let (space, font, weight) = units.resolve(
-    space: space, 
-    font: font, 
-    weight: weight
-  )
+) = {
+  let (space, font, weight) = scales
 
   // paragraphs
   set text(
@@ -33,7 +28,7 @@
   // headings
   show heading: set text(weight: "bold")
   show heading: set par(leading: 0.6em)
-  
+
   show heading.where(level: 1): set text(size: font.xxl)
   show heading.where(level: 2): set text(size: font.xl)
   show heading.where(level: 2): set block(above: space.lg, below: space.md)
@@ -51,14 +46,14 @@
     body-indent: .6em,
   )
 
-  // tables
+  // tables, inset relative to the body text (not the table text)
   set table(
     inset: (x: font.md * .5, y: font.md * .625),
     stroke: (_, y) =>
       if y == 0 {
         (bottom: weight.md + constants.palette.grey.dark)
       } else {
-        (bottom:weight.sm + constants.palette.grey.medium)
+        (bottom: weight.sm + constants.palette.grey.medium)
       }
     ,
   )
@@ -96,4 +91,38 @@
 
   // content
   body
+}
+
+
+// typography of a format w/o page setup, usable inside boxes (e.g. scaled previews)
+//
+// `bases` are the default bases of the format, `format-rules(scales, body)` adds
+// its own rules on top of the shared ones; the returned function takes
+// `units` (overrides of the bases, e.g. `(font: 18pt)`), `font-families`,
+// `highlight` (accent colour, also the default of widgets and layouts) and `lang`
+#let typography(defaults, format-rules: (scales, body) => body) = {
+  let apply(
+    units: (:),
+    font-families: constants.font-families,
+    highlight: constants.palette.red,
+    lang: "en",
+    body,
+  ) = {
+    let active = override(defaults, units)
+    let sizes = scales(active)
+
+    setup.scope((bases: active, highlight: highlight), {
+      show: rules.with(
+        sizes,
+        font-families: font-families,
+        lang: lang,
+        highlight: highlight,
+      )
+      show: format-rules.with(sizes)
+
+      body
+    })
+  }
+
+  apply
 }

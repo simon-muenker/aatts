@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `units.get()` returns the scales currently set by the theme (requires `context`); `units.bases` holds the default bases of a format.
 - Poster header: `poster.layouts.base` takes an `abstract` (set as a labelled TL;DR below an accent line in the `highlight` colour) and an `aside` placed on the right of the header, e.g. a large QR code. The header alone is available as `poster.layouts.title-content`. Without both, the poster renders as before.
 - Template: the poster moves its TL;DR and QR code into the header; the placeholder text is shortened to keep the poster on one page.
+- The theme `highlight` is the default of all widgets (`card`, `statement`) and the accent lines of the poster and article layouts; their `highlight` now defaults to `auto`.
+- `widgets` is exported at the top level of the package, next to `constants`.
+- `units.weight` adds `xs` (0.25 ×).
 
 ### Changed
 
@@ -23,6 +26,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Template: helpers, plugin setups and placeholder content shared by the starters moved to `template/partials/` (`helpers.typ`: `split`, `gap`, `note`, `meta`; `plugins.typ`: `tree`, `qr`; `content.typ`: `byline`, `website`, `taxonomy`, `ega-figure`, `references`). Helpers read their sizes from the active theme; the slides keep their wider `split` gutter.
 - `units.weight` adds `xxl` (8 ×).
 - Spacing and type adjusted across all themes: wider page margins and column gutters, smaller running header/footer text (`xs`), slightly tighter paragraph spacing (1.0 em), a larger poster subtitle, and reworked article heading, figure, table and abstract spacing (level-3 headings now sized `md`).
+
+### Fixed
+
+- Nested themes no longer leak: a theme restores the units and highlight of the enclosing theme after its body (e.g. a slide preview rendered with `slides.theme.typography` inside an article no longer switches the rest of the article to slide sizes).
+- `poster.layouts.base` spaces the header from the body with the units set in the theme instead of the defaults.
+- `poster.layouts.base` without a `title` no longer renders an empty, numbered level-1 heading; poster and article leave out the header / title block when none of its parts are given, and render the given parts otherwise.
 
 ## [0.1.0] - 2026-11-19
 

@@ -1,5 +1,4 @@
 // ---- theme
-// FIXME #import "@preview/aatts:0.1.0": constants, poster
 #import "@preview/aatts:0.1.0": constants, poster
 
 // ---- partials

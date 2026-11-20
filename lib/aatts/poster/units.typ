@@ -1,15 +1,13 @@
 #import "../units.typ" as units
+#import "../setup.typ" as setup
 
 
 // the reference bases, scaled up
-#let bases = (
-  space: units.bases.space * 2.8,
-  font: units.bases.font * 2.8,
-  weight: units.bases.weight * 4,
-)
+#let bases = units.derive(space: 2.8, font: 2.8, weight: 4)
 
-// default scales, usable outside context
+// default scales, usable outside context; they ignore the `units` overrides
+// of the theme, use `get()` for the scales actually in effect
 #let (space, font, weight) = units.scales(bases)
 
-// scales of the unit setup, w/ the overrides of the theme (context only)
-#let get = units.get
+// scales of the active theme, w/ its overrides (context only)
+#let get = setup.scales

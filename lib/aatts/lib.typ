@@ -1,4 +1,5 @@
 #import "constants.typ" as constants
+#import "widgets.typ" as widgets
 
 #import "slides/lib.typ" as slides
 #import "poster/lib.typ" as poster

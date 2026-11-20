@@ -1,5 +1,5 @@
-#import "../constants.typ" as constants
-#import "units.typ" as units
+#import "../setup.typ" as setup
+#import "../parts.typ" as parts
 
 
 // empty, w/o borders
@@ -32,16 +32,11 @@
 
 // title + ?subtitle, shared by the title layouts
 #let title-heading(title, subtitle: none) = context {
-  let (space, font) = units.get()
+  let (space, font) = setup.scales()
 
   heading(level: 1, title)
   if subtitle != none {
-    set par(leading: 0.6em)
-    text(
-      size: font.lg, 
-      fill: constants.palette.grey.medium,
-      subtitle
-    )
+    parts.subtitle(subtitle, font.lg)
   }
   v(-space.sm)
 }
@@ -86,7 +81,7 @@
     image
   }),
   context {
-    let (space,) = units.get()
+    let (space,) = setup.scales()
 
     pad(space.md, grid(
       rows: (auto, 1fr, auto),

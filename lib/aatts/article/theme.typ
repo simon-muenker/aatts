@@ -1,88 +1,73 @@
 #import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
-#import "../units.typ": update, get
+#import "../setup.typ" as setup
 
 #import "units.typ": bases
 
 
-// text styling w/o page setup, usable inside boxes (e.g. scaled previews)
-// `units` overrides the bases of the unit setup, e.g. (font: 11pt)
-#let typography(
-  units: (:),
-  font-families: constants.font-families,
-  highlight: constants.palette.red,
-  lang: "en",
-  body
-  ) = {
-  update(bases, units)
+// rules on top of the shared typography, denser than slides and posters
+#let format-rules(scales, body) = {
+  let (space, font) = scales
 
-  show: base-theme.style.with(
-    font-families: font-families,
-    lang: lang,
-    highlight: highlight,
+  // paragraphs
+  set par(
+    justify: true,
+    leading: 0.68em,
+    spacing: 1.2em,
   )
 
-  context {
-    let (space, font) = get()
+  // headings, numbered sections (= 1, == 1.1, === unnumbered run-in)
+  set heading(numbering: "1.1")
 
-    // paragraphs, denser than slides and posters
-    set par(
-      justify: true,
-      leading: 0.68em,
-      spacing: 1.2em,
-    )
+  show heading.where(level: 1): set text(size: font.lg)
+  show heading.where(level: 1): set block(above: space.lg, below: space.md)
 
-    // headings, numbered sections (= 1, == 1.1, === unnumbered run-in)
-    set heading(numbering: "1.1")
+  // level 2 is a scaled-down level 1
+  let sub = 0.8
+  show heading.where(level: 2): set text(size: font.lg * sub)
+  show heading.where(level: 2): set block(above: space.lg * sub, below: space.md * sub)
 
-    show heading.where(level: 1): set text(size: font.lg)
-    show heading.where(level: 1): set block(above: space.lg, below: space.md)
+  show heading.where(level: 3): set heading(numbering: none)
+  show heading.where(level: 3): set text(size: font.md)
+  show heading.where(level: 3): set block(above: space.md, below: space.sm)
 
-    show heading.where(level: 2): set text(size: font.lg * 0.8)
-    show heading.where(level: 2): set block(above: space.lg * 0.8, below: space.md  * 0.8)
+  // equations
+  set math.equation(numbering: "(1)")
 
-    show heading.where(level: 3): set heading(numbering: none)
-    show heading.where(level: 3): set text(size: font.md)
-    show heading.where(level: 3): set block(above: space.md, below: space.sm)
+  // tables, inset relative to the body text (not the table text)
+  show table: set text(size: font.sm)
+  set table(inset: (x: font.md * .64, y: font.md * .42))
 
-    // equations
-    set math.equation(numbering: "(1)")
+  // figures
+  show figure.caption: set align(left)
+  set figure(gap: space.md)
+  show figure: set block(above: space.lg, below: space.lg)
 
-    show table: set text(size: font.sm)
-    set table(inset: (x: font.md * .64, y: font.md * .42))
+  // bibliography as top-level, unnumbered section
+  show bibliography: set heading(offset: 0, numbering: none)
+  show bibliography: set text(size: font.sm)
 
-    // figures
-    show figure.caption: set align(left)
-    set figure(gap: space.md)
-    show figure: set block(above: space.lg, below: space.lg)
-
-    // bibliography as top-level, unnumbered section
-    show bibliography: set heading(offset: 0, numbering: none)
-    show bibliography: set text(size: font.sm)
-
-    body
-  }
+  body
 }
 
 
+// text styling w/o page setup, usable inside boxes (e.g. scaled previews)
+// takes `units` (overrides of the bases, e.g. `(font: 11pt)`), `font-families`,
+// `highlight` and `lang`
+#let typography = base-theme.typography(bases, format-rules: format-rules)
+
+
+// typography and page setup, takes the arguments of `typography`
 #let style(
   paper: "a4",
   header: none,
-  units: (:),
-  font-families: constants.font-families,
-  highlight: constants.palette.red,
-  lang: "en",
+  ..args,
   body
   ) = {
-  show: typography.with(
-    units: units,
-    font-families: font-families,
-    lang: lang,
-    highlight: highlight,
-  )
+  show: typography.with(..args)
 
   context {
-    let (space, font) = get()
+    let (space, font) = setup.scales()
 
     set page(
       paper: paper,
@@ -91,7 +76,7 @@
         top: space.xl,
         bottom: space.xl
       ),
-      // running header, skipped on the first page
+      // running header, skipped on the first page (own context, resolved per page)
       header: context if header != none and counter(page).get().first() > 1 {
         set text(
           size: font.xs,

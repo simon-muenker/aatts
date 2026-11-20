@@ -2,5 +2,3 @@
 #import "theme.typ" as theme
 #import "layouts.typ" as layouts
 #import "../widgets.typ" as widgets
-
-

@@ -61,7 +61,7 @@ Every scale uses the same t-shirt sizes; `md` is always the base value.
 |----------|-----------------------------------------|------------------------------------|
 | `font`   | `xxl`, `xl`, `lg`, `md`, `sm`, `xs`     | `3`, `2.25`, `1.5`, `1`, `0.9`, `0.75` |
 | `space`  | `xxl`, `xl`, `lg`, `md`, `sm`, `xs`     | `8`, `4`, `2`, `1`, `0.5`, `0.25`  |
-| `weight` | `xxl`, `xl`, `lg`, `md`, `sm`           | `8`, `4`, `2`, `1`, `0.5`          |
+| `weight` | `xxl`, `xl`, `lg`, `md`, `sm`, `xs`     | `8`, `4`, `2`, `1`, `0.5`, `0.25`  |
 
 ```typ
 #v(slides.units.space.md)
@@ -80,12 +80,22 @@ To change the sizes, pass new bases (the `md` value of a scale) to the theme wit
 #context v(slides.units.get().space.md)
 ```
 
+A theme only applies to its own body. Nesting themes, e.g. a slide rendered as a preview inside an article with `slides.theme.typography`, restores the outer units and highlight after the inner body.
+
 ## Fonts
 
 Fonts are not bundled with the package. The themes try Helvetica Neue, Helvetica, Liberation Sans and Arial in that order; if none is available, Typst falls back to its default font. Pass your own stack to either theme to change it:
 
 ```typ
   #show: slides.theme.style.with(font-families: ("Inter", "Arial"))
+```
+
+## Highlight
+
+Every theme takes a `highlight` colour (default `constants.palette.red`). It colours the list markers and is the default of all widgets and accent lines, so one argument re-colours the whole document. Widgets and layouts still accept their own `highlight` to override it locally:
+
+```typ
+#show: slides.theme.style.with(highlight: constants.palette.blue)
 ```
 
 ## `slides`
@@ -186,7 +196,7 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 
 Stacks the header and the body set in `columns` columns (default 3). Use `== Heading` for sections and `#colbreak()` to start the next column.
 
-The header holds `meta-top`, the title and an optional subtitle on the left. An optional `abstract` follows below an accent line (coloured by `highlight`) and is set larger, as a labelled *TL;DR*. The optional `aside` sits vertically centred on the right; it is meant for a large QR code that gives readers a self-paced way into the paper, code or data. The package does not generate QR codes, so pass any content, e.g. an image or the output of a QR package (the template uses [`cades`](https://typst.app/universe/package/cades)). The header alone is available as `layouts.title-content`.
+The header holds `meta-top`, the title and an optional subtitle on the left; it is left out when none of its parts are given. An optional `abstract` follows below an accent line (coloured by `highlight`) and is set larger, as a labelled *TL;DR*. The optional `aside` sits vertically centred on the right; it is meant for a large QR code that gives readers a self-paced way into the paper, code or data. The package does not generate QR codes, so pass any content, e.g. an image or the output of a QR package (the template uses [`cades`](https://typst.app/universe/package/cades)). The header alone is available as `layouts.title-content`.
 
 ## `article`
 
@@ -214,11 +224,11 @@ The theme sets an A4 page (`paper`), a running `header` from the second page on,
 
 ### `layouts.base`
 
-Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
+Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. The title block is left out when none of its parts are given. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
 
 ## Widgets
 
-The same widgets are available as `slides.widgets, poster.widgets` and `article.widgets`.
+The same widgets are available as `widgets` and as `slides.widgets, poster.widgets` and `article.widgets`. Without a `highlight`, they use the one of the theme.
 
 ### `card`
 

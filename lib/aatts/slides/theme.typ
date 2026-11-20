@@ -1,49 +1,27 @@
 #import "../constants.typ" as constants
 #import "../theme.typ" as base-theme
-#import "../units.typ": update, get
+#import "../setup.typ" as setup
 
 #import "units.typ": bases
 
 
 // text styling w/o page setup, usable inside boxes (e.g. scaled previews)
-// `units` overrides the bases of the unit setup, e.g. (font: 18pt)
-#let typography(
-  units: (:),
-  font-families: constants.font-families,
-  highlight: constants.palette.red,
-  lang: "en",
-  body
-  ) = {
-  update(bases, units)
-
-  show: base-theme.style.with(
-    font-families: font-families,
-    lang: lang,
-    highlight: highlight,
-  )
-
-  body
-}
+// takes `units` (overrides of the bases, e.g. `(font: 18pt)`), `font-families`,
+// `highlight` and `lang`
+#let typography = base-theme.typography(bases)
 
 
+// typography and page setup, takes the arguments of `typography`
 #let style(
   paper: "presentation-16-9",
   footer: none,
-  units: (:),
-  font-families: constants.font-families,
-  highlight: constants.palette.red,
-  lang: "en",
+  ..args,
   body
   ) = {
-  show: typography.with(
-    units: units,
-    font-families: font-families,
-    lang: lang,
-    highlight: highlight,
-  )
+  show: typography.with(..args)
 
   context {
-    let (space, font) = get()
+    let (space, font) = setup.scales()
 
     set page(
       paper: paper,
@@ -51,6 +29,7 @@
         x: space.lg,
         y: space.lg
       ),
+      // own context, so the page counter resolves on each page
       footer: context {
         set text(
           size: font.xs,
