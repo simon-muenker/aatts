@@ -180,23 +180,23 @@ Page without margins, header or footer, e.g. for a full-bleed image.
 #show: poster.theme.style
 #set document(title: "Poster Title", author: "Author Name")
 
-#poster.layouts.base(
+#show: poster.layouts.base.with(
   title: [Poster Title],
   subtitle: [A short subtitle that frames the poster],
   meta-top: [*Author Name* \ Affiliation #h(1fr) Conference Name · Venue, Date],
   abstract: [The main finding in two or three sentences.],
   aside: image("qr-code.svg", width: 20cm),
-)[
-  == Motivation
+)
 
-  #poster.widgets.card(title: [Note])[
-    Additional context in a highlighted card.
-  ]
+== Motivation
 
-  #colbreak()
-
-  == Results
+#poster.widgets.card(title: [Note])[
+  Additional context in a highlighted card.
 ]
+
+#colbreak()
+
+== Results
 ```
 
 ### `layouts.base`
@@ -213,18 +213,18 @@ The header holds `meta-top`, the title and an optional subtitle on the left; it 
 #show: article.theme.style.with(header: [Short Title · Author Name])
 #set document(title: "Article Title", author: "Author Name")
 
-#article.layouts.base(
+#show: article.layouts.base.with(
   title: [Article Title],
   subtitle: [A short subtitle that frames the article],
   authors: [*Author Name* \ Affiliation],
   abstract: [A short abstract.],
-)[
-  = Introduction
+)
 
-  #lorem(80)
+= Introduction
 
-  #bibliography("references.bib", title: [References])
-]
+#lorem(80)
+
+#bibliography("references.bib", title: [References])
 ```
 
 The theme sets an A4 page (`paper`), a running `header` from the second page on, centred page numbers, justified text, numbered sections (`=` and `==, ===` stays unnumbered) and numbered equations.
@@ -232,6 +232,8 @@ The theme sets an A4 page (`paper`), a running `header` from the second page on,
 ### `layouts.base`
 
 Stacks the title block (`meta-top`, title, `subtitle`, accent line, `authors, abstract`) and the body. The title block is left out when none of its parts are given; `meta-top` is set as given, like in the other formats. `columns: 2` sets the body in two columns below a full-width title block. The title block alone is available as `layouts.title-content`.
+
+Like the matter layouts of the book, `base` is applied with a show rule, `#show: article.layouts.base.with(..)`, so the rest of the file is its body; calling it with the body in brackets, `#article.layouts.base(..)[..]`, works as well. The same holds for the poster and letter `base`.
 
 All head parts are named, including `title:`; a positional argument before the body fails instead of being dropped. The same holds for the poster and letter `base` and for all title layouts. `layouts.base-content` is the same as `layouts.base` (the pages follow the flow of the body), for symmetry with the slides.
 
@@ -296,19 +298,19 @@ Lists of figures and tables, titled *List of Figures* and *List of Tables*. Furt
 #show: letter.theme.style
 #set document(title: "Letter Subject", author: "Author Name")
 
-#letter.layouts.base(
+#show: letter.layouts.base.with(
   sender: [*Author Name* \ Affiliation],
   return-address: [Author Name · Street 1 · 12345 City],
   recipient: [Recipient Name \ Street 2 \ 54321 City],
   info: [Date: November 20, 2026],
   subject: [Subject of the Letter],
-)[
-  Dear Recipient Name,
+)
 
-  #lorem(80)
+Dear Recipient Name,
 
-  Kind regards
-]
+#lorem(80)
+
+Kind regards
 ```
 
 The theme sets an A4 page after DIN 5008 form B for postal dispatch in a DL window envelope: margins of 25 mm (left) and 20 mm (right), an empty header and footer, paragraphs set apart by about one blank line, and fold and punch marks on the left edge of the first page. The geometry is available as `letter.theme.din`.

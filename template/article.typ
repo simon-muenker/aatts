@@ -112,4 +112,7 @@
   #references(title: [References])
 ]
 
-#article.layouts.base(..hero, body)
+// `body` is a variable, main.typ reuses it (w/ `hero`) for the preview
+#show: article.layouts.base.with(..hero)
+
+#body

@@ -44,16 +44,16 @@
 // Body
 // ============================================================
 
-#letter.layouts.base(..head)[
-  Dear Recipient Name,
+#show: letter.layouts.base.with(..head)
 
-  #lorem(64)
+Dear Recipient Name,
 
-  #lorem(48)
+#lorem(64)
 
-  Kind regards
+#lorem(48)
 
-  #vspace("xl")
+Kind regards
 
-  Author Name
-]
+#vspace("xl")
+
+Author Name

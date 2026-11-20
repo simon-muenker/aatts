@@ -158,4 +158,7 @@
   #references()
 ]
 
-#poster.layouts.base(..hero, body)
+// `body` is a variable, main.typ reuses it (w/ `hero`) for the preview
+#show: poster.layouts.base.with(..hero)
+
+#body
